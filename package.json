@@ -1,0 +1,27 @@
+{
+	"name": "voicings-monorepo",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"lint": "turbo run lint",
+		"seed:import": "ts-node --project tsconfig.scripts.json scripts/import-voicings-from-csv.ts docs/data/voicings-seed.csv",
+		"seed:dry-run": "ts-node --project tsconfig.scripts.json scripts/import-voicings-from-csv.ts docs/data/voicings-seed.csv --dry-run"
+	},
+	"devDependencies": {
+		"chalk": "^4.1.2",
+		"csv-parse": "^5.5.6",
+		"ts-node": "^10.9.2",
+		"turbo": "^2.0.0",
+		"typescript": "^5.0.0",
+		"prettier": "^3.0.0"
+	},
+	"packageManager": "npm@10.2.0",
+	"engines": {
+		"node": ">=20"
+	}
+}

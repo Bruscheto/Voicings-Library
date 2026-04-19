@@ -1,0 +1,12 @@
+{
+	"name": "music-engine",
+	"version": "0.0.0",
+	"main": "./src/index.ts",
+	"types": "./src/index.ts",
+	"dependencies": {
+		"vexflow": "^4.2.0"
+	},
+	"devDependencies": {
+		"typescript": "^5.0.0"
+	}
+}

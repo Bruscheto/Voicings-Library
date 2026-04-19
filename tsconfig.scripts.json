@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"target": "es2019",
+		"module": "commonjs",
+		"lib": ["es2020"],
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"strict": true
+	},
+	"include": ["scripts/**/*.ts"]
+}

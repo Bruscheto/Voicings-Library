@@ -1,0 +1,2 @@
+voicing_id,voicing_name,symbol,root,quality,tensions,slash_bass,context_tags,pitches,midi_numbers,register_low,register_high,clef_hint,descriptor,substructures,tags,progression_refs,audio_status,notes,source,status
+00000000-0000-4000-8000-000000000001,Rootless Guide Tone,Cmaj9(#11)/E,C,Maj7,"9,#11",E,"Rootless,Drop 2","[\"E3\",\"B3\",\"D4\",\"F#4\",\"A4\"]","[52,59,62,66,69]",E3,A4,grand,"3-7 shell with #11 UST","UST: G-B-D","Ballad,Left-Hand","autumn-a:3",sampled,"Captured via admin tool","Bill Evans transcription",ready

@@ -15,14 +15,34 @@ export class StaffRenderer {
 
     const { Renderer, Stave, StaveNote, Formatter, StaveConnector, Accidental, Voice } = Vex.Flow;
 
+    // Detect extreme range to add padding above/below the grand staff.
+    // Treble staff comfortably shows octaves 4-5; bass shows 2-3.
+    // Each octave outside that needs ~60px of ledger-line space.
+    const PIXELS_PER_EXTRA_OCTAVE = 60;
+    const TREBLE_NORMAL_TOP_OCT = 5;
+    const BASS_NORMAL_BOTTOM_OCT = 2;
+
+    const octaves = notes
+      .map(n => parseInt(n.split('/')[1]))
+      .filter(n => Number.isFinite(n));
+    const maxOct = octaves.length ? Math.max(...octaves) : TREBLE_NORMAL_TOP_OCT;
+    const minOct = octaves.length ? Math.min(...octaves) : BASS_NORMAL_BOTTOM_OCT;
+
+    const extraTop = Math.max(0, maxOct - TREBLE_NORMAL_TOP_OCT) * PIXELS_PER_EXTRA_OCTAVE;
+    const extraBottom = Math.max(0, BASS_NORMAL_BOTTOM_OCT - minOct) * PIXELS_PER_EXTRA_OCTAVE;
+
+    const trebleY = 40 + extraTop;
+    const bassY = trebleY + 120;
+    const canvasHeight = bassY + 120 + extraBottom;
+
     const renderer = new Renderer(div, Renderer.Backends.SVG);
-    renderer.resize(500, 300); // Increased height for Grand Staff
+    renderer.resize(500, canvasHeight);
     const context = renderer.getContext();
 
     // 1. Create Staves (Treble + Bass)
     // Shifted x to 50 to prevent cut-off
-    const staveTreble = new Stave(50, 40, 400);
-    const staveBass = new Stave(50, 160, 400);
+    const staveTreble = new Stave(50, trebleY, 400);
+    const staveBass = new Stave(50, bassY, 400);
 
     staveTreble.addClef("treble");
     staveBass.addClef("bass");

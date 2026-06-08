@@ -152,7 +152,10 @@ export default function AdminPage() {
   // Form State
   const [voicingName, setVoicingName] = useState('Rootless');
   const [saveStatus, setSaveStatus] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
   const [isArp, setIsArp] = useState(false);
+
+  const SAVE_TIMEOUT_MS = 10_000;
 
   // Chord Builder State
     const [root, setRoot] = useState('C');
@@ -384,14 +387,21 @@ export default function AdminPage() {
     }, [handlePlay, shiftActiveNotes]);
 
   const handleSave = async () => {
+    if (isSaving) return;
+    setIsSaving(true);
     setSaveStatus('Saving...');
+
     const pitches = sortedActiveNotes;
     const midiNumbers = pitches.map(noteToMidi);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), SAVE_TIMEOUT_MS);
 
     try {
       const res = await fetch('/api/voicings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
           symbol: computedSymbol,
           quality,
@@ -400,19 +410,26 @@ export default function AdminPage() {
           voicingName,
           pitches,
           midiNumbers,
-                    context: 'manual',
-                    contextTags: appliedContexts
+          context: 'manual',
+          contextTags: appliedContexts
         })
       });
-      
+
       if (res.ok) {
         setSaveStatus('Saved!');
         setTimeout(() => setSaveStatus(''), 2000);
       } else {
-        setSaveStatus('Error saving');
+        setSaveStatus(`Save failed (${res.status}) — retry`);
       }
     } catch (e) {
-      setSaveStatus('Error saving');
+      if ((e as { name?: string })?.name === 'AbortError') {
+        setSaveStatus('Save timed out — retry');
+      } else {
+        setSaveStatus('Network error — retry');
+      }
+    } finally {
+      clearTimeout(timeoutId);
+      setIsSaving(false);
     }
   };
 
@@ -436,23 +453,6 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8 flex flex-col items-center">
-      <style jsx global>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          height: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background-color: rgba(156, 163, 175, 0.5);
-          border-radius: 20px;
-          border: 3px solid transparent;
-          background-clip: content-box;
-        }
-        .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-            background-color: rgba(107, 114, 128, 0.8);
-        }
-      `}</style>
       <div className="max-w-4xl w-full bg-white rounded-xl shadow-xl p-8">
         <div className="flex justify-between items-center mb-8">
             <h1 className="text-2xl font-bold text-gray-800">Voicing Capture Tool</h1>
@@ -637,9 +637,9 @@ export default function AdminPage() {
                     />
                 </div>
                 
-                <button 
+                <button
                     onClick={handleSave}
-                    disabled={activeNotes.size === 0}
+                    disabled={activeNotes.size === 0 || isSaving}
                     className="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
                 >
                     {saveStatus || 'Save Voicing'}

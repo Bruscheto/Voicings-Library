@@ -21,7 +21,7 @@ This guide explains how we author new voicings in a spreadsheet, validate the da
 
 ## 3. Importing into Prisma
 
-1. `npm run seed:import` upserts the CSV rows into the local SQLite DB (Chord + Voicing + VoicingChord tables) so the admin app reads the same data the spreadsheet defines.
+1. `npm run seed:import` upserts the CSV rows into Postgres (Chord + Voicing + VoicingChord tables) so the admin app reads the same data the spreadsheet defines.
 2. `cd packages/data-model && npx prisma db seed` executes the same importer via Prisma’s seed hook, which is what CI/prod deployments will use.
 3. Both commands are idempotent: rerunning them updates existing voicings (by `voicing_id`) and skips rows whose status is `draft` or `defer`.
 

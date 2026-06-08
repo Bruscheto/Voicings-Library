@@ -2,8 +2,9 @@ import React from 'react';
 import './globals.css';
 
 export const metadata = {
-  title: 'Voicings Playground',
-  description: 'Testing VexFlow and Sampler',
+  title: 'Voicings — Jazz Piano Library',
+  description:
+    'A curated library of jazz piano voicings. Search by chord, view on staff, play back with real piano samples.',
 };
 
 export default function RootLayout({

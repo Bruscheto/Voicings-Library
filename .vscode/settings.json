@@ -1,0 +1,14 @@
+{
+  // Project-pinned editor behavior. Committed to git so collaborators
+  // (and future-you on a fresh machine) get the same defaults.
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.requireConfig": true,
+  "js/ts.tsdk": "node_modules/typescript/lib",
+
+  // Tailwind: tell the editor where the configs live.
+  "tailwindCSS.experimental.configFile": {
+    "apps/web/tailwind.config.js": "apps/web/**",
+    "apps/admin/tailwind.config.js": "apps/admin/**"
+  }
+}

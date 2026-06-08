@@ -1,0 +1,9 @@
+node_modules
+.next
+.turbo
+dist
+out
+*.tsbuildinfo
+package-lock.json
+docs/data/*.csv
+packages/data-model/prisma/migrations

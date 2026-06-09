@@ -1,32 +1,40 @@
 # Dependencies
-node_modules
-.pnp
+node_modules/
+.pnp/
 .pnp.js
 
-# Env (never commit)
+# Environment
 .env
 .env.*
 !.env.example
+*.local
 
-# Build output
-.next
-.turbo
-dist
-out
+# Build output and caches
+.next/
+.turbo/
+dist/
+out/
+coverage/
+.vercel/
+.netlify/
+.parcel-cache/
 
-# TypeScript
+# Generated
 *.tsbuildinfo
 
-# Prisma local DB
+# Local databases
 *.db
 *.db-journal
+*.sqlite
+*.sqlite-journal
 
-# IDE / OS
+# OS and editor noise
 .DS_Store
+Thumbs.db
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
-.idea
+.idea/
 *.swp
 *.swo
 
@@ -35,9 +43,14 @@ out
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# Agent / tooling scratch (local session state, not for the repo)
+# Local AI/tooling state
+.claude/
 .superpowers/
+.codex/
 
-# Misc
-TODO.md
+# Local scratch
+tmp/
+temp/
+.cache/

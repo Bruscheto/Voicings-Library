@@ -9,56 +9,52 @@ datasource db {
 }
 
 model Chord {
-  id          String   @id @default(uuid())
-  symbol      String   @unique // e.g. Cmaj7
-  quality     String   // e.g. Major, Minor, Dominant
-  root        String   // e.g. C
-  tensions    String?  // e.g. 9, #11 (stored as comma separated or JSON)
-  
-  voicings    VoicingChord[]
-  progressions ProgressionChord[]
+  id       String         @id @default(uuid())
+  symbol   String         @unique
+  root     String         // CHECK constraint enforces valid pitch class
+  quality  String         // CHECK constraint enforces valid quality
+  tensions String[]       @default([])
+
+  voicings VoicingChord[]
+
+  @@index([quality])
 }
 
 model Voicing {
-  id          String   @id @default(uuid())
-  name        String?  // Optional nickname
-  pitches     String   // JSON array: ["E3", "G3", "B3", "D4"]
-  midiNumbers String   // JSON array: [52, 55, 59, 62]
-  // register removed as per user request
-  
-  chords      VoicingChord[]
-  progressions ProgressionChord[]
-  
-  createdAt   DateTime @default(now())
+  id        String         @id @default(uuid())
+  name      String?
+  pitches   String[]       @default([])
+  slashBass String?
+
+  chords VoicingChord[]
+  tags   VoicingTag[]
+
+  createdAt DateTime @default(now())
 }
 
 model VoicingChord {
-  id        String  @id @default(uuid())
+  id        String @id @default(uuid())
   voicingId String
   chordId   String
-  context   String? // rootless, slash, etc.
-  
-  voicing   Voicing @relation(fields: [voicingId], references: [id])
-  chord     Chord   @relation(fields: [chordId], references: [id])
+
+  voicing Voicing @relation(fields: [voicingId], references: [id])
+  chord   Chord   @relation(fields: [chordId], references: [id])
 
   @@unique([voicingId, chordId])
 }
 
-model Progression {
-  id        String   @id @default(uuid())
-  name      String
-  
-  steps     ProgressionChord[]
+model Tag {
+  id       String       @id @default(uuid())
+  name     String       @unique
+  voicings VoicingTag[]
 }
 
-model ProgressionChord {
-  id            String      @id @default(uuid())
-  progressionId String
-  chordId       String
-  voicingId     String?
-  order         Int
-  
-  progression   Progression @relation(fields: [progressionId], references: [id])
-  chord         Chord       @relation(fields: [chordId], references: [id])
-  voicing       Voicing?    @relation(fields: [voicingId], references: [id])
+model VoicingTag {
+  voicingId String
+  tagId     String
+  voicing   Voicing @relation(fields: [voicingId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId],     references: [id], onDelete: Restrict)
+
+  @@id([voicingId, tagId])
+  @@index([tagId])
 }

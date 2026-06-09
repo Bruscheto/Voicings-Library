@@ -10,39 +10,54 @@ export class StaffRenderer {
   render(notes: string[]) {
     if (typeof document === 'undefined') return;
     const div = document.getElementById(this.divId);
-    if (!div) return;
+    if (!(div instanceof HTMLDivElement)) return;
     div.innerHTML = ''; // Clear previous
 
     const { Renderer, Stave, StaveNote, Formatter, StaveConnector, Accidental, Voice } = Vex.Flow;
 
-    // Detect extreme range to add padding above/below the grand staff.
-    // Treble staff comfortably shows octaves 4-5; bass shows 2-3.
-    // Each octave outside that needs ~60px of ledger-line space.
-    const PIXELS_PER_EXTRA_OCTAVE = 60;
-    const TREBLE_NORMAL_TOP_OCT = 5;
-    const BASS_NORMAL_BOTTOM_OCT = 2;
+    // Detect extreme range to add ledger-line padding above/below the grand
+    // staff. An SVG element clips its own overflow, so the canvas must be tall
+    // enough to contain every note head plus its ledger lines, or the lowest
+    // notes get cut off. Measure the actual pitch extent in semitones rather
+    // than bucketing by octave (which left octave-2 notes below G2 clipped).
+    const NOTE_TO_PC: Record<string, number> = {
+      c: 0, 'c#': 1, db: 1, d: 2, 'd#': 3, eb: 3, e: 4, f: 5,
+      'f#': 6, gb: 6, g: 7, 'g#': 8, ab: 8, a: 9, 'a#': 10, bb: 10, b: 11,
+    };
+    const toMidi = (n: string): number | null => {
+      const [name, octStr] = n.split('/');
+      const pc = NOTE_TO_PC[name?.toLowerCase()];
+      const oct = parseInt(octStr);
+      if (pc === undefined || !Number.isFinite(oct)) return null;
+      return (oct + 1) * 12 + pc;
+    };
 
-    const octaves = notes
-      .map(n => parseInt(n.split('/')[1]))
-      .filter(n => Number.isFinite(n));
-    const maxOct = octaves.length ? Math.max(...octaves) : TREBLE_NORMAL_TOP_OCT;
-    const minOct = octaves.length ? Math.min(...octaves) : BASS_NORMAL_BOTTOM_OCT;
+    const PX_PER_SEMITONE = 3.2;
+    const TREBLE_TOP_COMFORT = 81; // A5 — highest pitch needing no extra top space
+    const BASS_BOTTOM_COMFORT = 43; // G2 — bass staff bottom line
 
-    const extraTop = Math.max(0, maxOct - TREBLE_NORMAL_TOP_OCT) * PIXELS_PER_EXTRA_OCTAVE;
-    const extraBottom = Math.max(0, BASS_NORMAL_BOTTOM_OCT - minOct) * PIXELS_PER_EXTRA_OCTAVE;
+    const midis = notes
+      .map(toMidi)
+      .filter((m): m is number => m !== null);
+    const highestMidi = midis.length ? Math.max(...midis) : 71; // B4
+    const lowestMidi = midis.length ? Math.min(...midis) : 50; // D3
 
-    const trebleY = 40 + extraTop;
-    const bassY = trebleY + 120;
-    const canvasHeight = bassY + 120 + extraBottom;
+    const extraTop = Math.max(0, highestMidi - TREBLE_TOP_COMFORT) * PX_PER_SEMITONE;
+    const extraBottom = Math.max(0, BASS_BOTTOM_COMFORT - lowestMidi) * PX_PER_SEMITONE;
+
+    const width = Math.max(280, Math.min(320, div.clientWidth || 300));
+    const staveWidth = width - 72;
+    const trebleY = 16 + extraTop;
+    const bassY = trebleY + 60;
+    const canvasHeight = bassY + 70 + extraBottom;
 
     const renderer = new Renderer(div, Renderer.Backends.SVG);
-    renderer.resize(500, canvasHeight);
+    renderer.resize(width, canvasHeight);
     const context = renderer.getContext();
 
     // 1. Create Staves (Treble + Bass)
-    // Shifted x to 50 to prevent cut-off
-    const staveTreble = new Stave(50, trebleY, 400);
-    const staveBass = new Stave(50, bassY, 400);
+    const staveTreble = new Stave(36, trebleY, staveWidth);
+    const staveBass = new Stave(36, bassY, staveWidth);
 
     staveTreble.addClef("treble");
     staveBass.addClef("bass");
@@ -107,12 +122,37 @@ export class StaffRenderer {
         }
 
         // Format and draw
-        new Formatter().joinVoices([voiceTreble]).format([voiceTreble], 350);
+        new Formatter().joinVoices([voiceTreble]).format([voiceTreble], staveWidth - 50);
         voiceTreble.draw(context, staveTreble);
 
-        new Formatter().joinVoices([voiceBass]).format([voiceBass], 350);
+        new Formatter().joinVoices([voiceBass]).format([voiceBass], staveWidth - 50);
         voiceBass.draw(context, staveBass);
-        
+        const svg = div.querySelector('svg') as SVGSVGElement | null;
+        if (svg) {
+            // VexFlow draws at absolute coordinates that can extend past the
+            // initial canvas (e.g. ledger lines on low bass notes), and an SVG
+            // viewport clips its own overflow. Measure the actual drawn content
+            // and size a viewBox to contain all of it, so nothing is cut off.
+            let viewW = width;
+            let viewH = canvasHeight;
+            try {
+                const bbox = svg.getBBox();
+                const pad = 10;
+                viewW = Math.max(width, Math.ceil(bbox.x + bbox.width + pad));
+                viewH = Math.ceil(bbox.y + bbox.height + pad);
+            } catch {
+                // getBBox can throw if the SVG is not yet laid out; fall back to
+                // the estimated canvas size.
+            }
+            svg.setAttribute('viewBox', `0 0 ${viewW} ${viewH}`);
+            svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+            svg.removeAttribute('height');
+            svg.setAttribute('width', `${viewW}`);
+            svg.style.width = '100%';
+            svg.style.height = 'auto';
+            svg.style.display = 'block';
+        }
+
     } catch (e) {
         console.error("VexFlow render error:", e);
     }

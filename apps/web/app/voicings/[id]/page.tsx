@@ -2,32 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { prisma } from 'data-model';
 import VoicingDetailClient from './VoicingDetailClient';
-
-type VoicingContext = {
-  slashBass: string | null;
-  tags: string[];
-};
-
-function parseContext(raw: string | null | undefined): VoicingContext {
-  if (!raw) return { slashBass: null, tags: [] };
-  const out: VoicingContext = { slashBass: null, tags: [] };
-  for (const part of raw.split(';')) {
-    const [key, val] = part.split(':');
-    if (!val) continue;
-    if (key === 'slash') out.slashBass = val;
-    if (key === 'tags') out.tags = val.split('|').filter(Boolean);
-  }
-  return out;
-}
-
-function safeParseJsonArray(raw: string): string[] {
-  try {
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed.map(String) : [];
-  } catch {
-    return [];
-  }
-}
+import { ChordSymbol } from '../../../components/ChordSymbol';
 
 function noteToVexFlow(note: string): string {
   const match = note.match(/([A-G][#b]?)(\d)/);
@@ -45,9 +20,8 @@ export default async function VoicingDetailPage({
   const voicing = await prisma.voicing.findUnique({
     where: { id },
     include: {
-      chords: {
-        include: { chord: true },
-      },
+      chords: { include: { chord: true } },
+      tags: { include: { tag: true } },
     },
   });
 
@@ -55,11 +29,11 @@ export default async function VoicingDetailPage({
     notFound();
   }
 
-  const pitches = safeParseJsonArray(voicing.pitches);
+  const pitches = voicing.pitches;
   const vfNotes = pitches.map(noteToVexFlow);
   const primaryVc = voicing.chords[0];
   const symbol = primaryVc?.chord.symbol ?? '—';
-  const { tags } = parseContext(primaryVc?.context);
+  const tags = voicing.tags.map((vt) => vt.tag);
   const showAltName = voicing.name && voicing.name !== symbol;
 
   return (
@@ -76,7 +50,18 @@ export default async function VoicingDetailPage({
 
         <header className="mb-8 flex items-end justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-gray-900">{symbol}</h1>
+            <h1 className="text-4xl font-bold text-gray-900">
+              {primaryVc?.chord ? (
+                <ChordSymbol
+                  root={primaryVc.chord.root}
+                  quality={primaryVc.chord.quality}
+                  tensions={primaryVc.chord.tensions}
+                  slashBass={voicing.slashBass}
+                />
+              ) : (
+                '—'
+              )}
+            </h1>
             {showAltName && (
               <p className="mt-1 text-base text-gray-500">{voicing.name}</p>
             )}
@@ -85,10 +70,10 @@ export default async function VoicingDetailPage({
             <div className="flex flex-wrap gap-1.5">
               {tags.map((t) => (
                 <span
-                  key={t}
+                  key={t.id}
                   className="rounded-full bg-purple-50 px-3 py-1 text-xs font-medium text-purple-700"
                 >
-                  {t}
+                  {t.name}
                 </span>
               ))}
             </div>
@@ -101,7 +86,14 @@ export default async function VoicingDetailPage({
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
             <Field label="Root" value={primaryVc.chord.root} />
             <Field label="Quality" value={primaryVc.chord.quality} />
-            <Field label="Tensions" value={primaryVc.chord.tensions || '—'} />
+            <Field
+              label="Tensions"
+              value={
+                primaryVc.chord.tensions.length > 0
+                  ? primaryVc.chord.tensions.join(', ')
+                  : '—'
+              }
+            />
           </div>
         )}
       </div>

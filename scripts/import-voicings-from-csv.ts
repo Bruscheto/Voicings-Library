@@ -5,6 +5,7 @@ import path from 'node:path';
 import { parse } from 'csv-parse/sync';
 import chalk from 'chalk';
 import { PrismaClient } from '@prisma/client';
+import { toBase, canonicalizeChord, buildSymbol } from '../packages/data-model/src/canonicalize';
 
 type SeedRow = {
   voicing_id: string;
@@ -16,7 +17,7 @@ type SeedRow = {
   slash_bass?: string;
   context_tags?: string;
   pitches: string;
-  midi_numbers: string;
+  midi_numbers?: string;
   register_low?: string;
   register_high?: string;
   clef_hint?: string;
@@ -38,7 +39,14 @@ export type ImportStats = {
 
 const prisma = new PrismaClient();
 
-const REQUIRED_FIELDS: (keyof SeedRow)[] = ['voicing_id', 'symbol', 'root', 'quality', 'pitches', 'midi_numbers', 'status'];
+const REQUIRED_FIELDS: (keyof SeedRow)[] = [
+  'voicing_id',
+  'symbol',
+  'root',
+  'quality',
+  'pitches',
+  'status',
+];
 
 function loadCsv(csvPath: string): SeedRow[] {
   const absolute = path.resolve(csvPath);
@@ -51,13 +59,13 @@ function loadCsv(csvPath: string): SeedRow[] {
     skipEmptyLines: true,
     bom: true,
     trim: true,
-    escape: '\\'
+    escape: '\\',
   });
   return records as SeedRow[];
 }
 
 function validateRow(row: SeedRow, index: number) {
-  const missing = REQUIRED_FIELDS.filter(field => !row[field] && row[field] !== '');
+  const missing = REQUIRED_FIELDS.filter((field) => !row[field] && row[field] !== '');
   if (missing.length > 0) {
     throw new Error(`Row ${index + 2} is missing required fields: ${missing.join(', ')}`);
   }
@@ -68,20 +76,45 @@ function validateRow(row: SeedRow, index: number) {
 
   try {
     JSON.parse(row.pitches);
-    JSON.parse(row.midi_numbers);
   } catch (err) {
-    throw new Error(`Row ${index + 2} has invalid JSON in pitches/midi_numbers`);
+    throw new Error(`Row ${index + 2} has invalid JSON in pitches`);
   }
 }
 
-function parseContext(row: SeedRow) {
-  const slash = row.slash_bass?.trim();
-  const tags = row.context_tags?.split(',').map(tag => tag.trim()).filter(Boolean) ?? [];
-  // Store as comma separated for now.
-  const parts = [];
-  if (slash) parts.push(`slash:${slash}`);
-  if (tags.length) parts.push(`tags:${tags.join('|')}`);
-  return parts.join(';');
+function parsePitches(raw: string): string[] {
+  const parsed = JSON.parse(raw);
+  if (!Array.isArray(parsed)) throw new Error('pitches must be a JSON array');
+  return parsed.map(String);
+}
+
+function parseTensions(raw: string | undefined | null): string[] {
+  if (!raw) return [];
+  return raw
+    .split(',')
+    .map((t) => t.trim())
+    .filter(Boolean);
+}
+
+function parseTagNames(row: SeedRow): string[] {
+  return (
+    row.context_tags
+      ?.split(',')
+      .map((tag) => tag.trim())
+      .filter(Boolean) ?? []
+  );
+}
+
+async function resolveTagIds(names: string[]): Promise<string[]> {
+  return Promise.all(
+    names.map(async (name) => {
+      const tag = await prisma.tag.upsert({
+        where: { name },
+        update: {},
+        create: { name },
+      });
+      return tag.id;
+    }),
+  );
 }
 
 async function processRows(rows: SeedRow[], dryRun: boolean): Promise<ImportStats> {
@@ -97,61 +130,65 @@ async function processRows(rows: SeedRow[], dryRun: boolean): Promise<ImportStat
     }
 
     if (dryRun) {
-      console.log(chalk.gray(`[Dry Run] Would upsert chord ${row.symbol} and voicing ${row.voicing_id}`));
+      console.log(
+        chalk.gray(`[Dry Run] Would upsert chord ${row.symbol} and voicing ${row.voicing_id}`),
+      );
       continue;
     }
 
+    const slashBass = row.slash_bass?.trim() || null;
+    const rawTensions = parseTensions(row.tensions);
+    const base = toBase(row.quality, rawTensions);
+    const display = canonicalizeChord(row.quality, rawTensions);
+    const displaySymbol = buildSymbol(row.root, display.quality, display.tensions, slashBass);
+    const pitchesArr = parsePitches(row.pitches);
+
     const chord = await prisma.chord.upsert({
-      where: { symbol: row.symbol },
+      where: { symbol: displaySymbol },
       update: {},
       create: {
-        symbol: row.symbol,
-        quality: row.quality,
+        symbol: displaySymbol,
+        quality: base.quality,
         root: row.root,
-        tensions: row.tensions ?? null
-      }
+        tensions: base.tensions,
+      },
     });
 
     stats.chordsUpserted++;
 
-    const context = parseContext(row) || null;
+    const tagIds = await resolveTagIds(parseTagNames(row));
 
     await prisma.voicing.upsert({
       where: { id: row.voicing_id },
       update: {
         name: row.voicing_name ?? null,
-        pitches: row.pitches,
-        midiNumbers: row.midi_numbers,
+        pitches: pitchesArr,
+        slashBass,
         chords: {
           upsert: {
             where: {
               voicingId_chordId: {
                 voicingId: row.voicing_id,
-                chordId: chord.id
-              }
+                chordId: chord.id,
+              },
             },
-            update: {
-              context
-            },
-            create: {
-              chordId: chord.id,
-              context
-            }
-          }
-        }
+            update: {},
+            create: { chordId: chord.id },
+          },
+        },
+        tags: {
+          deleteMany: {},
+          create: tagIds.map((tagId) => ({ tagId })),
+        },
       },
       create: {
         id: row.voicing_id,
         name: row.voicing_name ?? null,
-        pitches: row.pitches,
-        midiNumbers: row.midi_numbers,
-        chords: {
-          create: {
-            chordId: chord.id,
-            context
-          }
-        }
-      }
+        pitches: pitchesArr,
+        slashBass,
+        chords: { create: { chordId: chord.id } },
+        tags: { create: tagIds.map((tagId) => ({ tagId })) },
+      },
     });
 
     stats.voicingsUpserted++;
@@ -160,7 +197,10 @@ async function processRows(rows: SeedRow[], dryRun: boolean): Promise<ImportStat
   return stats;
 }
 
-export async function importVoicingsFromCsv(csvPath: string, options: { dryRun?: boolean } = {}): Promise<ImportStats> {
+export async function importVoicingsFromCsv(
+  csvPath: string,
+  options: { dryRun?: boolean } = {},
+): Promise<ImportStats> {
   const rows = loadCsv(csvPath);
   return processRows(rows, options.dryRun ?? false);
 }
@@ -177,7 +217,7 @@ function usage(): never {
 if (require.main === module) {
   (async () => {
     const args = process.argv.slice(2);
-    const csvPath = args.find(arg => !arg.startsWith('--')) ?? 'docs/data/voicings-seed.csv';
+    const csvPath = args.find((arg) => !arg.startsWith('--')) ?? 'docs/data/voicings-seed.csv';
     const dryRun = args.includes('--dry-run');
 
     if (!csvPath) usage();
@@ -189,7 +229,7 @@ if (require.main === module) {
     console.log(`Voicings upserted: ${stats.voicingsUpserted}`);
     console.log(`Rows skipped (non-ready): ${stats.skippedRows}`);
   })()
-    .catch(err => {
+    .catch((err) => {
       console.error(chalk.red(err instanceof Error ? err.message : String(err)));
       process.exit(1);
     })

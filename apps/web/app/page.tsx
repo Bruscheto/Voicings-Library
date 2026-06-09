@@ -1,14 +1,6 @@
 import Link from 'next/link';
 import { prisma } from 'data-model';
-
-function safeParseJsonArray(raw: string): string[] {
-  try {
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed.map(String) : [];
-  } catch {
-    return [];
-  }
-}
+import { ChordSymbol } from '../components/ChordSymbol';
 
 export default async function HomePage() {
   const [voicingCount, chordCount, recent] = await Promise.all([
@@ -65,8 +57,8 @@ export default async function HomePage() {
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {recent.map((v) => {
-                const pitches = safeParseJsonArray(v.pitches);
-                const symbol = v.chords[0]?.chord.symbol ?? '—';
+                const pitches = v.pitches;
+                const chord = v.chords[0]?.chord;
                 return (
                   <Link
                     key={v.id}
@@ -74,7 +66,16 @@ export default async function HomePage() {
                     className="flex flex-col rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:border-gray-300 hover:shadow-md"
                   >
                     <h3 className="text-xl font-semibold text-gray-900">
-                      {symbol}
+                      {chord ? (
+                        <ChordSymbol
+                          root={chord.root}
+                          quality={chord.quality}
+                          tensions={chord.tensions}
+                          slashBass={v.slashBass}
+                        />
+                      ) : (
+                        '—'
+                      )}
                     </h3>
                     <div className="mt-3 flex flex-wrap gap-1">
                       {pitches.slice(0, 6).map((p, i) => (

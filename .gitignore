@@ -35,4 +35,9 @@ out
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Agent / tooling scratch (local session state, not for the repo)
+.superpowers/
+
+# Misc
 TODO.md

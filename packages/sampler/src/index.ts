@@ -1,120 +1,174 @@
+export type SampleLoadResult = {
+  note: string;
+  status: 'loaded' | 'failed';
+};
+
+export type SampleLoadSummary = {
+  total: number;
+  loaded: number;
+  failed: number;
+};
+
+type AudioContextConstructor = new (contextOptions?: AudioContextOptions) => AudioContext;
+type AudioWindow = Window & {
+  AudioContext?: AudioContextConstructor;
+  webkitAudioContext?: AudioContextConstructor;
+};
+
+const SAMPLE_BASE_URL =
+  'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/acoustic_grand_piano-mp3/';
+const SAMPLE_MIN_MIDI = 36;
+const SAMPLE_MAX_MIDI = 84;
+const SAMPLE_FILENAMES = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+const SAMPLE_KEYS = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b'];
+const FLAT_TO_SHARP: Record<string, string> = {
+  db: 'c#',
+  eb: 'd#',
+  gb: 'f#',
+  ab: 'g#',
+  bb: 'a#',
+};
+
+function normalizeNoteKey(note: string): string {
+  const match = note.toLowerCase().match(/^([a-g][#b]?)\/(-?\d+)$/);
+  if (!match) return note.toLowerCase();
+  const pitch = FLAT_TO_SHARP[match[1]] ?? match[1];
+  return `${pitch}/${match[2]}`;
+}
+
+function noteToFrequency(note: string): number {
+  const normalizedNote = normalizeNoteKey(note);
+  const match = normalizedNote.match(/^([a-g][#]?)[/](-?\d+)$/);
+  if (!match) {
+    throw new Error(`Invalid VexFlow note: ${note}`);
+  }
+
+  const semitoneIndex = SAMPLE_KEYS.indexOf(match[1]);
+  if (semitoneIndex === -1) {
+    throw new Error(`Invalid VexFlow note: ${note}`);
+  }
+
+  const octave = Number.parseInt(match[2], 10);
+  const midi = (octave + 1) * 12 + semitoneIndex;
+  return 440 * Math.pow(2, (midi - 69) / 12);
+}
+
 export class Sampler {
   private context: AudioContext | null = null;
-  private buffers: Map<string, AudioBuffer> = new Map();
+  private buffers = new Map<string, AudioBuffer>();
+  private resumePromise: Promise<void> | null = null;
 
-  constructor() {}
+  init(): void {
+    if (typeof window === 'undefined' || this.context) return;
 
-  init() {
-    if (typeof window !== 'undefined' && !this.context) {
-      this.context = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const audioWindow = window as AudioWindow;
+    const ContextConstructor = audioWindow.AudioContext ?? audioWindow.webkitAudioContext;
+    if (!ContextConstructor) return;
+
+    try {
+      this.context = new ContextConstructor();
+    } catch {
+      this.context = null;
     }
   }
 
-  async loadSample(note: string, url: string) {
-    if (!this.context) this.init();
-    if (!this.context) return;
+  async activate(): Promise<void> {
+    const context = this.getContext();
+    if (context.state === 'running') return;
+    if (context.state === 'closed') {
+      throw new Error('Audio context is closed');
+    }
+
+    if (!this.resumePromise) {
+      this.resumePromise = context
+        .resume()
+        .then(() => {
+          if (context.state !== 'running') {
+            throw new Error('Audio context failed to start');
+          }
+        })
+        .finally(() => {
+          this.resumePromise = null;
+        });
+    }
+
+    await this.resumePromise;
+  }
+
+  async loadSample(note: string, url: string): Promise<SampleLoadResult> {
+    const context = this.getContext();
 
     try {
       const response = await fetch(url);
+      if (!response.ok) return { note, status: 'failed' };
+
       const arrayBuffer = await response.arrayBuffer();
-      const audioBuffer = await this.context.decodeAudioData(arrayBuffer);
-      this.buffers.set(note, audioBuffer);
-    } catch (e) {
-      console.error(`Failed to load sample for ${note}`, e);
+      const audioBuffer = await context.decodeAudioData(arrayBuffer);
+      this.buffers.set(normalizeNoteKey(note), audioBuffer);
+      return { note, status: 'loaded' };
+    } catch {
+      return { note, status: 'failed' };
     }
   }
 
-  async loadPianoSamples() {
-    if (!this.context) this.init();
-    
-    const baseUrl = 'https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/gh-pages/MusyngKite/acoustic_grand_piano-mp3/';
-    // Map for filenames (CDN uses flats)
-    const filenames = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-    // Map for internal keys (We use sharps to match AdminPage)
-    const keys = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b'];
-    
-    // Load range C2 (36) to C6 (84)
-    const promises = [];
-    for (let i = 36; i <= 84; i++) {
-        const octave = Math.floor(i / 12) - 1;
-        const semitone = i % 12;
-        
-        const filenameNote = filenames[semitone];
-        const keyNote = keys[semitone];
-        
-        // VexFlow format: c/4, c#/4
-        const vfNote = `${keyNote}/${octave}`;
-        
-        // CDN format: Db4.mp3
-        const filename = `${filenameNote}${octave}.mp3`;
-        
-        promises.push(this.loadSample(vfNote, `${baseUrl}${filename}`));
+  async loadPianoSamples(): Promise<SampleLoadSummary> {
+    this.getContext();
+    const requests: Promise<SampleLoadResult>[] = [];
+
+    for (let midi = SAMPLE_MIN_MIDI; midi <= SAMPLE_MAX_MIDI; midi += 1) {
+      const octave = Math.floor(midi / 12) - 1;
+      const semitone = midi % 12;
+      const note = `${SAMPLE_KEYS[semitone]}/${octave}`;
+      const filename = `${SAMPLE_FILENAMES[semitone]}${octave}.mp3`;
+      requests.push(this.loadSample(note, `${SAMPLE_BASE_URL}${filename}`));
     }
-    
-    await Promise.all(promises);
-    console.log('Samples loaded');
+
+    const results = await Promise.all(requests);
+    const loaded = results.filter((result) => result.status === 'loaded').length;
+    return {
+      total: results.length,
+      loaded,
+      failed: results.length - loaded,
+    };
   }
 
-  play(note: string) {
-    if (!this.context) this.init();
-    if (!this.context) return;
-    
-    // Resume context if suspended (browser policy)
-    if (this.context.state === 'suspended') {
-        this.context.resume();
-    }
+  async play(note: string): Promise<void> {
+    await this.activate();
+    const context = this.getContext();
+    const normalizedNote = normalizeNoteKey(note);
+    const buffer = this.buffers.get(normalizedNote);
 
-    const buffer = this.buffers.get(note);
     if (!buffer) {
-      console.warn(`No sample found for ${note}, using fallback oscillator`);
-      this.playOscillator(note);
+      this.playOscillator(normalizedNote, context);
       return;
     }
 
-    const source = this.context.createBufferSource();
+    const source = context.createBufferSource();
     source.buffer = buffer;
-    source.connect(this.context.destination);
+    source.connect(context.destination);
     source.start();
   }
 
-  playOscillator(note: string) {
-      if (!this.context) return;
-      const osc = this.context.createOscillator();
-      osc.type = 'triangle'; // Triangle sounds a bit closer to a piano than sine
-      
-      // Parse VexFlow note (e.g. "c/4", "c#/4", "db/4")
-      // VexFlow uses lower case and / for octave
-      const match = note.match(/([a-g][#b]?)?\/(\d)/);
-      if (!match) return;
-      
-      const noteName = match[1];
-      const octave = parseInt(match[2]);
-      
-      const notes = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b'];
-      // Handle flats
-      const normalizedNote = noteName.replace('db', 'c#').replace('eb', 'd#').replace('gb', 'f#').replace('ab', 'g#').replace('bb', 'a#');
-      
-      const semitoneIndex = notes.indexOf(normalizedNote);
-      if (semitoneIndex === -1) return;
-      
-      // MIDI note calculation: C4 = 60
-      // C0 is 12.
-      // octave * 12 + semitoneIndex + 12 = MIDI
-      const midi = (octave + 1) * 12 + semitoneIndex;
-      
-      // Frequency formula: f = 440 * 2^((d - 69) / 12)
-      const freq = 440 * Math.pow(2, (midi - 69) / 12);
-      
-      osc.frequency.setValueAtTime(freq, this.context.currentTime); 
-      
-      const gain = this.context.createGain();
-      gain.gain.setValueAtTime(0.3, this.context.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.context.currentTime + 1.5);
-      
-      osc.connect(gain);
-      gain.connect(this.context.destination);
-      
-      osc.start();
-      osc.stop(this.context.currentTime + 1.5);
+  private getContext(): AudioContext {
+    if (!this.context) this.init();
+    if (!this.context) {
+      throw new Error('Web Audio API is unavailable');
+    }
+    return this.context;
+  }
+
+  private playOscillator(note: string, context: AudioContext): void {
+    const oscillator = context.createOscillator();
+    oscillator.type = 'triangle';
+    oscillator.frequency.setValueAtTime(noteToFrequency(note), context.currentTime);
+
+    const gain = context.createGain();
+    gain.gain.setValueAtTime(0.3, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 1.5);
+
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+    oscillator.start();
+    oscillator.stop(context.currentTime + 1.5);
   }
 }

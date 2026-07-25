@@ -231,6 +231,10 @@ export default function AdminPage() {
   const [midiStatus, setMidiStatus] = useState<string>('Connecting...');
   const [sampleStatus, setSampleStatus] = useState<string>('Loading Piano...');
   const rendererRef = useRef<StaffRenderer | null>(null);
+  const activationFailedRef = useRef(false);
+  const isMountedRef = useRef(false);
+  const arpeggioTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const playbackGenerationRef = useRef(0);
 
   // Form State
   const [voicingName, setVoicingName] = useState('Rootless');
@@ -255,6 +259,16 @@ export default function AdminPage() {
   const [autoNameEnabled, setAutoNameEnabled] = useState(true);
 
   const handleReset = () => setActiveNotes(new Set());
+
+  const clearArpeggioTimers = useCallback(() => {
+    arpeggioTimersRef.current.forEach(clearTimeout);
+    arpeggioTimersRef.current = [];
+  }, []);
+
+  const markAudioUnavailable = useCallback(() => {
+    activationFailedRef.current = true;
+    if (isMountedRef.current) setSampleStatus('Audio Unavailable');
+  }, []);
 
   const toggleCollection = (collection: string) => {
     setSelectedCollections((prev) =>
@@ -362,8 +376,7 @@ export default function AdminPage() {
   const appliedContexts = contextEnabled ? selectedContexts : [];
 
   const intervalAnalysis = useMemo(
-    () =>
-      sortedActiveNotes.length ? analyzeIntervals(sortedActiveNotes, root, quality) : [],
+    () => (sortedActiveNotes.length ? analyzeIntervals(sortedActiveNotes, root, quality) : []),
     [sortedActiveNotes, root, quality],
   );
 
@@ -412,18 +425,43 @@ export default function AdminPage() {
     }
   }, [autoNameEnabled, computedSymbol]);
 
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      playbackGenerationRef.current += 1;
+      clearArpeggioTimers();
+    };
+  }, [clearArpeggioTimers]);
+
   // Initialize Sampler & Renderer
   useEffect(() => {
+    let cancelled = false;
     const container = document.getElementById('vexflow-admin');
     if (container && !rendererRef.current) {
       rendererRef.current = new StaffRenderer('vexflow-admin');
     }
     sampler.init();
-    sampler
+    void sampler
       .loadPianoSamples()
-      .then(() => setSampleStatus('Piano Ready'))
-      .catch(() => setSampleStatus('Piano Failed (Synth)'));
-  }, []);
+      .then(({ total, loaded, failed }) => {
+        if (cancelled) return;
+        if (activationFailedRef.current) {
+          setSampleStatus('Audio Unavailable');
+          return;
+        }
+        if (loaded === 0) setSampleStatus('Synth Fallback');
+        else if (failed > 0) setSampleStatus(`Piano Partial · ${loaded}/${total} Samples`);
+        else setSampleStatus('Piano Ready');
+      })
+      .catch(() => {
+        if (!cancelled) markAudioUnavailable();
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [markAudioUnavailable]);
 
   // Update Renderer when notes change
   useEffect(() => {
@@ -465,7 +503,7 @@ export default function AdminPage() {
         next.add(noteName);
         return next;
       });
-      sampler.play(noteToVexFlow(noteName));
+      void sampler.play(noteToVexFlow(noteName)).catch(markAudioUnavailable);
     }
     // Note Off (128) or Note On with velocity 0
     else if (command === 128 || (command === 144 && velocity === 0)) {
@@ -486,24 +524,42 @@ export default function AdminPage() {
         next.delete(note);
       } else {
         next.add(note);
-        sampler.play(noteToVexFlow(note));
+        void sampler.play(noteToVexFlow(note)).catch(markAudioUnavailable);
       }
       return next;
     });
   };
 
-  const handlePlay = useCallback(() => {
-    sampler.init();
+  const handlePlay = useCallback(async () => {
     const vfNotes = sortedActiveNotes.map(noteToVexFlow);
+    const generation = playbackGenerationRef.current + 1;
+    playbackGenerationRef.current = generation;
+    clearArpeggioTimers();
 
-    if (isArp) {
-      vfNotes.forEach((note, index) => {
-        setTimeout(() => sampler.play(note), index * 100);
-      });
-    } else {
-      vfNotes.forEach((note) => sampler.play(note));
+    try {
+      await sampler.activate();
+      if (!isMountedRef.current || generation !== playbackGenerationRef.current) return;
+      if (isArp) {
+        vfNotes.forEach((note, index) => {
+          const timer = setTimeout(() => {
+            if (!isMountedRef.current || generation !== playbackGenerationRef.current) return;
+            void sampler.play(note).catch(() => {
+              if (isMountedRef.current && generation === playbackGenerationRef.current) {
+                markAudioUnavailable();
+              }
+            });
+          }, index * 100);
+          arpeggioTimersRef.current.push(timer);
+        });
+      } else {
+        await Promise.all(vfNotes.map((note) => sampler.play(note)));
+      }
+    } catch {
+      if (isMountedRef.current && generation === playbackGenerationRef.current) {
+        markAudioUnavailable();
+      }
     }
-  }, [sortedActiveNotes, isArp]);
+  }, [clearArpeggioTimers, isArp, markAudioUnavailable, sortedActiveNotes]);
 
   // Keyboard Shortcuts
   useEffect(() => {
@@ -514,7 +570,7 @@ export default function AdminPage() {
 
       if (e.code === 'Space') {
         e.preventDefault();
-        handlePlay();
+        void handlePlay();
       } else if (e.key === 'x' || e.key === 'X') {
         e.preventDefault();
         shiftActiveNotes(12);
@@ -632,7 +688,7 @@ export default function AdminPage() {
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
-                    onClick={handlePlay}
+                    onClick={() => void handlePlay()}
                     disabled={activeNotes.size === 0}
                     className="inline-flex items-center gap-1.5 rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:cursor-not-allowed disabled:bg-gray-300"
                   >
@@ -653,7 +709,10 @@ export default function AdminPage() {
                 </div>
               </div>
               <div className="custom-scrollbar relative min-h-[250px] flex-1 overflow-auto rounded-md border border-gray-200 bg-gradient-to-b from-white to-gray-50 p-2">
-                <div id="vexflow-admin" className="mx-auto flex w-full max-w-xs items-center justify-center"></div>
+                <div
+                  id="vexflow-admin"
+                  className="mx-auto flex w-full max-w-xs items-center justify-center"
+                ></div>
               </div>
             </div>
 
@@ -1026,8 +1085,20 @@ export default function AdminPage() {
               >
                 {isSaving && (
                   <svg viewBox="0 0 24 24" className="h-4 w-4 animate-spin" fill="none">
-                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" className="opacity-25" />
-                    <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      className="opacity-25"
+                    />
+                    <path
+                      d="M21 12a9 9 0 0 0-9-9"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                    />
                   </svg>
                 )}
                 {saveStatus ||

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Voicings</title>
+  <defs>
+    <linearGradient id="background" x1="96" y1="48" x2="416" y2="464" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0d3b66" />
+      <stop offset="1" stop-color="#072845" />
+    </linearGradient>
+    <linearGradient id="key" x1="0" y1="114" x2="0" y2="280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff1d8" />
+      <stop offset="1" stop-color="#efd6ad" />
+    </linearGradient>
+    <linearGradient id="accent" x1="334" y1="328" x2="386" y2="398" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff7b3f" />
+      <stop offset="1" stop-color="#d94c18" />
+    </linearGradient>
+  </defs>
+
+  <rect x="16" y="16" width="480" height="480" rx="106" fill="url(#background)" stroke="#76add8" stroke-width="6" />
+  <rect x="25" y="25" width="462" height="462" rx="97" fill="none" stroke="#185886" stroke-width="2" />
+
+  <g stroke="#f7e6c9" stroke-width="7" stroke-linecap="round">
+    <path d="M139 278v116" />
+    <path d="M213 278v116" />
+    <path d="M287 278v116" />
+    <path d="M361 278v51" />
+  </g>
+
+  <g fill="url(#key)" stroke="#051f37" stroke-width="5">
+    <rect x="113" y="114" width="52" height="166" rx="15" />
+    <rect x="187" y="114" width="52" height="166" rx="15" />
+    <rect x="261" y="114" width="52" height="166" rx="15" />
+    <rect x="335" y="114" width="52" height="166" rx="15" />
+  </g>
+
+  <circle cx="361" cy="363" r="39" fill="url(#accent)" stroke="#ff9a61" stroke-width="4" />
+</svg>

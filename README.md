@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./assets/readme/hero-v10.webp" width="100%" alt="Voicings presented as a retro-space jazz mission console with the real C Maj9 capture interface and keyboard">
+  <img src="./assets/readme/hero-v10.webp" width="100%" alt="Voicings interface with a C Maj9 chord and piano keyboard">
 </h1>
 
 <p align="center">
@@ -8,111 +8,138 @@
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-047857" alt="MIT License"></a>
 </p>
 
-Voicings is a full-stack jazz piano library for capturing chords from a MIDI controller or virtual keyboard, analyzing their harmonic structure, and saving them with notation and audio playback.
+Voicings is a jazz piano library with two web apps. The capture app records chords from a MIDI controller or virtual keyboard.
+
+The library app lets users search, inspect, and play saved voicings.
 
 <p align="center">
-  <img src="./assets/readme/admin-capture.png" width="100%" alt="Voicings admin showing a C Maj9 chord on a grand staff, selected piano keys, and interval analysis">
+  <img src="./assets/readme/admin-capture.png" width="100%" alt="Capture app with a C Maj9 chord, grand staff, piano keys, and interval analysis">
+  <br>
+  <sub>C Maj9: C3 · G3 · B3 · D4 · E4</sub>
 </p>
 
-<p align="center"><sub>A real C Maj9 capture: C3 · G3 · B3 · D4 · E4</sub></p>
+## Features
 
-## What it does
+- Play notes with an 88-key virtual piano or a MIDI controller.
+- Analyze chord quality, tensions, slash bass, and intervals.
+- Review each voicing on a grand staff.
+- Save voicings with names, tags, and collections.
+- Prevent duplicate voicings.
+- Search the library by chord, pitch, quality, tag, or tension.
+- Play voicings as a chord or an arpeggio.
 
-- **Capture** notes with an 88-key virtual piano or a Web MIDI controller.
-- **Understand** chord quality, tensions, slash bass, and interval roles as you play.
-- **Keep** voicings in PostgreSQL with names, tags, collections, and duplicate protection.
-- **Explore** a searchable public library with grand-staff notation, piano samples, and arpeggiated playback.
-
-## How it works
+## Project design
 
 ```mermaid
 flowchart LR
-    input["MIDI controller<br/>or virtual keyboard"] --> admin["Capture app<br/>Next.js · :3001"]
-    admin -->|"analyze + save"| model["Shared data model<br/>Prisma + normalization"]
+    input["MIDI controller<br/>or virtual keyboard"] --> admin["Capture app<br/>localhost:3001"]
+    admin --> model["Data model<br/>Prisma"]
     model <--> db[(PostgreSQL)]
-    db --> web["Library app<br/>Next.js · :3000"]
-    web --> output["Search · notation<br/>piano playback"]
-    admin --> output
+    db --> web["Library app<br/>localhost:3000"]
+    admin --> shared["Notation and audio"]
+    web --> shared
 ```
 
-The two Next.js applications share the database and three workspace packages: chord canonicalization and persistence, VexFlow notation, and Web Audio playback.
+Both Next.js apps use the same PostgreSQL database. They also use shared packages for data, notation, and audio.
 
 ## Quick start
 
-You need Node.js 20+, npm 10+, and PostgreSQL. A MIDI controller is optional; Chromium-based browsers provide the best Web MIDI support.
+You need Node.js 20 or later, npm 10 or later, and PostgreSQL. A MIDI controller is optional.
 
-```bash
-git clone https://github.com/Bruscheto/Voicings-Library.git
-cd Voicings-Library
-npm ci
-```
+1. Clone the repository.
 
-Set the database URLs for the current shell:
+   ```bash
+   git clone https://github.com/Bruscheto/Voicings-Library.git
+   cd Voicings-Library
+   ```
 
-```bash
-export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/voicings"
-export DIRECT_URL="$DATABASE_URL"
-```
+2. Install the dependencies.
 
-For persistent local configuration, add the same values to:
+   ```bash
+   npm ci
+   ```
 
-- `packages/data-model/.env` for Prisma commands
-- `apps/web/.env.local` for the public library
-- `apps/admin/.env.local` for the capture app
+3. Set the database URLs for the current shell.
 
-With a hosted PostgreSQL provider, use its pooled URL for `DATABASE_URL` and its direct connection URL for `DIRECT_URL`.
+   ```bash
+   export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/voicings"
+   export DIRECT_URL="$DATABASE_URL"
+   ```
 
-Initialize the schema and start both apps:
+4. Generate the Prisma client.
 
-```bash
-npm --workspace data-model run db:generate
-npm --workspace data-model run db:push
-npm run dev
-```
+   ```bash
+   npm --workspace data-model run db:generate
+   ```
 
-| App     | URL                                     | Purpose                                          |
-| ------- | --------------------------------------- | ------------------------------------------------ |
-| Library | [localhost:3000](http://localhost:3000) | Browse, filter, inspect, and play saved voicings |
-| Capture | [localhost:3001](http://localhost:3001) | Play, analyze, tag, and save new voicings        |
+5. Create the database tables.
 
-## Use it
+   ```bash
+   npm --workspace data-model run db:push
+   ```
+
+6. Start both apps.
+
+   ```bash
+   npm run dev
+   ```
+
+| App         | URL                                     | Purpose                            |
+| ----------- | --------------------------------------- | ---------------------------------- |
+| Library app | [localhost:3000](http://localhost:3000) | Search, inspect, and play voicings |
+| Capture app | [localhost:3001](http://localhost:3001) | Create, analyze, and save voicings |
+
+For persistent local settings, add the database URLs to these files:
+
+- `packages/data-model/.env`
+- `apps/web/.env.local`
+- `apps/admin/.env.local`
+
+For a hosted database, use its pooled URL as `DATABASE_URL`. Use its direct URL as `DIRECT_URL`.
+
+## Use the apps
 
 ### Capture a voicing
 
-1. Open the capture app and allow MIDI access, or use the virtual keyboard.
-2. Choose a root and chord family; Voicings derives the quality, tensions, and slash bass from the active notes.
-3. Review the staff and interval analysis, then add tags or collections.
-4. Save the voicing. Existing matches can gain collection memberships without creating duplicate rows.
+1. Open the capture app.
+2. Allow MIDI access or use the virtual keyboard.
+3. Select the root and chord family.
+4. Play the notes.
+5. Review the chord name, staff, and interval list.
+6. Add tags or collections.
+7. Save the voicing.
 
-Use `Space` to play the current voicing and `X` / `Z` to transpose it by an octave.
+Use `Space` to play the current voicing. Use `X` and `Z` to move it by one octave.
+
+If a voicing already exists, the app can add new collection memberships. It does not create a duplicate row.
 
 ### Browse the library
 
-Filter by chord or pitch, quality, tags, and tensions. Each detail page shows the staff, pitch names, metadata, and block or arpeggiated playback.
+Filter voicings by chord, pitch, quality, tag, or tension. Open a voicing to see its notation, notes, metadata, and playback controls.
 
-## Data and API
+## Seed data
 
-<details>
-<summary><strong>Curated CSV workflow</strong></summary>
+The source CSV file is [`docs/data/voicings-seed.csv`](./docs/data/voicings-seed.csv). The import command only writes rows with a `ready` status.
 
-The canonical dataset is [`docs/data/voicings-seed.csv`](docs/data/voicings-seed.csv). Rows marked `ready` are imported; `draft` and `defer` rows are skipped.
+Read the [seed workflow](./docs/data/voicing-seed-workflow.md) and [column schema](./docs/data/voicing-seed-schema.md) before you change the data.
 
-Read the [seed workflow](docs/data/voicing-seed-workflow.md) and [column schema](docs/data/voicing-seed-schema.md), then validate before writing:
+Validate the file before you import it:
 
 ```bash
 npm run seed:dry-run
 npm run seed:import
 ```
 
-</details>
+Both commands can run more than once. They update existing voicings and skip rows with a `draft` or `defer` status.
 
-<details>
-<summary><strong>Development API</strong></summary>
+## API
 
-| Method | Endpoint                             | Purpose                                    |
-| ------ | ------------------------------------ | ------------------------------------------ |
-| `GET`  | `http://localhost:3000/api/voicings` | Return voicings with chords and tags       |
-| `POST` | `http://localhost:3001/api/voicings` | Validate, canonicalize, and save a capture |
+| Method | Endpoint                             | Purpose                     |
+| ------ | ------------------------------------ | --------------------------- |
+| `GET`  | `http://localhost:3000/api/voicings` | Return saved voicings       |
+| `POST` | `http://localhost:3001/api/voicings` | Validate and save a voicing |
+
+The write endpoint accepts this request:
 
 ```ts
 type SaveVoicingRequest = {
@@ -127,37 +154,37 @@ type SaveVoicingRequest = {
 };
 ```
 
-</details>
-
 ## Repository guide
 
-| Path                                             | Responsibility                                        |
-| ------------------------------------------------ | ----------------------------------------------------- |
-| [`apps/web`](apps/web)                           | Public library, filters, detail pages, and read API   |
-| [`apps/admin`](apps/admin)                       | Local capture interface and write API                 |
-| [`packages/data-model`](packages/data-model)     | Prisma schema, client, and chord canonicalization     |
-| [`packages/music-engine`](packages/music-engine) | Responsive grand-staff rendering with VexFlow         |
-| [`packages/sampler`](packages/sampler)           | Piano samples, synth fallback, and Web Audio playback |
-| [`scripts`](scripts)                             | CSV validation and import                             |
-| [`docs/data`](docs/data)                         | Seed dataset, schema, and workflow                    |
+| Path                                               | Purpose                          |
+| -------------------------------------------------- | -------------------------------- |
+| [`apps/web`](./apps/web)                           | Library app and read API         |
+| [`apps/admin`](./apps/admin)                       | Capture app and write API        |
+| [`packages/data-model`](./packages/data-model)     | Prisma schema and chord data     |
+| [`packages/music-engine`](./packages/music-engine) | VexFlow staff notation           |
+| [`packages/sampler`](./packages/sampler)           | Piano samples and audio playback |
+| [`scripts`](./scripts)                             | CSV validation and import        |
+| [`docs/data`](./docs/data)                         | Seed data documentation          |
 
 ### Commands
 
-| Command                                    | Purpose                                       |
-| ------------------------------------------ | --------------------------------------------- |
-| `npm run dev`                              | Start both apps through Turborepo             |
-| `npm run build`                            | Build every app and package                   |
-| `npm run format:check`                     | Check repository formatting                   |
-| `npm run seed:dry-run`                     | Validate and preview the canonical CSV import |
-| `npm run seed:import`                      | Upsert all `ready` CSV rows                   |
-| `npm --workspace data-model run db:studio` | Open Prisma Studio                            |
+| Command                                    | Purpose                     |
+| ------------------------------------------ | --------------------------- |
+| `npm run dev`                              | Start both apps             |
+| `npm run build`                            | Build all apps and packages |
+| `npm run format:check`                     | Check file formatting       |
+| `npm run seed:dry-run`                     | Validate the seed CSV file  |
+| `npm run seed:import`                      | Import all `ready` rows     |
+| `npm --workspace data-model run db:studio` | Open Prisma Studio          |
 
-## Operational notes
+## Security and audio
 
-- Piano samples load at runtime from the MusyngKite soundfont repository; an oscillator provides fallback playback.
-- The capture app has no authentication and is intended for trusted local use. Add access control before exposing it publicly.
-- Deploy the public and capture apps as separate services, with `DATABASE_URL` and `DIRECT_URL` configured in each environment.
+The capture app does not have authentication. Use it only in a trusted local environment.
+
+Add authentication and authorization before you expose the capture app on a network.
+
+The audio package loads piano samples from the MusyngKite soundfont repository. It uses an oscillator if the samples do not load.
 
 ## License
 
-Released under the [MIT License](LICENSE).
+Voicings uses the [MIT License](./LICENSE).

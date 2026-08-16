@@ -44,7 +44,7 @@ Both Next.js apps use the same PostgreSQL database. They also use shared package
 
 ## Quick start
 
-You need Node.js 20 or later, npm 10 or later, and PostgreSQL. A MIDI controller is optional.
+You need Node.js 20 or later, pnpm 11.18.0 or later, and PostgreSQL. A MIDI controller is optional.
 
 1. Clone the repository.
 
@@ -56,7 +56,7 @@ You need Node.js 20 or later, npm 10 or later, and PostgreSQL. A MIDI controller
 2. Install the dependencies.
 
    ```bash
-   npm ci
+   pnpm install --frozen-lockfile
    ```
 
 3. Set the database URLs for the current shell.
@@ -69,19 +69,19 @@ You need Node.js 20 or later, npm 10 or later, and PostgreSQL. A MIDI controller
 4. Generate the Prisma client.
 
    ```bash
-   npm --workspace data-model run db:generate
+   pnpm --filter data-model run db:generate
    ```
 
 5. Create the database tables.
 
    ```bash
-   npm --workspace data-model run db:push
+   pnpm --filter data-model run db:push
    ```
 
 6. Start both apps.
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 | App         | URL                                     | Purpose                            |
@@ -126,8 +126,8 @@ Read the [seed workflow](./docs/data/voicing-seed-workflow.md) and [column schem
 Validate the file before you import it:
 
 ```bash
-npm run seed:dry-run
-npm run seed:import
+pnpm run seed:dry-run
+pnpm run seed:import
 ```
 
 Both commands can run more than once. They update existing voicings and skip rows with a `draft` or `defer` status.
@@ -170,12 +170,12 @@ type SaveVoicingRequest = {
 
 | Command                                    | Purpose                     |
 | ------------------------------------------ | --------------------------- |
-| `npm run dev`                              | Start both apps             |
-| `npm run build`                            | Build all apps and packages |
-| `npm run format:check`                     | Check file formatting       |
-| `npm run seed:dry-run`                     | Validate the seed CSV file  |
-| `npm run seed:import`                      | Import all `ready` rows     |
-| `npm --workspace data-model run db:studio` | Open Prisma Studio          |
+| `pnpm run dev`                             | Start both apps             |
+| `pnpm run build`                           | Build all apps and packages |
+| `pnpm run format:check`                    | Check file formatting       |
+| `pnpm run seed:dry-run`                    | Validate the seed CSV file  |
+| `pnpm run seed:import`                     | Import all `ready` rows     |
+| `pnpm --filter data-model run db:studio`  | Open Prisma Studio          |
 
 ## Security and audio
 

@@ -11,3 +11,4 @@ export * from './grade';
 export * from './voicing';
 export * from './finder';
 export * from './progression';
+export * from './spelling';

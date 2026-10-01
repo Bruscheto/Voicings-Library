@@ -26,7 +26,7 @@ test('a captured voicing is findable in every key', async ({ page }) => {
 
   // The library finds it as F#m9, transposed near where it was captured.
   await page.goto(`${WEB}/?q=F%23m9`);
-  const card = page.getByRole('article').filter({ hasText: 'F#3 A3 Db4 E4 Ab4' });
+  const card = page.getByRole('article').filter({ hasText: 'F#3 A3 C#4 E4 G#4' });
   await expect(card.getByRole('link', { name: 'F#min9' })).toBeVisible();
 
   // Played in yet another key, the exact shape is recognised.

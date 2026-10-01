@@ -4,9 +4,9 @@
  * it was authored in. One captured shape answers the query in all 12 keys.
  */
 
-import { buildSymbol } from './canonicalize';
+import { chordSymbol, rootName, spellPc } from './spelling';
 import { detectChord } from './detect';
-import { mod12, normalizeNotes, pcName, type PitchClass } from './pitch';
+import { mod12, normalizeNotes, type PitchClass } from './pitch';
 import type { BaseQuality } from './qualities';
 import { toShape } from './shape';
 import { parseSymbol } from './symbol';
@@ -61,10 +61,12 @@ export function queryFromNotes(midi: readonly number[]): ChordQuery | null {
 }
 
 export function querySymbol(query: ChordQuery): string {
-  const root = pcName(query.rootPc);
-  const slash = query.bassPc === null ? null : pcName(query.bassPc);
-  if (query.altered) return `${root}7alt${slash ? `/${slash}` : ''}`;
-  return buildSymbol(root, query.quality, query.tensions, slash);
+  if (query.altered) {
+    const spelling = { rootPc: query.rootPc, quality: query.quality };
+    const slash = query.bassPc === null ? '' : `/${spellPc(query.bassPc, spelling)}`;
+    return `${rootName(spelling)}7alt${slash}`;
+  }
+  return chordSymbol(query.rootPc, query.quality, query.tensions, query.bassPc);
 }
 
 function matchKind(reading: StoredReading, query: ChordQuery): MatchKind | null {
@@ -88,8 +90,7 @@ export function nearestBass(authoredBass: number, bassPc: PitchClass): number {
 }
 
 export function readingSymbol(reading: StoredReading, rootPc: PitchClass): string {
-  const slash = reading.rootOffset === 0 ? null : pcName(rootPc - reading.rootOffset);
-  return buildSymbol(pcName(rootPc), reading.quality, reading.tensions, slash);
+  return chordSymbol(rootPc, reading.quality, reading.tensions, mod12(rootPc - reading.rootOffset));
 }
 
 export function findVoicings(

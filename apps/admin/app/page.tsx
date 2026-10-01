@@ -1,7 +1,14 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { classifyStructure, degreesOf, midiToPitch, realizeVoicing, toShape } from 'harmony';
+import {
+  classifyStructure,
+  degreesOf,
+  midiToPitch,
+  realizeVoicing,
+  spellVoicing,
+  toShape,
+} from 'harmony';
 import { ReadingsPanel } from './capture/ReadingsPanel';
 import { SavePanel } from './capture/SavePanel';
 import { SessionLog, type SessionEntry } from './capture/SessionLog';
@@ -65,6 +72,12 @@ export default function CapturePage() {
     () => new Map(primary ? degreesOf(notes, primary).map((d) => [d.midi, d]) : []),
     [notes, primary],
   );
+  // Names for reading: spelled as members of the primary reading. The server
+  // still receives plain pitches; spelling is display only.
+  const spelled = useMemo(
+    () => (primary ? spellVoicing(notes, primary) : notes.map(midiToPitch)),
+    [notes, primary],
+  );
   const structure = useMemo(
     () => (primary ? classifyStructure(notes, primary) : []),
     [notes, primary],
@@ -106,7 +119,10 @@ export default function CapturePage() {
       });
     }
     const symbol = (readings.chosen[0] ?? primary)?.symbol ?? '—';
-    setSession((prev) => [{ id: outcome.id, symbol, pitches, outcome: outcome.kind }, ...prev]);
+    setSession((prev) => [
+      { id: outcome.id, symbol, pitches: spelled, outcome: outcome.kind },
+      ...prev,
+    ]);
     void refresh();
     if (clearAfterSave) {
       captured.clear();
@@ -121,6 +137,7 @@ export default function CapturePage() {
     });
   }, [
     notes,
+    spelled,
     isSaving,
     save,
     readings.chosen,
@@ -197,9 +214,7 @@ export default function CapturePage() {
         <section className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-2 xl:grid-cols-12">
           <div className="flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm xl:col-span-4">
             <div className="flex items-center justify-between">
-              <span className="font-mono text-sm text-gray-600">
-                {notes.map(midiToPitch).join(' ') || '—'}
-              </span>
+              <span className="font-mono text-sm text-gray-600">{spelled.join(' ') || '—'}</span>
               <div className="flex items-center gap-2">
                 <button
                   type="button"
@@ -219,7 +234,7 @@ export default function CapturePage() {
                 </label>
               </div>
             </div>
-            <StaffPreview notes={notes} />
+            <StaffPreview notes={notes} chord={primary} />
           </div>
 
           <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm xl:col-span-5">
@@ -292,7 +307,12 @@ export default function CapturePage() {
               </button>
             </div>
           </div>
-          <PianoKeyboard notes={notes} degrees={degrees} onToggle={captured.toggle} />
+          <PianoKeyboard
+            notes={notes}
+            degrees={degrees}
+            onToggle={captured.toggle}
+            chord={primary}
+          />
         </section>
 
         <SessionLog entries={session} />

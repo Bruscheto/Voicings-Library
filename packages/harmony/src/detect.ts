@@ -12,7 +12,8 @@
  * once as C6 rather than also as C(add13).
  */
 
-import { buildSymbol, toBase } from './canonicalize';
+import { toBase } from './canonicalize';
+import { chordSymbol, rootName, spellPc } from './spelling';
 import { mod12, normalizeNotes, pcName, type PitchClass } from './pitch';
 import {
   BASE_QUALITIES,
@@ -130,8 +131,9 @@ function scoreReading(
   // → m6 + b13); such a reading has no honest name.
   const legal = new Set(Object.values(QUALITIES[folded].tensions));
   if (!base.tensions.every((t) => legal.has(t))) return null;
-  const root = pcName(rootPc);
-  const bass = pcName(bassPc);
+  const spelling = { rootPc, quality: folded, tensions: base.tensions };
+  const root = rootName(spelling);
+  const bass = spellPc(bassPc, spelling);
   return {
     rootPc,
     root,
@@ -141,7 +143,7 @@ function scoreReading(
     bass,
     rootless: !rootPresent,
     family: familyOf(folded, base.tensions),
-    symbol: buildSymbol(root, folded, base.tensions, bassPc === rootPc ? null : bass),
+    symbol: chordSymbol(rootPc, folded, base.tensions, bassPc),
     score,
     priority: BASE_QUALITIES.indexOf(folded),
   };

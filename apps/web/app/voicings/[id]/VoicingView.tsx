@@ -5,7 +5,6 @@ import { useMemo, useState } from 'react';
 import {
   degreesOf,
   isBaseQuality,
-  midiToPitch,
   mod12,
   nearestBass,
   pcName,
@@ -44,9 +43,11 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
     const bass = nearestBass(voicing.bassMidi, rootPc - (primaryReading?.rootOffset ?? 0));
     return realizeVoicing(voicing, bass);
   }, [voicing, rootPc, primaryReading]);
-  const { midi, primary, readings } = view;
+  const { midi, pitches, primary, readings } = view;
   const chord =
-    primary && isBaseQuality(primary.quality) ? { rootPc, quality: primary.quality } : null;
+    primary && isBaseQuality(primary.quality)
+      ? { rootPc, quality: primary.quality, tensions: primary.tensions }
+      : null;
   const degrees = chord ? degreesOf(midi, chord) : [];
 
   const changeKey = (pc: number) => {
@@ -110,14 +111,14 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
       <section className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
         <div className="flex items-center justify-between border-b border-gray-100 px-5 py-3">
           <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-            {midi.map(midiToPitch).join(' ')}
+            {pitches.join(' ')}
           </span>
           <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600">
             {PIANO_LABEL[piano.status]}
           </span>
         </div>
         <div className="grid gap-6 p-5 sm:grid-cols-2">
-          <StaffPreview notes={midi} />
+          <StaffPreview notes={midi} chord={chord} />
           <div className="flex flex-col justify-center gap-4">
             <MiniKeyboard notes={midi} chord={chord} className="h-20 w-full" />
             <ol className="flex flex-wrap gap-1.5" aria-label="Notes and degrees">
@@ -128,7 +129,9 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
                     d.isGuideTone ? 'border-amber-300 bg-amber-50' : 'border-gray-200 bg-white'
                   }`}
                 >
-                  <span className="font-mono text-xs text-gray-500">{midiToPitch(d.midi)}</span>
+                  <span className="font-mono text-xs text-gray-500">
+                    {pitches[midi.indexOf(d.midi)]}
+                  </span>
                   <span
                     className={`text-sm font-bold ${d.isGuideTone ? 'text-amber-700' : 'text-purple-700'}`}
                   >

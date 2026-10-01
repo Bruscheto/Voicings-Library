@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { isBaseQuality, midiToPitch, type PitchClass } from 'harmony';
+import { isBaseQuality, midiToPitch, spellVoicing, type PitchClass } from 'harmony';
 import { MiniKeyboard } from 'keyboard';
 
 export const STRUCTURE_LABEL: Record<string, string> = {
@@ -23,6 +23,7 @@ type Props = {
   midi: number[];
   rootPc: PitchClass;
   quality: string;
+  tensions: string[];
   structure: string[];
   badge?: string;
   onPlay: (midi: number[]) => void;
@@ -35,11 +36,13 @@ export function VoicingCard({
   midi,
   rootPc,
   quality,
+  tensions,
   structure,
   badge,
   onPlay,
 }: Props) {
-  const chord = isBaseQuality(quality) ? { rootPc, quality } : null;
+  const chord = isBaseQuality(quality) ? { rootPc, quality, tensions } : null;
+  const pitches = chord ? spellVoicing(midi, chord) : midi.map(midiToPitch);
   return (
     <article className="flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition hover:border-gray-300 hover:shadow-md">
       <div className="flex items-start justify-between gap-2">
@@ -64,7 +67,7 @@ export function VoicingCard({
         </button>
       </div>
       <MiniKeyboard notes={midi} chord={chord} />
-      <p className="font-mono text-xs text-gray-500">{midi.map(midiToPitch).join(' ')}</p>
+      <p className="font-mono text-xs text-gray-500">{pitches.join(' ')}</p>
       <div className="flex flex-wrap gap-1.5">
         {badge && (
           <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-800">

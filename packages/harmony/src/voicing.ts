@@ -6,13 +6,13 @@
  * apps can run the same checks in the browser.
  */
 
-import { buildSymbol } from './canonicalize';
 import { classifyStructure, type Structure } from './structure';
 import { detectChord, readAs, type Reading } from './detect';
 import { midiToPitch, mod12, normalizeNotes, pcName } from './pitch';
-import type { BaseQuality } from './qualities';
+import { isBaseQuality, type BaseQuality } from './qualities';
 import { toShape, type Shape } from './shape';
 import { parseSymbol } from './symbol';
+import { chordSymbol, rootName, spellPc, spellVoicing } from './spelling';
 
 export type ReadingRecord = {
   rootOffset: number;
@@ -107,7 +107,7 @@ function authoredReading(notes: number[], symbol: string): Reading {
     return reading;
   }
   if (reading.tensions.join(',') !== parsed.tensions.join(',')) {
-    const heard = buildSymbol(reading.root, reading.quality, reading.tensions, null);
+    const heard = chordSymbol(reading.rootPc, reading.quality, reading.tensions, null);
     throw new VoicingAnalysisError(
       `${symbol}: the notes spell ${heard} (tensions [${reading.tensions.join(', ')}])`,
     );
@@ -145,15 +145,20 @@ export type ReadingView = {
   symbol: string;
 };
 
-/** Notes and readings of a stored shape, at its authored bass or a new one. */
+/** Notes and readings of a stored shape, at its authored bass or a new one, spelled for its primary reading. */
 export function realizeVoicing(voicing: StoredVoicing, bassMidi = voicing.bassMidi) {
   const midi = voicing.intervals.map((i) => bassMidi + i);
   const bassPc = mod12(bassMidi);
   const readings: ReadingView[] = [...voicing.readings]
     .sort((a, b) => Number(b.isPrimary) - Number(a.isPrimary))
     .map((r) => {
-      const root = pcName(bassPc + r.rootOffset);
-      const slashBass = r.rootOffset === 0 ? null : pcName(bassPc);
+      const rootPc = mod12(bassPc + r.rootOffset);
+      const spelling = isBaseQuality(r.quality)
+        ? { rootPc, quality: r.quality, tensions: r.tensions }
+        : null;
+      const root = spelling ? rootName(spelling) : pcName(rootPc);
+      const slashBass =
+        r.rootOffset === 0 ? null : spelling ? spellPc(bassPc, spelling) : pcName(bassPc);
       return {
         root,
         quality: r.quality,
@@ -161,8 +166,18 @@ export function realizeVoicing(voicing: StoredVoicing, bassMidi = voicing.bassMi
         rootless: r.rootless,
         isPrimary: r.isPrimary,
         slashBass,
-        symbol: buildSymbol(root, r.quality, r.tensions, slashBass),
+        symbol: chordSymbol(rootPc, r.quality, r.tensions, bassPc),
       };
     });
-  return { midi, pitches: midi.map(midiToPitch), readings, primary: readings[0] ?? null };
+  const primary = readings[0] ?? null;
+  const first = voicing.readings.find((r) => r.isPrimary) ?? voicing.readings[0];
+  const pitches =
+    first && isBaseQuality(first.quality)
+      ? spellVoicing(midi, {
+          rootPc: mod12(bassPc + first.rootOffset),
+          quality: first.quality,
+          tensions: first.tensions,
+        })
+      : midi.map(midiToPitch);
+  return { midi, pitches, readings, primary };
 }

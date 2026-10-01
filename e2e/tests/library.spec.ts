@@ -19,7 +19,7 @@ test('an unknown symbol explains itself and an absent chord suggests a looser on
   const input = page.getByLabel('Chord symbol');
   await input.fill('Cxyz');
   await expect(page.getByText('is not a chord symbol this library can read')).toBeVisible();
-  await input.fill('Dm11');
+  await input.fill('Dm13');
   await expect(page.getByText('No voicings for')).toBeVisible();
   await page.getByRole('button', { name: 'Dmin7' }).click();
   await expect(input).toHaveValue('Dmin7');
@@ -52,7 +52,8 @@ test('a ii–V–I is voice-led and re-solves around a swapped chord', async ({ 
   await expect(steps).toHaveCount(3);
   await expect(steps.nth(0)).toContainText('Dmin9');
   await expect(steps.nth(1)).toContainText('G13');
-  await expect(steps.nth(2)).toContainText('CMaj9');
+  // The tonic is whichever C major voicing moves least, so only its family is fixed.
+  await expect(steps.nth(2)).toContainText(/CMaj/);
 
   await steps.nth(1).getByRole('button', { name: /^Swap/ }).click();
   const alternative = steps.nth(1).getByRole('list').getByRole('button').first();

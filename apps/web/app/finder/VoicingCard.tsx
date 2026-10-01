@@ -3,18 +3,7 @@
 import Link from 'next/link';
 import { isBaseQuality, midiToPitch, spellVoicing, type PitchClass } from 'harmony';
 import { MiniKeyboard } from 'keyboard';
-
-export const STRUCTURE_LABEL: Record<string, string> = {
-  shell: 'Shell',
-  'rootless-a': 'Rootless A',
-  'rootless-b': 'Rootless B',
-  quartal: 'Quartal',
-  ust: 'Upper structure',
-  drop2: 'Drop 2',
-  drop3: 'Drop 3',
-  close: 'Close',
-  open: 'Open',
-};
+import { StructureChips } from '../../components/StructureChips';
 
 type Props = {
   id: string;
@@ -71,16 +60,7 @@ export function VoicingCard({
             {badge}
           </span>
         )}
-        {structure
-          .filter((tag) => tag !== 'close' && tag !== 'open')
-          .map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] font-medium text-gray-700"
-            >
-              {STRUCTURE_LABEL[tag] ?? tag}
-            </span>
-          ))}
+        <StructureChips structure={structure} />
       </div>
     </article>
   );

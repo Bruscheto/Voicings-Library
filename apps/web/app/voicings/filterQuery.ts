@@ -7,6 +7,7 @@ export type VoicingFilterParams = {
   tag?: string | string[];
   tension?: string | string[];
   tensionMode?: string;
+  structure?: string | string[];
 };
 
 export type NormalizedVoicingFilters = {
@@ -15,6 +16,7 @@ export type NormalizedVoicingFilters = {
   tags: string[];
   tensions: string[];
   noTensions: boolean;
+  structures: string[];
 };
 
 function toArrayParam(value: string | string[] | undefined): string[] {
@@ -50,6 +52,7 @@ export function normalizeVoicingFilters(params: VoicingFilterParams): Normalized
     tags: normalizeList(params.tag),
     tensions: normalizeList(params.tension),
     noTensions: params.tensionMode === 'none',
+    structures: normalizeList(params.structure),
   };
 }
 
@@ -81,6 +84,11 @@ export function buildVoicingWhere(params: VoicingFilterParams): Prisma.VoicingWh
     where.push({ readings: { some: { tensions: { hasEvery: filters.tensions } } } });
   }
 
+  // Any of the chosen structures: Rootless A and Rootless B together means either.
+  if (filters.structures.length > 0) {
+    where.push({ structure: { hasSome: filters.structures } });
+  }
+
   return where.length ? { AND: where } : {};
 }
 
@@ -91,6 +99,7 @@ export function hasActiveVoicingFilters(params: VoicingFilterParams): boolean {
       filters.quality ||
       filters.tags.length > 0 ||
       filters.tensions.length > 0 ||
-      filters.noTensions,
+      filters.noTensions ||
+      filters.structures.length > 0,
   );
 }

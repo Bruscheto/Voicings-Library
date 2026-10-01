@@ -3,6 +3,7 @@
 import type { FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { STRUCTURE_LABEL, STRUCTURE_ORDER } from '../../lib/structure';
 
 type Tag = { id: string; name: string };
 
@@ -23,6 +24,7 @@ export default function FilterBar({ qualities, tags }: Props) {
   const currentTagNames = searchParams.getAll('tag');
   const currentTensions = searchParams.getAll('tension');
   const currentTensionMode = searchParams.get('tensionMode') ?? '';
+  const currentStructures = searchParams.getAll('structure');
   const noTensionMode = currentTensionMode === 'none';
 
   const [search, setSearch] = useState(currentQ);
@@ -83,6 +85,13 @@ export default function FilterBar({ qualities, tags }: Props) {
     updateUrl({ tension: next.length ? next : null, tensionMode: null });
   }
 
+  function toggleStructure(tag: string) {
+    const next = currentStructures.includes(tag)
+      ? currentStructures.filter((s) => s !== tag)
+      : [...currentStructures, tag];
+    updateUrl({ structure: next.length ? next : null });
+  }
+
   function toggleNoTensions() {
     if (noTensionMode) {
       updateUrl({ tensionMode: null });
@@ -97,7 +106,8 @@ export default function FilterBar({ qualities, tags }: Props) {
       currentQuality ||
       currentTagNames.length > 0 ||
       currentTensions.length > 0 ||
-      noTensionMode,
+      noTensionMode ||
+      currentStructures.length > 0,
   );
 
   return (
@@ -148,6 +158,25 @@ export default function FilterBar({ qualities, tags }: Props) {
           </button>
         )}
       </form>
+
+      <div
+        className="filter-section flex flex-wrap items-center gap-2"
+        role="group"
+        aria-label="Structure"
+      >
+        <span className="mr-2 text-sm font-medium text-gray-700">Structure</span>
+        {STRUCTURE_ORDER.map((tag) => (
+          <button
+            key={tag}
+            type="button"
+            onClick={() => toggleStructure(tag)}
+            aria-pressed={currentStructures.includes(tag)}
+            className="chip"
+          >
+            {STRUCTURE_LABEL[tag]}
+          </button>
+        ))}
+      </div>
 
       {tags.length > 0 && (
         <div className="filter-section flex flex-wrap gap-2" role="group" aria-label="Tags">

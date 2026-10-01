@@ -13,6 +13,7 @@
  */
 
 import { toBase } from './canonicalize';
+import { logPrior } from './commonness';
 import { chordSymbol, rootName, spellPc } from './spelling';
 import { mod12, normalizeNotes, type PitchClass } from './pitch';
 import {
@@ -38,12 +39,15 @@ export type Reading = {
   family: Family;
   /** Display symbol, e.g. "Cmaj9/E" style via buildSymbol. */
   symbol: string;
+  /** How well the notes fit this reading (heuristic, unbounded). */
   score: number;
+  /** Share of all readings of these notes, after weighing how common the name is. */
+  probability: number;
 };
 
 export type Detection = {
   readings: Reading[];
-  /** True when the top two readings are too close to call without context. */
+  /** True when no reading is clearly the most likely without context. */
   ambiguous: boolean;
 };
 
@@ -63,7 +67,22 @@ const SCORE = {
   bassIsTension: -2,
 } as const;
 
-const AMBIGUITY_MARGIN = 1;
+// Ranking is score + PRIOR_WEIGHT * prior; probabilities are its softmax at
+// TEMPERATURE. Grid-searched on the author-labelled seed and on the intended
+// chords of the Woodshed fixtures (see agreement.test.ts): the weight and the
+// thin-rootless penalty for top-1 agreement, the temperature for the
+// likelihood of the intended reading.
+const PRIOR_WEIGHT = 0.75;
+const TEMPERATURE = 1;
+// Three pitch classes without their root read as a triad, not a rootless
+// seventh chord (C·E·G is C, not Am7/C).
+const THIN_ROOTLESS = -4;
+const ROOTLESS_MIN_PCS = 4;
+// Rootless minor-6 and minor-major are played, but far less than the rootless
+// dominant sharing their shape (B·E·F·A is G13 before Dm6/9).
+const RARE_ROOTLESS = -2;
+// Below this top probability the notes need context to name.
+const CONFIDENT = 0.7;
 const OCTAVE = 12;
 const AUGMENTED_FIFTH = 8;
 // A major 7th in the bass makes a b9 against the root above it.
@@ -73,11 +92,13 @@ const THIN_SIZE = 3;
 const DEFAULT_LIMIT = 5;
 // Tensions that make a rootless seventh chord a complete, playable voicing.
 const ROOTLESS_COLOR = new Set(['9', '13']);
-// Qualities a pianist actually plays rootless; on the others an absent root
-// produces spurious readings (B·E·F·A as a rootless Dm6 rather than G13).
+// Qualities a pianist actually plays rootless. Minor-6 and minor-major are
+// played rootless only with their 9th (Eb·A·D·G as Cm6/9); without it an
+// absent root produces spurious readings.
 const ROOTLESS_QUALITIES = new Set<BaseQuality>(['Maj7', '6', 'min7', '7', 'm7b5']);
+const ROOTLESS_WITH_NINTH = new Set<BaseQuality>(['m6', 'mMaj7']);
 
-type Candidate = Reading & { priority: number };
+type Candidate = Omit<Reading, 'probability'> & { priority: number; rank: number };
 
 function scoreReading(
   rootPc: number,
@@ -92,7 +113,8 @@ function scoreReading(
   if (def.family === 'aug' && !hasCloseSharpFive(notes, rootPc)) return null;
 
   const rootPresent = present.has(0);
-  if (!rootPresent && !rootlessQualities.has(quality)) return null;
+  const rootlessWithNinth = ROOTLESS_WITH_NINTH.has(quality) && present.has(2);
+  if (!rootPresent && !rootlessQualities.has(quality) && !rootlessWithNinth) return null;
 
   const tensions: string[] = [];
   let score = 0;
@@ -146,6 +168,12 @@ function scoreReading(
     symbol: chordSymbol(rootPc, folded, base.tensions, bassPc),
     score,
     priority: BASE_QUALITIES.indexOf(folded),
+    rank:
+      score +
+      PRIOR_WEIGHT *
+        (logPrior(folded, base.tensions) +
+          (!rootPresent && present.size < ROOTLESS_MIN_PCS ? THIN_ROOTLESS : 0) +
+          (!rootPresent && ROOTLESS_WITH_NINTH.has(folded) ? RARE_ROOTLESS : 0)),
   };
 }
 
@@ -160,7 +188,7 @@ function hasCloseSharpFive(notes: readonly number[], rootPc: number): boolean {
 
 function compare(a: Candidate, b: Candidate): number {
   return (
-    b.score - a.score ||
+    b.rank - a.rank ||
     Number(b.rootPc === b.bassPc) - Number(a.rootPc === a.bassPc) ||
     a.tensions.length - b.tensions.length ||
     a.priority - b.priority ||
@@ -185,13 +213,35 @@ export function detectChord(midi: readonly number[], limit = DEFAULT_LIMIT): Det
   }
 
   const ranked = Array.from(best.values()).sort(compare);
-  const ambiguous = ranked.length > 1 && ranked[0].score - ranked[1].score <= AMBIGUITY_MARGIN;
-  const readings = ranked.slice(0, limit).map(stripPriority);
+  const probabilities = softmax(ranked.map((c) => c.rank / TEMPERATURE));
+  const readings = ranked
+    .slice(0, limit)
+    .map((candidate, i) => toReading(candidate, probabilities[i]));
+  const ambiguous = ranked.length > 1 && probabilities[0] < CONFIDENT;
   return { readings, ambiguous };
 }
 
-function stripPriority({ priority: _priority, ...reading }: Candidate): Reading {
-  return reading;
+const PERCENT = 100;
+
+/** "74%", or "<1%" for a reading the notes barely support. */
+export function formatProbability(probability: number): string {
+  const percent = Math.round(probability * PERCENT);
+  return percent < 1 ? '<1%' : `${percent}%`;
+}
+
+function softmax(values: number[]): number[] {
+  if (values.length === 0) return [];
+  const max = Math.max(...values);
+  const exps = values.map((v) => Math.exp(v - max));
+  const total = exps.reduce((a, b) => a + b, 0);
+  return exps.map((e) => e / total);
+}
+
+function toReading(
+  { priority: _priority, rank: _rank, ...reading }: Candidate,
+  probability: number,
+): Reading {
+  return { ...reading, probability };
 }
 
 const ANY_ROOTLESS = new Set<BaseQuality>(BASE_QUALITIES.filter(hasSeventh));
@@ -209,5 +259,10 @@ export function readAs(
   const notes = normalizeNotes(midi);
   if (notes.length === 0) return null;
   const candidate = scoreReading(mod12(rootPc), quality, notes, ANY_ROOTLESS);
-  return candidate && stripPriority(candidate);
+  if (!candidate) return null;
+  // Probability is relative to the other readings of the notes.
+  const match = detectChord(notes, Infinity).readings.find(
+    (r) => r.rootPc === candidate.rootPc && r.quality === candidate.quality,
+  );
+  return toReading(candidate, match?.probability ?? 0);
 }

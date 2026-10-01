@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import type { Reading, Structure } from 'harmony';
+import { formatProbability, type Reading, type Structure } from 'harmony';
 import { ChordName } from './ChordName';
 import { readingKey } from './useReadings';
 
@@ -93,6 +93,9 @@ export function ReadingsPanel({
                     {index + 1}
                   </kbd>
                   <ChordName reading={reading} className="text-lg font-semibold text-gray-900" />
+                  <span className="font-mono text-xs tabular-nums text-gray-500">
+                    {formatProbability(reading.probability)}
+                  </span>
                   {reading.rootless && (
                     <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[11px] text-gray-600">
                       rootless

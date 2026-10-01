@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import {
+  classifyStructure,
   detectChord,
   formatProbability,
   findShape,
@@ -16,23 +17,16 @@ import {
   type LibraryVoicing,
 } from 'harmony';
 import { PianoKeyboard, useCapturedNotes, usePiano, useWebMidi } from 'keyboard';
-import { STRUCTURE_LABEL, VoicingCard } from './VoicingCard';
+import { VoicingCard } from './VoicingCard';
+import { STRUCTURE_LABEL, STRUCTURE_ORDER, visibleStructures } from '../../lib/structure';
+import { StructureChips } from '../../components/StructureChips';
 
 const STARTERS = ['Dm9', 'G13', 'Cmaj7'];
 const EXAMPLES = ['Dm9', 'G13', 'Cmaj7', 'G7alt', 'Bø', 'Cm6', 'F6/9', 'Ebmaj7#11'];
-const STRUCTURE_PRIORITY = [
-  'rootless-a',
-  'rootless-b',
-  'shell',
-  'drop2',
-  'drop3',
-  'quartal',
-  'ust',
-];
 const EMPTY_DEGREES = new Map();
 
 function groupOf(result: FinderResult): string {
-  return STRUCTURE_PRIORITY.find((tag) => result.voicing.structure.includes(tag)) ?? 'other';
+  return STRUCTURE_ORDER.find((tag) => result.voicing.structure.includes(tag)) ?? 'other';
 }
 
 /** Root of a stored shape's primary reading when played on these notes. */
@@ -85,6 +79,14 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
 
   const heard = useMemo(() => detectChord(input.notes).readings, [input.notes]);
   const typed = useMemo(() => parse(text), [text]);
+  // What the played notes are as a voicing, under the reading picked above.
+  const playedStructure = useMemo(() => {
+    const reading = heard[heardIndex];
+    if (!reading) return [];
+    return visibleStructures(
+      classifyStructure(input.notes, { rootPc: reading.rootPc, quality: reading.quality }),
+    );
+  }, [input.notes, heard, heardIndex]);
   const query = useMemo((): ChordQuery | null => {
     if (mode === 'type') return typed.query;
     const reading = heard[heardIndex];
@@ -233,6 +235,16 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
                   >
                     Clear
                   </button>
+                </div>
+              )}
+              {playedStructure.length > 0 && (
+                <div
+                  className="flex flex-wrap items-center gap-1.5"
+                  role="group"
+                  aria-label="Played structure"
+                >
+                  <span className="text-sm text-gray-500">Structure</span>
+                  <StructureChips structure={playedStructure} size="md" />
                 </div>
               )}
               {exactShape && (

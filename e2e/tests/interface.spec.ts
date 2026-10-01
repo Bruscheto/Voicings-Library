@@ -78,3 +78,25 @@ test('played notes list their readings with how likely each is', async ({ page }
   await expect(chips.first()).toHaveText(/^CMaj6 \d+%$/);
   await expect(chips.nth(1)).toHaveText(/^Amin7\/C \d+%$/);
 });
+
+test('the library filters by structure and each card shows its structure', async ({ page }) => {
+  await page.goto(`${WEB}/voicings`, { waitUntil: 'networkidle' });
+  const structure = page.getByRole('group', { name: 'Structure' });
+  await structure.getByRole('button', { name: 'Drop 2', exact: true }).click();
+  await expect(page).toHaveURL(/structure=drop2/);
+  const cards = page.locator('a.voicing-card');
+  await expect(cards.first()).toBeVisible();
+  for (const card of await cards.all()) await expect(card).toContainText('Drop 2');
+  await page.getByRole('button', { name: 'Reset', exact: true }).click();
+  await expect(page).toHaveURL(`${WEB}/voicings`);
+});
+
+test('played notes show the structure they form under the chosen reading', async ({ page }) => {
+  await page.goto(WEB);
+  await page.getByRole('tab', { name: 'Play a chord' }).click();
+  await playKeys(page, 'B3 E4 F4 A4');
+  const played = page.getByRole('group', { name: 'Played structure' });
+  await expect(played).toContainText('Rootless A');
+  await page.getByRole('button', { name: /^Dmin6\/9\/B / }).click();
+  await expect(played).toContainText('Rootless B');
+});

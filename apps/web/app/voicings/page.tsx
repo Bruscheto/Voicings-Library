@@ -5,6 +5,8 @@ import { isBaseQuality, mod12 } from 'harmony';
 import FilterBar from './FilterBar';
 import { buildVoicingWhere, hasActiveVoicingFilters } from './filterQuery';
 import { ChordSymbol } from '../../components/ChordSymbol';
+import { StructureChips } from '../../components/StructureChips';
+import { visibleStructures } from '../../lib/structure';
 
 type SearchParams = Promise<{
   q?: string;
@@ -12,6 +14,7 @@ type SearchParams = Promise<{
   tag?: string | string[];
   tension?: string | string[];
   tensionMode?: string;
+  structure?: string | string[];
 }>;
 
 export default async function VoicingsListPage({ searchParams }: { searchParams: SearchParams }) {
@@ -119,8 +122,9 @@ export default async function VoicingsListPage({ searchParams }: { searchParams:
                     ))}
                   </div>
 
-                  {tags.length > 0 && (
+                  {(tags.length > 0 || visibleStructures(v.structure).length > 0) && (
                     <div className="flex flex-wrap gap-1.5">
+                      <StructureChips structure={v.structure} />
                       {tags.map((t) => (
                         <span
                           key={t.id}

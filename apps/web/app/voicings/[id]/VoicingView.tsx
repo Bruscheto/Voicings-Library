@@ -12,7 +12,7 @@ import {
   type LibraryVoicing,
 } from 'harmony';
 import { MiniKeyboard, StaffPreview, usePiano, type PianoStatus } from 'keyboard';
-import { STRUCTURE_LABEL } from '../../finder/VoicingCard';
+import { StructureChips } from '../../../components/StructureChips';
 
 const KEYS = Array.from({ length: 12 }, (_, pc) => pc);
 const PIANO_LABEL: Record<PianoStatus, string> = {
@@ -61,16 +61,7 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
         <h1>{primary?.symbol ?? 'Unnamed chord'}</h1>
         {voicing.name && <p className="text-gray-500">{voicing.name}</p>}
         <div className="flex flex-wrap gap-1.5">
-          {voicing.structure
-            .filter((t) => t !== 'close' && t !== 'open')
-            .map((t) => (
-              <span
-                key={t}
-                className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-700"
-              >
-                {STRUCTURE_LABEL[t] ?? t}
-              </span>
-            ))}
+          <StructureChips structure={voicing.structure} size="md" />
           {collections.map((c) => (
             <span
               key={c}

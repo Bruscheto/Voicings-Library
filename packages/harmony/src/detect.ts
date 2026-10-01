@@ -13,7 +13,8 @@
  */
 
 import { toBase } from './canonicalize';
-import { logPrior } from './commonness';
+import { logPQuality, logPTensions } from './commonness';
+import { emptyFeatures, scoreFeatures, type Features } from './readingModel';
 import { chordSymbol, rootName, spellPc } from './spelling';
 import { mod12, normalizeNotes, type PitchClass } from './pitch';
 import {
@@ -24,6 +25,7 @@ import {
   isBaseQuality,
   type BaseQuality,
   type Family,
+  type QualityDef,
 } from './qualities';
 
 export type Reading = {
@@ -39,7 +41,7 @@ export type Reading = {
   family: Family;
   /** Display symbol, e.g. "Cmaj9/E" style via buildSymbol. */
   symbol: string;
-  /** How well the notes fit this reading (heuristic, unbounded). */
+  /** Weighted sum of the reading's features (see readingModel.ts); unbounded. */
   score: number;
   /** Share of all readings of these notes, after weighing how common the name is. */
   probability: number;
@@ -51,36 +53,8 @@ export type Detection = {
   ambiguous: boolean;
 };
 
-const SCORE = {
-  guideTone: 2,
-  chordTone: 1,
-  rootPresent: 2,
-  completeRootless: 2,
-  tension: -0.5,
-  avoid: -1.5,
-  missingFifth: -1,
-  // Three notes without a fifth read better as the complete triad they spell
-  // (Eb·G·C is Cm/Eb, not Eb6 without its fifth).
-  thinVoicing: -2,
-  bassIsRoot: 1.5,
-  bassIsChordTone: 0.5,
-  bassIsTension: -2,
-} as const;
-
-// Ranking is score + PRIOR_WEIGHT * prior; probabilities are its softmax at
-// TEMPERATURE. Grid-searched on the author-labelled seed and on the intended
-// chords of the Woodshed fixtures (see agreement.test.ts): the weight and the
-// thin-rootless penalty for top-1 agreement, the temperature for the
-// likelihood of the intended reading.
-const PRIOR_WEIGHT = 0.75;
-const TEMPERATURE = 1;
-// Three pitch classes without their root read as a triad, not a rootless
-// seventh chord (C·E·G is C, not Am7/C).
-const THIN_ROOTLESS = -4;
+// Rootless voicings need a 3rd, a 7th and a colour tone: four pitch classes.
 const ROOTLESS_MIN_PCS = 4;
-// Rootless minor-6 and minor-major are played, but far less than the rootless
-// dominant sharing their shape (B·E·F·A is G13 before Dm6/9).
-const RARE_ROOTLESS = -2;
 // Below this top probability the notes need context to name.
 const CONFIDENT = 0.7;
 const OCTAVE = 12;
@@ -89,16 +63,24 @@ const AUGMENTED_FIFTH = 8;
 const MAJOR_SEVENTH = 11;
 const MIN_NOTES = 2;
 const THIN_SIZE = 3;
+const SHELL_SIZE = 3;
 const DEFAULT_LIMIT = 5;
 // Tensions that make a rootless seventh chord a complete, playable voicing.
 const ROOTLESS_COLOR = new Set(['9', '13']);
+// Tension pairs never named together on one chord; such a reading is not offered.
+const CLASHING_PAIRS: [string, string][] = [
+  ['b9', '9'],
+  ['b13', '13'],
+  ['11', '#11'],
+];
 // Qualities a pianist actually plays rootless. Minor-6 and minor-major are
 // played rootless only with their 9th (Eb·A·D·G as Cm6/9); without it an
 // absent root produces spurious readings.
 const ROOTLESS_QUALITIES = new Set<BaseQuality>(['Maj7', '6', 'min7', '7', 'm7b5']);
 const ROOTLESS_WITH_NINTH = new Set<BaseQuality>(['m6', 'mMaj7']);
 
-type Candidate = Omit<Reading, 'probability'> & { priority: number; rank: number };
+/** A reading before probabilities, with the features its score came from. */
+export type Candidate = Omit<Reading, 'probability'> & { priority: number; features: Features };
 
 function scoreReading(
   rootPc: number,
@@ -116,35 +98,45 @@ function scoreReading(
   const rootlessWithNinth = ROOTLESS_WITH_NINTH.has(quality) && present.has(2);
   if (!rootPresent && !rootlessQualities.has(quality) && !rootlessWithNinth) return null;
 
+  const f = emptyFeatures();
   const tensions: string[] = [];
-  let score = 0;
   for (const interval of present) {
     const tone = def.tones[interval];
     if (tone) {
-      score += tone.role === 'third' || tone.role === 'seventh' ? SCORE.guideTone : SCORE.chordTone;
+      if (tone.role === 'third' || tone.role === 'seventh') f.guideTones++;
+      else f.chordTones++;
       continue;
     }
     const tension = def.tensions[interval];
     if (!tension) return null;
     tensions.push(tension);
-    score += SCORE.tension + (def.avoid.includes(tension) ? SCORE.avoid : 0);
+    f.tensions++;
+    if (def.avoid.includes(tension)) f.avoidTensions++;
   }
 
+  if (CLASHING_PAIRS.some(([a, b]) => tensions.includes(a) && tensions.includes(b))) return null;
+
   if (rootPresent) {
-    score += SCORE.rootPresent;
+    f.rootPresent = 1;
     const fifth = Object.entries(def.tones).find(([, tone]) => tone.role === 'fifth');
     if (fifth && !present.has(Number(fifth[0]))) {
-      score += SCORE.missingFifth + (present.size === THIN_SIZE ? SCORE.thinVoicing : 0);
+      f.missingFifth = 1;
+      if (present.size === THIN_SIZE) f.thinVoicing = 1;
     }
-  } else if (tensions.some((t) => ROOTLESS_COLOR.has(t))) {
-    score += SCORE.completeRootless;
+  } else {
+    if (tensions.some((t) => ROOTLESS_COLOR.has(t))) f.completeRootless = 1;
+    if (present.size < ROOTLESS_MIN_PCS) f.thinRootless = 1;
+    if (ROOTLESS_WITH_NINTH.has(quality)) f.rareRootless = 1;
   }
 
   const bassInterval = mod12(bassPc - rootPc);
-  if (bassInterval === 0) score += SCORE.bassIsRoot;
-  else if (def.tones[bassInterval] && bassInterval !== MAJOR_SEVENTH)
-    score += SCORE.bassIsChordTone;
-  else score += SCORE.bassIsTension;
+  const bassRole = bassInterval === MAJOR_SEVENTH ? undefined : def.tones[bassInterval]?.role;
+  if (bassRole === 'root') f.bassRoot = 1;
+  else if (bassRole === 'third') f.bassThird = 1;
+  else if (bassRole === 'fifth') f.bassFifth = 1;
+  else if (bassRole === 'seventh') f.bassSeventh = 1;
+  else f.bassTension = 1;
+  if (f.bassRoot && isShellUnderneath(notes, rootPc, def)) f.shellUnderneath = 1;
 
   const base = toBase(quality, tensions);
   // toBase only folds within the base vocabulary (Maj + 13 → 6).
@@ -153,6 +145,8 @@ function scoreReading(
   // → m6 + b13); such a reading has no honest name.
   const legal = new Set(Object.values(QUALITIES[folded].tensions));
   if (!base.tensions.every((t) => legal.has(t))) return null;
+  f.logPQuality = logPQuality(folded);
+  f.logPTensions = logPTensions(folded, base.tensions);
   const spelling = { rootPc, quality: folded, tensions: base.tensions };
   const root = rootName(spelling);
   const bass = spellPc(bassPc, spelling);
@@ -166,15 +160,16 @@ function scoreReading(
     rootless: !rootPresent,
     family: familyOf(folded, base.tensions),
     symbol: chordSymbol(rootPc, folded, base.tensions, bassPc),
-    score,
+    score: scoreFeatures(f),
     priority: BASE_QUALITIES.indexOf(folded),
-    rank:
-      score +
-      PRIOR_WEIGHT *
-        (logPrior(folded, base.tensions) +
-          (!rootPresent && present.size < ROOTLESS_MIN_PCS ? THIN_ROOTLESS : 0) +
-          (!rootPresent && ROOTLESS_WITH_NINTH.has(folded) ? RARE_ROOTLESS : 0)),
+    features: f,
   };
+}
+
+/** The two notes above the bass are the 3rd and the 7th (or 6th): a left-hand shell. */
+function isShellUnderneath(notes: readonly number[], rootPc: number, def: QualityDef): boolean {
+  const roles = new Set(notes.slice(1, SHELL_SIZE).map((n) => def.tones[mod12(n - rootPc)]?.role));
+  return roles.has('third') && roles.has('seventh');
 }
 
 /**
@@ -188,7 +183,7 @@ function hasCloseSharpFive(notes: readonly number[], rootPc: number): boolean {
 
 function compare(a: Candidate, b: Candidate): number {
   return (
-    b.rank - a.rank ||
+    b.score - a.score ||
     Number(b.rootPc === b.bassPc) - Number(a.rootPc === a.bassPc) ||
     a.tensions.length - b.tensions.length ||
     a.priority - b.priority ||
@@ -196,10 +191,10 @@ function compare(a: Candidate, b: Candidate): number {
   );
 }
 
-/** Rank every plausible reading of a set of MIDI notes. */
-export function detectChord(midi: readonly number[], limit = DEFAULT_LIMIT): Detection {
+/** Every plausible reading of the notes, one per distinct chord name, unranked. */
+export function readingCandidates(midi: readonly number[]): Candidate[] {
   const notes = normalizeNotes(midi);
-  if (new Set(notes.map(mod12)).size < MIN_NOTES) return { readings: [], ambiguous: false };
+  if (new Set(notes.map(mod12)).size < MIN_NOTES) return [];
 
   const best = new Map<string, Candidate>();
   for (let rootPc = 0; rootPc < 12; rootPc++) {
@@ -212,8 +207,13 @@ export function detectChord(midi: readonly number[], limit = DEFAULT_LIMIT): Det
     }
   }
 
-  const ranked = Array.from(best.values()).sort(compare);
-  const probabilities = softmax(ranked.map((c) => c.rank / TEMPERATURE));
+  return Array.from(best.values());
+}
+
+/** Rank every plausible reading of a set of MIDI notes. */
+export function detectChord(midi: readonly number[], limit = DEFAULT_LIMIT): Detection {
+  const ranked = readingCandidates(midi).sort(compare);
+  const probabilities = softmax(ranked.map((c) => c.score));
   const readings = ranked
     .slice(0, limit)
     .map((candidate, i) => toReading(candidate, probabilities[i]));
@@ -238,7 +238,7 @@ function softmax(values: number[]): number[] {
 }
 
 function toReading(
-  { priority: _priority, rank: _rank, ...reading }: Candidate,
+  { priority: _priority, features: _features, ...reading }: Candidate,
   probability: number,
 ): Reading {
   return { ...reading, probability };

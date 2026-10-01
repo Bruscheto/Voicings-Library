@@ -3,6 +3,7 @@ export * from './qualities';
 export * from './canonicalize';
 export * from './commonness';
 export * from './detect';
+export * from './readingModel';
 export * from './degrees';
 export * from './structure';
 export * from './symbol';

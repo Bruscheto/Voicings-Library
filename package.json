@@ -18,7 +18,9 @@
     "seed:dry-run": "ts-node --project tsconfig.scripts.json scripts/import-voicings-from-csv.ts docs/data/voicings-seed.csv --dry-run",
     "voicings:reanalyze": "ts-node --project tsconfig.scripts.json scripts/reanalyze-voicings.ts",
     "typecheck": "turbo run typecheck && tsc --noEmit --project tsconfig.scripts.json",
-    "test:coverage": "turbo run test:coverage"
+    "test:coverage": "turbo run test:coverage",
+    "harmony:prior": "ts-node --project tsconfig.scripts.json scripts/build-chord-prior.ts",
+    "harmony:train": "ts-node --project tsconfig.scripts.json scripts/train-reading-model.ts"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.7",

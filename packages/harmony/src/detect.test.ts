@@ -43,10 +43,10 @@ describe('detectChord', () => {
     expect(readings.some((r) => r.root === 'C' && r.quality === 'Maj7' && r.rootless)).toBe(true);
   });
 
-  it('reads the So What chord as Em11 and flags its ambiguity', () => {
+  it('reads the So What chord as Em11 and still offers G6/9', () => {
     const detection = detectChord(notes('E3 A3 D4 G4 B4'));
     expect(detection.readings[0]).toMatchObject({ root: 'E', quality: 'min7', tensions: ['11'] });
-    expect(detection.ambiguous).toBe(true);
+    expect(detection.readings[1].symbol).toBe('G6/9/E');
   });
 
   it('marks altered dominants with the 7alt family', () => {

@@ -2,9 +2,10 @@
  * How often the engine's most likely reading is the one a person meant.
  * Two labelled sets: the author's readings in the seed CSV (any authored
  * reading counts, since a shape like F·A·C·E is honestly both Fmaj7 and
- * Dm9/F) and the chord each Woodshed fixture was built as. The prior weight,
- * thin-rootless penalty and temperature in detect.ts were fitted on these;
- * the floors sit just under the fitted values so a regression shows up.
+ * Dm9/F) and the chord each Woodshed fixture was built as. Neither set is
+ * used to fit the weights (scripts/train-reading-model.ts trains on synthetic
+ * voicings), so these are held-out numbers; the floors sit just under them
+ * so a regression shows up.
  */
 
 import fs from 'node:fs';
@@ -57,14 +58,14 @@ describe('agreement with labelled readings', () => {
   it('ranks an authored seed reading first for most voicings', () => {
     expect(seed.length).toBeGreaterThan(70);
     const { top1, top3 } = agreement(seed);
-    expect(top1).toBeGreaterThanOrEqual(0.82);
+    expect(top1).toBeGreaterThanOrEqual(0.86);
     expect(top3).toBeGreaterThanOrEqual(0.95);
   });
 
   it('ranks the intended Woodshed chord first for most templates', () => {
     const { top1, top3 } = agreement(woodshed);
-    expect(top1).toBeGreaterThanOrEqual(0.72);
-    expect(top3).toBeGreaterThanOrEqual(0.98);
+    expect(top1).toBeGreaterThanOrEqual(0.7);
+    expect(top3).toBeGreaterThanOrEqual(0.97);
   });
 });
 

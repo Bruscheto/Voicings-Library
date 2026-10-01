@@ -143,6 +143,22 @@ pnpm run seed:import
 
 Both commands can run more than once. They update existing voicings and skip rows with a `draft` or `defer` status.
 
+## Chord reading model
+
+When you play notes, the engine scores each candidate chord name and turns the scores into percentages. Two data files drive this:
+
+- [`chord-prior.json`](./packages/harmony/src/data/chord-prior.json) records how often each chord quality and tension is written in jazz charts. It is built from the [iRealPro Corpus of Jazz Standards](https://doi.org/10.5281/zenodo.3546040) by Daniel Shanahan and Yuri Broze, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The corpus itself is not in this repository.
+- [`reading-weights.json`](./packages/harmony/src/data/reading-weights.json) holds the feature weights. They are fitted on synthetic voicings of chords sampled from that prior.
+
+Rebuild them in this order:
+
+```bash
+pnpm run harmony:prior <path to the unzipped iRb_v1-0 directory>
+pnpm run harmony:train --write
+```
+
+Training is deterministic. It reports held-out agreement with the authored seed readings and with the Woodshed fixtures.
+
 ## API
 
 | Method | Endpoint                             | Purpose                     |

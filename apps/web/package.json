@@ -14,7 +14,6 @@
     "react-dom": "^18.2.0",
     "next": "15.5.27",
     "music-engine": "workspace:*",
-    "sampler": "workspace:*",
     "data-model": "workspace:*",
     "harmony": "workspace:*",
     "keyboard": "workspace:*"

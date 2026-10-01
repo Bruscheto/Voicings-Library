@@ -5,7 +5,7 @@ export default defineConfig({
     environment: 'node',
     coverage: {
       provider: 'v8',
-      include: ['src/index.ts'],
+      include: ['src/pianoSamples.ts', 'src/pianoStorage.ts', 'src/pianoEngine.ts'],
       thresholds: {
         branches: 80,
         functions: 80,

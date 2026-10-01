@@ -7,7 +7,9 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/*': ['../../node_modules/.pnpm/@prisma+client*/node_modules/.prisma/client/**'],
   },
-  transpilePackages: ['music-engine', 'sampler', 'data-model', 'harmony', 'keyboard'],
+  // Piano samples are self-hosted from public/samples/piano (scripts/fetch-piano-samples.ts).
+  env: { NEXT_PUBLIC_PIANO_SAMPLES_URL: '/samples/piano' },
+  transpilePackages: ['music-engine', 'data-model', 'harmony', 'keyboard'],
 };
 
 export default nextConfig;

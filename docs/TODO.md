@@ -43,6 +43,6 @@
 ## 🅲 之后
 
 - [ ] C1. 练习模式 `/practice`：回放 voicing 或路径 + 节拍器 + 按功能评分（`gradeAttempt` / `gradeExact` 已在 harmony 里）。需要 MIDI 键盘时再做
-- [ ] C2. 真实钢琴采样：本地采样优先 → CDN → 振荡器兜底，UI 显示加载状态
+- [x] C2. 真实钢琴采样：smplr + Splendid Grand Piano（Steinway，公共领域），29 个采样自托管 + Cache Storage
 - [ ] C3. 更多进行：I–vi–ii–V、turnaround、blues；路径模型已支持，只缺内容
 - [ ] C4.（远期）MIDI 导入解析，对应计划里的 "Song Import Lab"

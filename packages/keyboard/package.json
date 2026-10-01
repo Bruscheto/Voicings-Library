@@ -4,18 +4,22 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "harmony": "workspace:*",
     "music-engine": "workspace:*",
-    "sampler": "workspace:*"
+    "smplr": "^1.1.0"
   },
   "peerDependencies": {
     "react": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
-    "typescript": "^5.0.0"
+    "@vitest/coverage-v8": "^4.1.11",
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.11"
   }
 }

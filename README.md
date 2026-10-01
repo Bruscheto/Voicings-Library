@@ -188,8 +188,7 @@ It returns `422` with the chord the notes do spell when a symbol does not match 
 | [`packages/harmony`](./packages/harmony)           | Chord engine: detection, symbols, finder, voice-led paths        |
 | [`packages/data-model`](./packages/data-model)     | Prisma schema and voicing records                                |
 | [`packages/music-engine`](./packages/music-engine) | VexFlow staff notation                                           |
-| [`packages/sampler`](./packages/sampler)           | Piano samples and audio playback                                 |
-| [`packages/keyboard`](./packages/keyboard)         | MIDI input, virtual piano and playback hooks shared by both apps |
+| [`packages/keyboard`](./packages/keyboard)         | MIDI input, virtual piano and piano playback shared by both apps |
 | [`scripts`](./scripts)                             | CSV import and voicing re-analysis                               |
 | [`docs/data`](./docs/data)                         | Seed data documentation                                          |
 
@@ -205,7 +204,7 @@ It returns `422` with the chord the notes do spell when a symbol does not match 
 | `pnpm run voicings:reanalyze`            | Re-check stored voicings against the engine                        |
 | `pnpm run lint`                          | Lint apps, packages and scripts                                    |
 | `pnpm run typecheck`                     | Typecheck all workspaces and import scripts                        |
-| `pnpm run test:coverage`                 | Check harmony and sampler coverage thresholds                      |
+| `pnpm run test:coverage`                 | Check harmony and piano playback coverage thresholds               |
 | `pnpm run test`                          | Run package tests                                                  |
 | `pnpm run test:e2e`                      | Build both apps and run browser tests against a throwaway database |
 | `pnpm --filter data-model run db:studio` | Open Prisma Studio                                                 |
@@ -240,7 +239,7 @@ pnpm --filter e2e exec playwright install chromium
 pnpm run test:e2e
 ```
 
-Coverage keeps the existing aggregate thresholds: 90% for harmony and 80% for sampler, across statements, branches, functions, and lines. Failed E2E runs retain traces and screenshots in the Playwright report; CI uploads them for seven days.
+Coverage keeps the existing aggregate thresholds: 90% for harmony and 80% for the keyboard package's piano playback, across statements, branches, functions, and lines. Failed E2E runs retain traces and screenshots in the Playwright report; CI uploads them for seven days.
 
 ## Security and audio
 
@@ -248,7 +247,7 @@ The capture app uses HTTP Basic Auth with server-only `ADMIN_USERNAME` and `ADMI
 
 The hosted demo publishes only the library app. Keep capture local unless you configure a separate protected deployment with HTTPS; Basic Auth sends credentials on each request. Rotate credentials through environment configuration when access changes.
 
-The audio package loads piano samples from the MusyngKite soundfont repository. It uses an oscillator if the samples do not load.
+Playback uses [smplr](https://github.com/danigb/smplr) with the public-domain Splendid Grand Piano (Steinway) samples. It loads one velocity layer and about one sample per minor third across the 88 keys: 29 files. Other keys are pitch-shifted from the nearest sample. The library app serves the files from `apps/web/public/samples/piano`, which `pnpm run piano:samples` fills, and keeps them in Cache Storage, so repeat visits load nothing. The local capture app fetches the same files from smplr's host. One shared piano serves every page. It schedules notes on the audio clock and runs them through a compressor.
 
 ## License
 

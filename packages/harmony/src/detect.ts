@@ -126,6 +126,10 @@ function scoreReading(
   const base = toBase(quality, tensions);
   // toBase only folds within the base vocabulary (Maj + 13 → 6).
   const folded = isBaseQuality(base.quality) ? base.quality : quality;
+  // Folding can leave a tension the new quality does not allow (min + b13 + 13
+  // → m6 + b13); such a reading has no honest name.
+  const legal = new Set(Object.values(QUALITIES[folded].tensions));
+  if (!base.tensions.every((t) => legal.has(t))) return null;
   const root = pcName(rootPc);
   const bass = pcName(bassPc);
   return {

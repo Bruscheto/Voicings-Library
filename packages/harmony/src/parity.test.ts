@@ -3,9 +3,9 @@
  * scripts/export-woodshed-fixtures.py). Agreement is on root and family.
  *
  * Intentional divergences are listed below: each is a pitch-class set with
- * two honest readings, where this engine prefers the one with the root in the
- * bass (or Woodshed departs from the chord the fixture was built as). For
- * those, both readings must still be offered and flagged ambiguous.
+ * two honest readings, where this engine's commonness prior or bass weighting
+ * prefers the other one. For those, both readings must still be offered and
+ * flagged ambiguous.
  */
 
 import { describe, expect, it } from 'vitest';
@@ -28,12 +28,11 @@ type Fixture = {
 
 const DIVERGENCES = new Set([
   'm7b5/first-inversion', // Cø/Eb = Ebm6
-  '6/first-inversion', // C6/E = Am7/E
   'm6/root', // Cm6 = Aø/C
-  'm6/first-inversion', // Cm6/Eb = Aø/Eb
-  '9/first-inversion', // C9/E ≈ Em7b5(b13)
   'm9/first-inversion', // Cm9/Eb ≈ EbMaj7(13)
-  '7b9/first-inversion', // C7b9/E ≈ Edim7(b13)
+  '69/first-inversion', // C6/9/E = Am11/E
+  'dim/first-inversion', // Cdim/Eb ≈ Ebm6 without its 5th
+  'sus2/first-inversion', // Csus2/D ≈ D7sus4 without its 5th
 ]);
 
 const all = fixtures as Fixture[];

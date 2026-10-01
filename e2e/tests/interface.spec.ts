@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { WEB } from './piano';
+import { WEB, playKeys } from './piano';
 
 test('finder offers real examples and supports keyboard mode selection', async ({ page }) => {
   await page.goto(WEB);
@@ -69,3 +69,12 @@ for (const width of [390, 1280]) {
     });
   }
 }
+
+test('played notes list their readings with how likely each is', async ({ page }) => {
+  await page.goto(WEB);
+  await page.getByRole('tab', { name: 'Play a chord' }).click();
+  await playKeys(page, 'C4 E4 G4 A4');
+  const chips = page.getByRole('button', { name: /^\S+ (\d+|<1)%$/ });
+  await expect(chips.first()).toHaveText(/^CMaj6 \d+%$/);
+  await expect(chips.nth(1)).toHaveText(/^Amin7\/C \d+%$/);
+});

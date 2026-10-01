@@ -1,6 +1,7 @@
 export * from './pitch';
 export * from './qualities';
 export * from './canonicalize';
+export * from './commonness';
 export * from './detect';
 export * from './degrees';
 export * from './structure';

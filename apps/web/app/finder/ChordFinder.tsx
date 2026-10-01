@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import {
   detectChord,
+  formatProbability,
   findShape,
   findVoicings,
   mod12,
@@ -219,7 +220,10 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
                           : 'border-gray-200 text-gray-700 hover:border-gray-400'
                       }`}
                     >
-                      {reading.symbol}
+                      {reading.symbol}{' '}
+                      <span className="font-normal tabular-nums opacity-70">
+                        {formatProbability(reading.probability)}
+                      </span>
                     </button>
                   ))}
                   <button

@@ -1,38 +1,48 @@
 # Voicings — TODO
 
-更新于 2026-10-01。按当前状态安排后续工作；数据库写入与历史重写单独确认。
+> 用法：从上往下做，一次只盯一个 □。做完打勾 ✅。
+> 最近更新：2026-10-01
 
-## 已完成
+---
 
-- [x] pnpm 11.18.0 + Turborepo monorepo，两个 Next.js 15 app。
-- [x] Neon PostgreSQL + Prisma；voicing 存储为可移调的 shape，和弦解释由 harmony 引擎统一计算。
-- [x] MIDI / 虚拟键盘录入、自动分析、重复检测、保存与读取。
-- [x] 和弦搜索、结构分组、按调查看 voicing、音名/度数、播放和 ii-V-I 连接。
-- [x] 和弦引擎重构与五线谱碰撞修复已合并。
-- [x] 安全依赖补丁：Next.js 15.5.27；完整 pnpm audit 无漏洞。
-- [x] GitHub CI：format、lint、typecheck、单元测试、coverage、Chromium e2e；首次远程运行通过。
-- [x] README 已有产品介绍、技术栈、截图、本地 pnpm/PostgreSQL 配置与命令。
+## ✅ 已完成
 
-## 阶段 B：公开演示
+- [x] Monorepo：pnpm workspaces + Turbo（`apps/web`、`apps/admin`、`packages/*`）
+- [x] 和弦引擎 `packages/harmony`：音符 ⇄ 和弦读法、级数、guide tone、结构分类（shell / rootless A·B / drop 2·3 / quartal / UST）、声部进行（PR #1）
+- [x] voicing 按可移调形状存储（`intervals` + `VoicingReading`），一个形状覆盖 12 个调
+- [x] Postgres（Neon）迁移完成，`voicings:reanalyze` 0 问题
+- [x] 公开站点：Chord Finder（打字或弹奏）、ii–V–I 路径（大调/小调，可替换某一步）、Library 浏览与筛选
+- [x] 五线谱音符/临时记号碰撞修复（PR #2）
+- [x] 依赖漏洞清零（`pnpm audit` 0）
+- [x] CI：format、lint、typecheck、单元测试、覆盖率、Playwright e2e（PGlite 临时库）
+- [x] 部署：<https://voicings-library.vercel.app>，admin 有口令保护
+- [x] 网站视觉改版：统一 header、明暗主题、卡片键盘预览（PR #3）
+- [x] seed 从 17 行扩充到 79 行：shell、rootless、close、drop 2（全转位）、drop 3、UST、双手 spread、三和弦、quartal；常见同形异名（Cm7 ≡ Eb6、Cm7b5 ≡ Ebm6、G13 ≡ Dm6/9）作为第二读法
 
-- [x] B1. apps/web 已部署到 [Vercel](https://voicings-library.vercel.app/)，使用加密的 Neon 生产环境变量；搜索、移调、ii-V-I 和只读 API 已验证。
-- [x] B2. README 已加入线上链接与实际线上截图。
-- [x] B3. admin 加 Basic Auth；页面和两个 API 都验权，未配置凭证时拒绝访问，跨源写入被拒绝。
+---
 
-仅发布 web。admin 保持本地使用；未来另行部署时必须配置口令并使用 HTTPS。
+## 🅰 现在：和弦读法的可能性排序
 
-## 仓库历史
+> 现状：`detectChord` 只给出启发式分数，排序有时反直觉（C·E·A 把 Am/C 排在 C6 前面，还会出现 `GMaj6add11/C` 这类罕见名字），UI 也看不出哪个读法最常见、哪个最少见。
 
-- [ ] 检查 Git 历史中的 packages/data-model/prisma/dev.db 是否包含敏感数据。
-- [ ] 根据检查结果决定是否重写历史；force-push 必须先获得明确同意。
+- [ ] A1. 写 openspec 提案：分数 → 概率（softmax）+ 和弦常见度先验（quality / tension 的使用频率）
+- [ ] A2. harmony：`detectChord` 每个读法返回 `probability` 和常见度档位（常见 / 少见 / 罕见），加测试
+- [ ] A3. web Finder「Play a chord」和 admin 录入面板显示概率条与档位
+- [ ] A4. 用现有 seed 的作者标注做回归：作者的主读法应排第一
 
-## 后续功能
+---
 
-- [ ] Practice mode：围绕已实现的 gradeAttempt 增加练习界面与流程。
-- [ ] 自有钢琴采样；当前已有远程采样、加载状态和振荡器兜底。
-- [ ] MIDI 导入 spike，明确格式与数据边界后再实现。
+## 🅱 内容
 
-## 后续运维
+- [ ] B1. 作者审一遍新 seed（`docs/data/voicings-seed.csv` 第 19 行起），确认后跑 `pnpm run seed:import` 写入线上库
+- [ ] B2. 处理 2 行 `draft`（So What Stack、Drop 2 Dominant）：重新录入或确认引擎读法
+- [ ] B3. 补小调 ii–V–I 的 drop 2 / spread 版本，以及 7sus4(b9)、mMaj7 drop 2 等空缺
 
-- [ ] 为 public web 配置单独的数据库只读角色。
-- [ ] 按需要接入 Dependabot 和独立的 data-model 单元/集成测试。
+---
+
+## 🅲 之后
+
+- [ ] C1. 练习模式 `/practice`：回放 voicing 或路径 + 节拍器 + 按功能评分（`gradeAttempt` / `gradeExact` 已在 harmony 里）。需要 MIDI 键盘时再做
+- [ ] C2. 真实钢琴采样：本地采样优先 → CDN → 振荡器兜底，UI 显示加载状态
+- [ ] C3. 更多进行：I–vi–ii–V、turnaround、blues；路径模型已支持，只缺内容
+- [ ] C4.（远期）MIDI 导入解析，对应计划里的 "Song Import Lab"

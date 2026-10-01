@@ -57,8 +57,8 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
 
   return (
     <div className="flex flex-col gap-6">
-      <header className="flex flex-col gap-2">
-        <h1 className="text-4xl font-bold tracking-tight">{primary?.symbol ?? '—'}</h1>
+      <header className="page-heading !mb-2 flex flex-col gap-3">
+        <h1>{primary?.symbol ?? 'Unnamed chord'}</h1>
         {voicing.name && <p className="text-gray-500">{voicing.name}</p>}
         <div className="flex flex-wrap gap-1.5">
           {voicing.structure
@@ -74,7 +74,7 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
           {collections.map((c) => (
             <span
               key={c}
-              className="rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700"
+              className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700"
             >
               {c}
             </span>
@@ -90,34 +90,22 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
         </div>
       </header>
 
-      <section aria-label="Key" className="flex flex-wrap gap-1">
+      <section aria-label="Key" className="key-selector">
         {KEYS.map((pc) => (
-          <button
-            key={pc}
-            type="button"
-            aria-pressed={pc === rootPc}
-            onClick={() => changeKey(pc)}
-            className={`w-11 rounded-md border py-1.5 text-sm font-semibold transition ${
-              pc === rootPc
-                ? 'border-gray-900 bg-gray-900 text-white'
-                : 'border-gray-200 bg-white text-gray-700 hover:border-gray-400'
-            }`}
-          >
+          <button key={pc} type="button" aria-pressed={pc === rootPc} onClick={() => changeKey(pc)}>
             {pcName(pc)}
           </button>
         ))}
       </section>
 
-      <section className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="flex items-center justify-between border-b border-gray-100 px-5 py-3">
-          <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-            {pitches.join(' ')}
-          </span>
+      <section className="panel overflow-hidden">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 px-5 py-4">
+          <span className="font-mono text-sm text-gray-600">{pitches.join(' ')}</span>
           <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600">
             {PIANO_LABEL[piano.status]}
           </span>
         </div>
-        <div className="grid gap-6 p-5 sm:grid-cols-2">
+        <div className="detail-instrument grid gap-8 md:grid-cols-2">
           <StaffPreview notes={midi} chord={chord} />
           <div className="flex flex-col justify-center gap-4">
             <MiniKeyboard notes={midi} chord={chord} className="h-20 w-full" />
@@ -126,14 +114,14 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
                 <li
                   key={d.midi}
                   className={`flex items-baseline gap-1.5 rounded-md border px-2 py-1 ${
-                    d.isGuideTone ? 'border-amber-300 bg-amber-50' : 'border-gray-200 bg-white'
+                    d.isGuideTone ? 'border-amber-300 bg-amber-50' : 'border-gray-200 bg-surface'
                   }`}
                 >
                   <span className="font-mono text-xs text-gray-500">
                     {pitches[midi.indexOf(d.midi)]}
                   </span>
                   <span
-                    className={`text-sm font-bold ${d.isGuideTone ? 'text-amber-700' : 'text-purple-700'}`}
+                    className={`text-sm font-bold ${d.isGuideTone ? 'text-amber-700' : 'text-emerald-700'}`}
                   >
                     {d.label}
                   </span>
@@ -146,7 +134,7 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
             </p>
           </div>
         </div>
-        <div className="flex items-center justify-end gap-3 border-t border-gray-100 px-5 py-3">
+        <div className="detail-controls flex items-center justify-end gap-5 border-t border-gray-200">
           <label className="flex items-center gap-2 text-sm text-gray-700">
             <input
               type="checkbox"
@@ -158,7 +146,7 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
           <button
             type="button"
             onClick={() => void piano.play(midi, arpeggio)}
-            className="rounded-md bg-emerald-700 px-5 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-800"
+            className="primary-button"
           >
             Play
           </button>
@@ -167,14 +155,12 @@ export function VoicingView({ voicing, initialRoot, collections, tags, source }:
 
       {readings.length > 1 && (
         <section>
-          <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">
-            Also reads as
-          </h2>
+          <h2 className="section-heading mb-4">Also reads as</h2>
           <ul className="flex flex-wrap gap-2">
             {readings.slice(1).map((r) => (
               <li
                 key={r.symbol}
-                className="rounded-md border border-gray-200 bg-white px-3 py-1.5 font-semibold"
+                className="rounded-md border border-gray-200 bg-surface px-3 py-1.5 font-semibold"
               >
                 {r.symbol}
                 {r.rootless && (

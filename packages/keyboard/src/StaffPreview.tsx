@@ -26,7 +26,7 @@ export function StaffPreview({ notes, chord, className = 'min-h-[230px]' }: Prop
 
   return (
     <div
-      className={`custom-scrollbar flex items-center justify-center overflow-auto rounded-md border border-gray-200 bg-gradient-to-b from-white to-gray-50 p-2 ${className}`}
+      className={`instrument-staff custom-scrollbar flex items-center justify-center overflow-auto rounded-md border border-gray-200 bg-gradient-to-b from-white to-gray-50 p-2 ${className}`}
     >
       <div id={id} className="mx-auto flex w-full max-w-xs items-center justify-center" />
     </div>

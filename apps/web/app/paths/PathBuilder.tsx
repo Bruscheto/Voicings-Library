@@ -68,46 +68,67 @@ export function PathBuilder({ library }: { library: LibraryVoicing[] }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-1" aria-label="Key">
-          {KEYS.map((pc) => (
-            <button
-              key={pc}
-              type="button"
-              aria-pressed={pc === keyPc}
-              onClick={() => update(pc, mode)}
-              className={`w-11 rounded-md border py-1.5 text-sm font-semibold transition ${
-                pc === keyPc
-                  ? 'border-gray-900 bg-gray-900 text-white'
-                  : 'border-gray-200 bg-white text-gray-700 hover:border-gray-400'
-              }`}
-            >
-              {pcName(pc)}
-            </button>
-          ))}
+      <section className="panel path-toolbar">
+        <div>
+          <span className="field-label">Key</span>
+          <div className="key-selector" aria-label="Key">
+            {KEYS.map((pc) => (
+              <button
+                key={pc}
+                type="button"
+                aria-pressed={pc === keyPc}
+                onClick={() => update(pc, mode)}
+              >
+                {pcName(pc)}
+              </button>
+            ))}
+          </div>
         </div>
-        <div
-          className="flex gap-1 rounded-lg bg-gray-100 p-1 text-sm font-medium"
-          role="radiogroup"
-          aria-label="Mode"
-        >
-          {(['major', 'minor'] as const).map((m) => (
-            <button
-              key={m}
-              type="button"
-              role="radio"
-              aria-checked={mode === m}
-              onClick={() => update(keyPc, m)}
-              className={`rounded-md px-4 py-1.5 capitalize ${mode === m ? 'bg-white shadow-sm' : 'text-gray-600'}`}
-            >
-              {m}
-            </button>
-          ))}
+        <div>
+          <span className="field-label">Mode</span>
+          <div className="segmented-control" role="radiogroup" aria-label="Mode">
+            {(['major', 'minor'] as const).map((m) => (
+              <button
+                key={m}
+                type="button"
+                role="radio"
+                aria-checked={mode === m}
+                onClick={() => update(keyPc, m)}
+                className="capitalize"
+                tabIndex={mode === m ? 0 : -1}
+                onKeyDown={(event) => {
+                  if (
+                    !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(
+                      event.key,
+                    )
+                  )
+                    return;
+                  event.preventDefault();
+                  const next =
+                    event.key === 'Home'
+                      ? 'major'
+                      : event.key === 'End'
+                        ? 'minor'
+                        : mode === 'major'
+                          ? 'minor'
+                          : 'major';
+                  update(keyPc, next);
+                  const radios =
+                    event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>(
+                      '[role="radio"]',
+                    );
+                  radios?.[next === 'major' ? 0 : 1].focus();
+                }}
+              >
+                {m}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
       {!path.ok ? (
-        <section className="rounded-2xl border border-dashed border-gray-300 bg-white p-8 text-center">
+        <section className="empty-state">
           <p className="font-medium text-gray-900">
             The library has no voicing yet for{' '}
             {path.missing
@@ -124,28 +145,19 @@ export function PathBuilder({ library }: { library: LibraryVoicing[] }) {
         </section>
       ) : (
         <>
-          <div className="flex items-center justify-between">
+          <div className="path-actions">
             <p className="text-sm text-gray-600">
               Total movement: <strong className="text-gray-900">{path.movement} semitones</strong>
             </p>
-            <button
-              type="button"
-              onClick={() => playPath(path.steps)}
-              className="rounded-md bg-emerald-700 px-5 py-2 text-sm font-medium text-white hover:bg-emerald-800"
-            >
+            <button type="button" onClick={() => playPath(path.steps)} className="primary-button">
               Play ii–V–I
             </button>
           </div>
           <ol className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {path.steps.map((step, i) => (
-              <li
-                key={step.spec.label}
-                className="flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
-              >
+              <li key={step.spec.label} className="voicing-card path-step">
                 <div className="flex items-baseline justify-between">
-                  <span className="font-serif text-sm font-semibold text-gray-500">
-                    {step.spec.label}
-                  </span>
+                  <span className="text-sm font-semibold text-emerald-700">{step.spec.label}</span>
                   {i > 0 && <span className="text-xs text-gray-500">moves {step.movement}</span>}
                 </div>
                 <Link
@@ -170,7 +182,7 @@ export function PathBuilder({ library }: { library: LibraryVoicing[] }) {
                   <button
                     type="button"
                     onClick={() => void piano.play(step.chosen.midi, false)}
-                    className="rounded-md border border-gray-200 px-3 py-1.5 text-xs font-semibold hover:bg-gray-50"
+                    className="secondary-button !px-3 !text-xs"
                   >
                     Play
                   </button>
@@ -179,7 +191,7 @@ export function PathBuilder({ library }: { library: LibraryVoicing[] }) {
                     aria-expanded={openStep === i}
                     disabled={step.alternatives.length === 0}
                     onClick={() => setOpenStep(openStep === i ? null : i)}
-                    className="rounded-md border border-gray-200 px-3 py-1.5 text-xs font-semibold hover:bg-gray-50 disabled:opacity-40"
+                    className="secondary-button !px-3 !text-xs disabled:opacity-40"
                   >
                     Swap ({step.alternatives.length})
                   </button>
@@ -194,7 +206,7 @@ export function PathBuilder({ library }: { library: LibraryVoicing[] }) {
                   )}
                 </div>
                 {openStep === i && (
-                  <ul className="flex flex-col divide-y divide-gray-100 rounded-md border border-gray-200">
+                  <ul className="path-alternatives flex flex-col divide-y divide-gray-100 rounded-lg border border-gray-200">
                     {step.alternatives.map((option) => (
                       <li key={option.key}>
                         <button
@@ -202,7 +214,7 @@ export function PathBuilder({ library }: { library: LibraryVoicing[] }) {
                           onClick={() => pin(i, option.key)}
                           className="flex w-full items-center gap-3 px-3 py-2 text-left hover:bg-gray-50"
                         >
-                          <span className="w-28 shrink-0 text-sm font-semibold">
+                          <span className="w-20 shrink-0 text-sm font-semibold">
                             {option.symbol}
                           </span>
                           <MiniKeyboard

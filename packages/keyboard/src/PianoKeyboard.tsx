@@ -81,6 +81,7 @@ export function PianoKeyboard({ notes, degrees, onToggle, chord }: Props) {
       >
         <button
           type="button"
+          data-key-color={key.isBlack ? 'black' : 'white'}
           aria-label={`${pitch}${isActive ? ', selected' : ''}${degree ? `, ${degree.label}` : ''}`}
           aria-pressed={isActive}
           onMouseDown={(e) => {
@@ -115,7 +116,7 @@ export function PianoKeyboard({ notes, degrees, onToggle, chord }: Props) {
   };
 
   return (
-    <div className="relative h-56 overflow-hidden rounded-md border border-gray-200 bg-gradient-to-b from-gray-50 to-gray-100 select-none">
+    <div className="instrument-keyboard relative h-56 overflow-hidden rounded-md border border-gray-200 bg-gradient-to-b from-gray-50 to-gray-100 select-none">
       <div ref={scroller} className="custom-scrollbar h-full overflow-x-auto">
         <div className="relative h-full" style={{ width: TOTAL_WIDTH }}>
           {KEYS.filter((k) => !k.isBlack).map(renderKey)}

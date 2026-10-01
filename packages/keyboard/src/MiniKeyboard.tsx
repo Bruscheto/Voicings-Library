@@ -33,8 +33,11 @@ export function MiniKeyboard({ notes, chord, className = 'h-11 w-full max-w-[260
     else whites.push({ midi, x: whites.length * WHITE_WIDTH });
   }
   const fill = (midi: number, black: boolean) => {
-    if (!played.has(midi)) return black ? '#111827' : '#ffffff';
-    return degrees.get(midi)?.isGuideTone ? '#f59e0b' : '#9333ea';
+    if (!played.has(midi))
+      return black ? 'var(--keyboard-black, #111827)' : 'var(--keyboard-white, #ffffff)';
+    return degrees.get(midi)?.isGuideTone
+      ? 'var(--keyboard-guide, #f59e0b)'
+      : 'var(--keyboard-note, #9333ea)';
   };
   const width = whites.length * WHITE_WIDTH;
   const label = notes
@@ -58,7 +61,7 @@ export function MiniKeyboard({ notes, chord, className = 'h-11 w-full max-w-[260
           height={WHITE_HEIGHT}
           rx={1.5}
           fill={fill(midi, false)}
-          stroke="#d1d5db"
+          stroke="var(--keyboard-border, #d1d5db)"
         />
       ))}
       {blacks.map(({ midi, x }) => (

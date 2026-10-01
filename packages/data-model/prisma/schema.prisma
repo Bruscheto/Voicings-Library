@@ -8,39 +8,40 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Chord {
-  id       String         @id @default(uuid())
-  symbol   String         @unique
-  root     String         // CHECK constraint enforces valid pitch class
-  quality  String         // CHECK constraint enforces valid quality
-  tensions String[]       @default([])
-
-  voicings VoicingChord[]
-
-  @@index([quality])
-}
-
+// A voicing is a shape: intervals above its lowest note. It stands for the
+// same voicing in all twelve keys; bassMidi only records where it was authored.
+// Chords are not stored — they are readings of the shape (see VoicingReading).
 model Voicing {
-  id        String         @id @default(uuid())
+  id        String   @id @default(uuid())
   name      String?
-  pitches   String[]       @default([])
-  slashBass String?
+  intervals Int[]    // CHECK: starts at 0, strictly ascending
+  bassMidi  Int      // CHECK: 21..108
+  shapeKey  String   @unique // intervals joined by "-"
+  structure String[] @default([]) // engine-derived: shell, rootless-a, drop2…
+  status    String   @default("ready") // CHECK: draft | ready
+  source    String?
 
-  chords VoicingChord[]
-  tags   VoicingTag[]
+  readings VoicingReading[]
+  tags     VoicingTag[]
 
   createdAt DateTime @default(now())
 }
 
-model VoicingChord {
-  id        String @id @default(uuid())
-  voicingId String
-  chordId   String
+// One way to read a shape, relative to its bass so it holds in every key:
+// rootOffset 9 on a shape whose bass is C means an A-rooted chord.
+model VoicingReading {
+  id         String   @id @default(uuid())
+  voicingId  String
+  rootOffset Int      // CHECK: 0..11
+  quality    String   // CHECK: base quality (harmony BASE_QUALITIES)
+  tensions   String[] @default([])
+  rootless   Boolean  @default(false)
+  isPrimary  Boolean  @default(false) // partial unique index: one per voicing
 
-  voicing Voicing @relation(fields: [voicingId], references: [id])
-  chord   Chord   @relation(fields: [chordId], references: [id])
+  voicing Voicing @relation(fields: [voicingId], references: [id], onDelete: Cascade)
 
-  @@unique([voicingId, chordId])
+  @@unique([voicingId, rootOffset, quality])
+  @@index([quality])
 }
 
 model Tag {

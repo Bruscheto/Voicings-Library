@@ -8,4 +8,13 @@ export const prisma = globalForPrisma.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 export * from '@prisma/client';
-export * from './canonicalize';
+export {
+  toBase,
+  canonicalizeChord,
+  chordSegments,
+  buildSymbol,
+  analyzeVoicing,
+  realizeVoicing,
+  VoicingAnalysisError,
+} from 'harmony';
+export type { CanonicalChord, VoicingAnalysis, ReadingRecord, StoredVoicing } from 'harmony';

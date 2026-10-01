@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { prisma } from 'data-model';
+import { prisma, realizeVoicing } from 'data-model';
 import FilterBar from './FilterBar';
 import { buildVoicingWhere, hasActiveVoicingFilters } from './filterQuery';
 import { ChordSymbol } from '../../components/ChordSymbol';
@@ -24,13 +24,13 @@ export default async function VoicingsListPage({
     prisma.voicing.findMany({
       where,
       include: {
-        chords: { include: { chord: true } },
+        readings: true,
         tags: { include: { tag: true } },
       },
       orderBy: { createdAt: 'desc' },
     }),
     prisma.voicing.count(),
-    prisma.chord.findMany({
+    prisma.voicingReading.findMany({
       select: { quality: true },
       distinct: ['quality'],
       orderBy: { quality: 'asc' },
@@ -69,9 +69,7 @@ export default async function VoicingsListPage({
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {voicings.map((v) => {
-              const pitches = v.pitches;
-              const primaryVc = v.chords[0];
-              const chord = primaryVc?.chord;
+              const { pitches, primary: chord } = realizeVoicing(v);
               const symbol = chord?.symbol ?? '—';
               const tags = v.tags.map((vt) => vt.tag);
               const showAltName = v.name && v.name !== symbol;
@@ -88,7 +86,7 @@ export default async function VoicingsListPage({
                         root={chord.root}
                         quality={chord.quality}
                         tensions={chord.tensions}
-                        slashBass={v.slashBass}
+                        slashBass={chord.slashBass}
                       />
                     ) : (
                       '—'

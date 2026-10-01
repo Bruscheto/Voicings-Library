@@ -1,37 +1,39 @@
 # Voicing Seed Workflow
 
-This guide explains how we author new voicings in a spreadsheet, validate the data, and feed it into the Prisma seed so the public apps can consume the same source of truth.
+How to author voicings in a spreadsheet, check them against the chord engine, and import them. Columns are described in [`voicing-seed-schema.md`](./voicing-seed-schema.md).
 
-## 1. Authoring Flow
+## 1. Author
 
-1. **Create a working copy**: Duplicate `docs/data/voicing-seed-template.csv` (or import it into Google Sheets/Numbers). Preserve the header order.
-2. **Capture the voicing**: Use the admin tool to grab the staff + interval analysis. Copy the auto-generated `symbol`, `pitches`, and `midi_numbers` directly into the sheet.
-3. **Fill metadata**: Complete the remaining columns defined in `docs/data/voicing-seed-schema.md`.
-4. **Status gate**: Keep `status` set to `draft` until the row has been double-checked (notes, tensions, slash bass, spelling). Flip to `ready` once reviewed so the importer will pick it up.
-5. **Version control**: Commit the canonical sheet as `docs/data/voicings-seed.csv` (and any supporting references) so every seed drop is reproducible. Keep the template file untouched for onboarding.
+1. Start from `docs/data/voicing-seed-template.csv` and keep the header order.
+2. Play the voicing in the capture app and copy its pitches into `pitches`.
+3. Write the chord in `symbols`, or leave it blank to accept the engine's reading. Add more readings after a `;` when the shape honestly reads more than one way (`C6; Am7/C`).
+4. Keep `status` at `draft` until the row is reviewed, then set it to `ready`.
+5. Commit the sheet as `docs/data/voicings-seed.csv`.
 
-## 2. Preparing for Import
+## 2. Check
 
-1. **Export to CSV** from Sheets (UTF-8, commas). Save/overwrite `docs/data/voicings-seed.csv`.
-2. **Validate format** using any CSV linter or the importer dry-run (`npm run seed:dry-run`). The validator will ensure:
-   - UUIDs are unique.
-   - Required columns are present and non-empty when `status=ready`.
-   - JSON-like columns (`pitches`, `midi_numbers`) parse successfully.
-3. **Dry run**: `npm run seed:dry-run` (or `ts-node --project tsconfig.scripts.json scripts/import-voicings-from-csv.ts docs/data/voicings-seed.csv --dry-run`) prints the upsert plan without touching the database.
+```bash
+pnpm run seed:dry-run
+```
 
-## 3. Importing into Prisma
+The dry run prints every row with the readings it would store, whether they were authored or detected, and the structure tags. It fails, writing nothing, if a ready row:
 
-1. `npm run seed:import` upserts the CSV rows into Postgres (Chord + Voicing + VoicingChord tables) so the admin app reads the same data the spreadsheet defines.
-2. `cd packages/data-model && npx prisma db seed` executes the same importer via Prisma’s seed hook, which is what CI/prod deployments will use.
-3. Both commands are idempotent: rerunning them updates existing voicings (by `voicing_id`) and skips rows whose status is `draft` or `defer`.
+- has a symbol the notes do not spell (the message names the chord they do spell),
+- has a slash bass that is not the lowest note,
+- has an invalid status, or
+- duplicates the shape of another ready row.
 
-> Tip: running `npm run seed:dry-run` before every commit provides a quick lint for malformed JSON or missing required fields.
+## 3. Import
 
-## 4. Review & QA Checklist
+`pnpm run seed:import` writes to PostgreSQL. Confirm the target database and get explicit approval first. The command is idempotent: it upserts by shape, replaces readings from the sheet, and only adds tags, so collection memberships made in the capture app survive.
 
-- Compare the rendered staff from the admin tool against VexFlow output in the public app.
-- Use the sampler playback to confirm MIDI numbers align with written pitches (no octave typos).
-- Ensure context tags align with the options exposed in `apps/admin/app/page.tsx`.
-- When referencing tunes/progressions, verify the slug format matches what the future `Progression` table will expect.
+## 4. After a migration or engine change
 
-Documenting this workflow now keeps Step 2 self-contained: the schema lives in `voicing-seed-schema.md`, the template in `voicing-seed-template.csv`, and this file captures the process from capture → review → import.
+Structure tags and reading tensions come from the engine. Re-check stored voicings whenever either changes:
+
+```bash
+pnpm run voicings:reanalyze
+pnpm run voicings:reanalyze --write
+```
+
+The first command only reports. `--write` refreshes structure tags, corrects tensions to what the notes spell, and gives any voicing without a reading the engine's top reading. Readings the notes cannot support are listed for review and never deleted.

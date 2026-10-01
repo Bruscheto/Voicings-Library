@@ -45,7 +45,7 @@ Both Next.js apps use the same PostgreSQL database. They also use shared package
 
 ## Quick start
 
-You need Node.js 20 or later, pnpm 11.18.0 or later, and PostgreSQL. A MIDI controller is optional.
+You need Node.js 22.13 or later, pnpm 11.18.0 (pinned in `package.json`), and PostgreSQL. A MIDI controller is optional.
 
 1. Clone the repository.
 
@@ -111,12 +111,12 @@ For a hosted database, use its pooled URL as `DATABASE_URL`. Use its direct URL 
 
 ### Use the library
 
-| Page              | What it does                                                            |
-| ----------------- | ----------------------------------------------------------------------- |
-| `/`               | Find voicings for a typed or played chord, grouped by structure         |
-| `/voicings/[id]`  | One voicing in any of the 12 keys, with staff, degrees and playback     |
-| `/paths`          | A voice-led ii–V–I in any key, major or minor, with swappable chords    |
-| `/voicings`       | Browse and filter the whole library                                     |
+| Page             | What it does                                                         |
+| ---------------- | -------------------------------------------------------------------- |
+| `/`              | Find voicings for a typed or played chord, grouped by structure      |
+| `/voicings/[id]` | One voicing in any of the 12 keys, with staff, degrees and playback  |
+| `/paths`         | A voice-led ii–V–I in any key, major or minor, with swappable chords |
+| `/voicings`      | Browse and filter the whole library                                  |
 
 ## Seed data
 
@@ -155,31 +155,49 @@ It returns `422` with the chord the notes do spell when a symbol does not match 
 
 ## Repository guide
 
-| Path                                               | Purpose                          |
-| -------------------------------------------------- | -------------------------------- |
-| [`apps/web`](./apps/web)                           | Library app and read API         |
-| [`apps/admin`](./apps/admin)                       | Capture app and write API        |
-| [`packages/harmony`](./packages/harmony)           | Chord engine: detection, symbols, finder, voice-led paths |
-| [`packages/data-model`](./packages/data-model)     | Prisma schema and voicing records |
-| [`packages/music-engine`](./packages/music-engine) | VexFlow staff notation           |
-| [`packages/sampler`](./packages/sampler)           | Piano samples and audio playback |
+| Path                                               | Purpose                                                          |
+| -------------------------------------------------- | ---------------------------------------------------------------- |
+| [`apps/web`](./apps/web)                           | Library app and read API                                         |
+| [`apps/admin`](./apps/admin)                       | Capture app and write API                                        |
+| [`packages/harmony`](./packages/harmony)           | Chord engine: detection, symbols, finder, voice-led paths        |
+| [`packages/data-model`](./packages/data-model)     | Prisma schema and voicing records                                |
+| [`packages/music-engine`](./packages/music-engine) | VexFlow staff notation                                           |
+| [`packages/sampler`](./packages/sampler)           | Piano samples and audio playback                                 |
 | [`packages/keyboard`](./packages/keyboard)         | MIDI input, virtual piano and playback hooks shared by both apps |
-| [`scripts`](./scripts)                             | CSV import and voicing re-analysis |
-| [`docs/data`](./docs/data)                         | Seed data documentation          |
+| [`scripts`](./scripts)                             | CSV import and voicing re-analysis                               |
+| [`docs/data`](./docs/data)                         | Seed data documentation                                          |
 
 ### Commands
 
-| Command                                    | Purpose                     |
-| ------------------------------------------ | --------------------------- |
-| `pnpm run dev`                             | Start both apps             |
-| `pnpm run build`                           | Build all apps and packages |
-| `pnpm run format:check`                    | Check file formatting       |
-| `pnpm run seed:dry-run`                    | Validate the seed CSV file  |
-| `pnpm run seed:import`                     | Import all `ready` rows     |
-| `pnpm run voicings:reanalyze`              | Re-check stored voicings against the engine |
-| `pnpm run test`                            | Run package tests           |
-| `pnpm run test:e2e`                        | Build both apps and run browser tests against a throwaway database |
-| `pnpm --filter data-model run db:studio`  | Open Prisma Studio          |
+| Command                                  | Purpose                                                            |
+| ---------------------------------------- | ------------------------------------------------------------------ |
+| `pnpm run dev`                           | Start both apps                                                    |
+| `pnpm run build`                         | Build all apps and packages                                        |
+| `pnpm run format:check`                  | Check file formatting                                              |
+| `pnpm run seed:dry-run`                  | Validate the seed CSV file                                         |
+| `pnpm run seed:import`                   | Import all `ready` rows                                            |
+| `pnpm run voicings:reanalyze`            | Re-check stored voicings against the engine                        |
+| `pnpm run lint`                          | Lint apps, packages and scripts                                    |
+| `pnpm run typecheck`                     | Typecheck all workspaces and import scripts                        |
+| `pnpm run test:coverage`                 | Check harmony and sampler coverage thresholds                      |
+| `pnpm run test`                          | Run package tests                                                  |
+| `pnpm run test:e2e`                      | Build both apps and run browser tests against a throwaway database |
+| `pnpm --filter data-model run db:studio` | Open Prisma Studio                                                 |
+
+## Continuous integration
+
+[GitHub Actions](./.github/workflows/ci.yml) runs on pull requests, pushes to `main`, and manual dispatches. It uses Node.js 22.22.3, the pinned pnpm version, and a frozen lockfile to check dependencies, formatting, lint, types, unit tests, coverage, and E2E.
+
+The E2E suite builds both apps in production mode, applies migrations, and imports the seed CSV into an in-memory PGlite PostgreSQL database. It uses local ports 5433/5434 for the database and health check, and 3100/3101 for the apps. No Neon credentials or GitHub secrets are needed.
+
+To run browser tests locally, install Playwright's Chromium first:
+
+```bash
+pnpm --filter e2e exec playwright install chromium
+pnpm run test:e2e
+```
+
+Coverage keeps the existing aggregate thresholds: 90% for harmony and 80% for sampler, across statements, branches, functions, and lines. Failed E2E runs retain traces and screenshots in the Playwright report; CI uploads them for seven days.
 
 ## Security and audio
 

@@ -1,5 +1,8 @@
 import path from 'node:path';
-import { importVoicingsFromCsv, closeImporterPrisma } from '../../../scripts/import-voicings-from-csv';
+import {
+  importVoicingsFromCsv,
+  closeImporterPrisma,
+} from '../../../scripts/import-voicings-from-csv';
 
 async function main() {
   const csvPath = path.resolve(__dirname, '../../../docs/data/voicings-seed.csv');

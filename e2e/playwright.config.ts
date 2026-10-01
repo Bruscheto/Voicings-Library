@@ -12,12 +12,15 @@ export default defineConfig({
   testDir: './tests',
   // The flows share one database and the capture test writes to it.
   fullyParallel: false,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
   workers: 1,
   timeout: 60_000,
-  reporter: [['list']],
+  reporter: [['list'], ['html', { open: 'never' }]],
   use: {
-    // The installed Chrome, with Playwright's own throwaway profile.
-    channel: 'chrome',
+    browserName: 'chromium',
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
     headless: true,
     viewport: { width: 1280, height: 900 },
   },

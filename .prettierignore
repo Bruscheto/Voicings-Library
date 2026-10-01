@@ -8,3 +8,6 @@ package-lock.json
 pnpm-lock.yaml
 docs/data/*.csv
 packages/data-model/prisma/migrations
+
+# Generated reference data; keep the exporter's layout.
+packages/harmony/fixtures/woodshed.json

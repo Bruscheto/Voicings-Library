@@ -15,13 +15,7 @@ interface ChordSymbolProps {
  * Storage stays as a single joined string (`buildSymbol`); this component
  * is the source of truth for how that name appears to humans.
  */
-export function ChordSymbol({
-  root,
-  quality,
-  tensions,
-  slashBass,
-  className,
-}: ChordSymbolProps) {
+export function ChordSymbol({ root, quality, tensions, slashBass, className }: ChordSymbolProps) {
   const segments = chordSegments(root, quality, tensions, slashBass);
   const wrapperClass = className
     ? `inline-flex items-baseline gap-0.5 ${className}`

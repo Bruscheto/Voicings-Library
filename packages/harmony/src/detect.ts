@@ -14,7 +14,7 @@
 
 import { toBase } from './canonicalize';
 import { chordSymbol, rootName, spellPc } from './spelling';
-import { mod12, normalizeNotes, pcName, type PitchClass } from './pitch';
+import { mod12, normalizeNotes, type PitchClass } from './pitch';
 import {
   BASE_QUALITIES,
   QUALITIES,

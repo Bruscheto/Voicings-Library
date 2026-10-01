@@ -7,6 +7,8 @@ allowBuilds:
   '@prisma/client': true
   '@prisma/engines': true
   prisma: true
+  # Platform packages provide the resolver binary; do not run its fallback installer.
+  unrs-resolver: false
 
 # Next.js 15 pins PostCSS; keep every affected PostCSS 8 consumer patched.
 # GHSA-fxqj-rqcc-2cmp (and earlier source-map disclosure advisories).

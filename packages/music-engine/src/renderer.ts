@@ -1,7 +1,17 @@
 import Vex from 'vexflow';
 import { planGrandStaff, STAFF_HEIGHT, type StaffPlan } from './staffLayout';
 
-const { Renderer, Stave, StaveNote, GhostNote, Formatter, StaveConnector, Accidental, Voice, Stem } = Vex.Flow;
+const {
+  Renderer,
+  Stave,
+  StaveNote,
+  GhostNote,
+  Formatter,
+  StaveConnector,
+  Accidental,
+  Voice,
+  Stem,
+} = Vex.Flow;
 
 const MIN_WIDTH = 280;
 const MAX_WIDTH = 320;
@@ -68,20 +78,30 @@ export class StaffRenderer {
     renderer.resize(width, height);
     const context = renderer.getContext();
 
-    const staveTreble = new Stave(STAVE_X, trebleTop - STAVE_LINE_OFFSET, staveWidth).addClef('treble');
+    const staveTreble = new Stave(STAVE_X, trebleTop - STAVE_LINE_OFFSET, staveWidth).addClef(
+      'treble',
+    );
     const staveBass = new Stave(STAVE_X, bassTop - STAVE_LINE_OFFSET, staveWidth).addClef('bass');
     staveTreble.setContext(context).draw();
     staveBass.setContext(context).draw();
 
-    for (const type of [StaveConnector.type.BRACE, StaveConnector.type.SINGLE_LEFT, StaveConnector.type.SINGLE_RIGHT]) {
+    for (const type of [
+      StaveConnector.type.BRACE,
+      StaveConnector.type.SINGLE_LEFT,
+      StaveConnector.type.SINGLE_RIGHT,
+    ]) {
       new StaveConnector(staveTreble, staveBass).setType(type).setContext(context).draw();
     }
 
     try {
       const trebleChords = buildChords(plan.treble);
       const bassChords = buildChords(plan.bass);
-      const trebleVoices = trebleChords.length ? trebleChords.map(toVoice) : [toVoice(new GhostNote({ duration: 'w' }))];
-      const bassVoices = bassChords.length ? bassChords.map(toVoice) : [toVoice(new GhostNote({ duration: 'w' }))];
+      const trebleVoices = trebleChords.length
+        ? trebleChords.map(toVoice)
+        : [toVoice(new GhostNote({ duration: 'w' }))];
+      const bassVoices = bassChords.length
+        ? bassChords.map(toVoice)
+        : [toVoice(new GhostNote({ duration: 'w' }))];
 
       // One formatter for both staves keeps the chords in a single column.
       const formatter = new Formatter().joinVoices(trebleVoices).joinVoices(bassVoices);

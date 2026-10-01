@@ -212,9 +212,7 @@ export function chordSegments(
 ): string[] {
   const display = canonicalizeChord(quality, tensions);
   const parentheticalNaturals = display.quality === 'Maj13' ? ['11'] : [];
-  const altered = display.tensions.filter(
-    (t) => isAltered(t) || parentheticalNaturals.includes(t),
-  );
+  const altered = display.tensions.filter((t) => isAltered(t) || parentheticalNaturals.includes(t));
   const natural = display.tensions.filter(
     (t) => !isAltered(t) && !parentheticalNaturals.includes(t),
   );

@@ -1,9 +1,16 @@
 {
-	"name": "sampler",
-	"version": "0.0.0",
-	"main": "./src/index.ts",
-	"types": "./src/index.ts",
-	"devDependencies": {
-		"typescript": "^5.0.0"
-	}
+  "name": "sampler",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.11",
+    "@vitest/coverage-v8": "^4.1.11"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  }
 }

@@ -17,8 +17,6 @@ out/
 coverage/
 playwright-report/
 test-results/
-*.test.ts
-vitest.config.ts
 .vercel/
 .netlify/
 .parcel-cache/

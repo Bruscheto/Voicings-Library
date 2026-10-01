@@ -9,18 +9,24 @@
     "d": "turbo run dev",
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "lint": "turbo run lint",
+    "lint": "eslint . --max-warnings=0",
     "test": "turbo run test",
     "test:e2e": "pnpm --filter e2e run e2e",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "seed:import": "ts-node --project tsconfig.scripts.json scripts/import-voicings-from-csv.ts docs/data/voicings-seed.csv",
     "seed:dry-run": "ts-node --project tsconfig.scripts.json scripts/import-voicings-from-csv.ts docs/data/voicings-seed.csv --dry-run",
-    "voicings:reanalyze": "ts-node --project tsconfig.scripts.json scripts/reanalyze-voicings.ts"
+    "voicings:reanalyze": "ts-node --project tsconfig.scripts.json scripts/reanalyze-voicings.ts",
+    "typecheck": "turbo run typecheck && tsc --noEmit --project tsconfig.scripts.json",
+    "test:coverage": "turbo run test:coverage"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
+    "@types/node": "^20.19.25",
     "chalk": "^4.1.2",
     "csv-parse": "^7.0.3",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "15.5.27",
     "prettier": "^3.0.0",
     "ts-node": "^10.9.2",
     "turbo": "^2.11.5",
@@ -28,6 +34,6 @@
   },
   "packageManager": "pnpm@11.18.0",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.13.0"
   }
 }

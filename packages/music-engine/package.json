@@ -1,16 +1,17 @@
 {
-	"name": "music-engine",
-	"version": "0.0.0",
-	"main": "./src/index.ts",
-	"types": "./src/index.ts",
-	"scripts": {
-		"test": "vitest run"
-	},
-	"dependencies": {
-		"vexflow": "^4.2.0"
-	},
-	"devDependencies": {
-		"typescript": "^5.0.0",
-		"vitest": "^4.1.11"
-	}
+  "name": "music-engine",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "vexflow": "^4.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.11"
+  }
 }

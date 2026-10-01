@@ -12,11 +12,7 @@ type SearchParams = Promise<{
   tensionMode?: string;
 }>;
 
-export default async function VoicingsListPage({
-  searchParams,
-}: {
-  searchParams: SearchParams;
-}) {
+export default async function VoicingsListPage({ searchParams }: { searchParams: SearchParams }) {
   const params = await searchParams;
   const where = buildVoicingWhere(params);
 

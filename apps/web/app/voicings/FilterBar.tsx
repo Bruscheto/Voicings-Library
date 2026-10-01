@@ -170,9 +170,7 @@ export default function FilterBar({ qualities, tags }: Props) {
           type="button"
           onClick={toggleNoTensions}
           className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-            noTensionMode
-              ? 'bg-gray-900 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            noTensionMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
           No tensions

@@ -43,9 +43,7 @@ function symbolReading(value: string): Prisma.VoicingReadingWhereInput | null {
   }
 }
 
-export function normalizeVoicingFilters(
-  params: VoicingFilterParams,
-): NormalizedVoicingFilters {
+export function normalizeVoicingFilters(params: VoicingFilterParams): NormalizedVoicingFilters {
   return {
     q: params.q?.trim() ?? '',
     quality: params.quality?.trim() ?? '',

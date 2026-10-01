@@ -86,9 +86,11 @@ const byPitch = (a: StaffNote, b: StaffNote) => a.step - b.step || a.alter - b.a
 
 function planStaff(clef: Clef, notes: StaffNote[]): StaffPlan {
   const unique = notes.filter(
-    (note, i) => notes.findIndex((other) => other.step === note.step && other.alter === note.alter) === i,
+    (note, i) =>
+      notes.findIndex((other) => other.step === note.step && other.alter === note.alter) === i,
   );
-  const sharesLine = (note: StaffNote) => unique.some((other) => other !== note && other.step === note.step);
+  const sharesLine = (note: StaffNote) =>
+    unique.some((other) => other !== note && other.step === note.step);
 
   // A natural next to its altered neighbour (A with Ab) needs its sign.
   const marked = unique.map((note) =>
@@ -100,7 +102,9 @@ function planStaff(clef: Clef, notes: StaffNote[]): StaffPlan {
   const voices: StaffNote[][] = [];
   const sorted = [...marked].sort((a, b) => byPitch(b, a));
   sorted.forEach((note) => {
-    const level = sorted.filter((other) => other.step === note.step && other.alter > note.alter).length;
+    const level = sorted.filter(
+      (other) => other.step === note.step && other.alter > note.alter,
+    ).length;
     voices[level] = [...(voices[level] ?? []), note];
   });
 
@@ -128,7 +132,10 @@ export function planGrandStaff(keys: string[]): GrandStaffPlan {
       maxOf(bassNotes.map((n) => above(n, BASS_TOP))) +
       CLEARANCE,
   );
-  const bottom = Math.max(MIN_BOTTOM, maxOf(bassNotes.map((n) => below(n, BASS_BOTTOM))) + CLEARANCE);
+  const bottom = Math.max(
+    MIN_BOTTOM,
+    maxOf(bassNotes.map((n) => below(n, BASS_BOTTOM))) + CLEARANCE,
+  );
 
   return {
     treble: planStaff('treble', trebleNotes),

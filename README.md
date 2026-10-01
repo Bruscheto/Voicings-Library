@@ -178,6 +178,7 @@ It returns `422` with the chord the notes do spell when a symbol does not match 
 | `pnpm run seed:import`                     | Import all `ready` rows     |
 | `pnpm run voicings:reanalyze`              | Re-check stored voicings against the engine |
 | `pnpm run test`                            | Run package tests           |
+| `pnpm run test:e2e`                        | Build both apps and run browser tests against a throwaway database |
 | `pnpm --filter data-model run db:studio`  | Open Prisma Studio          |
 
 ## Security and audio

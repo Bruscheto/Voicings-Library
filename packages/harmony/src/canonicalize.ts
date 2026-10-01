@@ -87,6 +87,15 @@ const COMPOUND_IMPLIES: Record<string, CompoundDef> = {
   Maj13: { base: 'Maj7', implies: ['9', '13'] },
   '9': { base: '7', implies: ['9'] },
   '13': { base: '7', implies: ['9', '13'] },
+  // Suspended dominant — the 4th replaces the 3rd, so 11 never applies.
+  '9sus4': { base: '7sus4', implies: ['9'] },
+  '13sus4': { base: '7sus4', implies: ['9', '13'] },
+  // Sixth chords with an added 9th.
+  '6/9': { base: '6', implies: ['9'] },
+  'min6/9': { base: 'm6', implies: ['9'] },
+  // Legacy stored qualities that are really a base plus tensions.
+  add9: { base: 'Maj', implies: ['9'] },
+  '7#5': { base: 'aug7', implies: [] },
 };
 
 const COMPOUND_CHAIN: Record<string, string[]> = {
@@ -96,6 +105,9 @@ const COMPOUND_CHAIN: Record<string, string[]> = {
   aug7: ['aug11', 'aug9'],
   Maj7: ['Maj13', 'Maj9'],
   '7': ['13', '9'],
+  '7sus4': ['13sus4', '9sus4'],
+  '6': ['6/9'],
+  m6: ['min6/9'],
 };
 
 const DISPLAY_QUALITY: Record<string, string> = {

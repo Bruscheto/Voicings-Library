@@ -14,7 +14,9 @@
 		"next": "15.0.0",
 		"music-engine": "workspace:*",
 		"sampler": "workspace:*",
-		"data-model": "workspace:*"
+		"data-model": "workspace:*",
+		"harmony": "workspace:*",
+		"keyboard": "workspace:*"
 	},
 	"devDependencies": {
 		"typescript": "^5.0.0",

@@ -1,4 +1,18 @@
-voicing_id,voicing_name,symbol,root,quality,tensions,slash_bass,context_tags,pitches,midi_numbers,register_low,register_high,clef_hint,descriptor,substructures,tags,progression_refs,audio_status,notes,source,status
-00000000-0000-4000-8000-000000000001,Rootless Guide Tone,Cmaj9(#11)/E,C,Maj7,"9,#11",E,"Rootless,Drop 2","[\"E3\",\"B3\",\"D4\",\"F#4\",\"A4\"]","[52,59,62,66,69]",E3,A4,grand,"3-7 shell with #11 UST","UST: G-B-D","Ballad,Left-Hand","autumn-a:3",sampled,"Captured via admin tool","Bill Evans transcription",ready
-00000000-0000-4000-8000-000000000002,So What Stack,Dm11/G,D,min7,"9,11",G,"Quartal,Rootless","[\"F3\",\"C4\",\"G4\",\"D5\",\"A5\"]","[53,60,67,74,81]",F3,A5,grand,"Quartal stack over pedal G","Quartal: F-Bb-Eb | Upper: A-D","Modal,Miles","so-what:a",sampled,"Captured from quartal preset","Miles Davis - So What",ready
-00000000-0000-4000-8000-000000000003,Drop 2 Dominant,Bb13(#11)/A,Bb,7,"13,#11",A,"Drop 2,Rootless","[\"A2\",\"D3\",\"G3\",\"C4\",\"E4\",\"G4\"]","[45,50,55,60,64,67]",A2,G4,grand,"Drop 2 voicing with #11","UST: E-G-C","Up-tempo,Swing","rhythm-changes:b5",needs-recording,"Needs MIDI capture","Rhythm Changes comp",draft
+pitches,symbols,name,tags,source,status,notes
+E3 B3 D4 F#4 A4,Cmaj13(#11)/E,Rootless Guide Tone,"Ballad,Left-Hand",Bill Evans transcription,ready,"Was labelled Cmaj9(#11)/E; the A is the 13th."
+F3 C4 G4 D5 A5,,So What Stack,"Modal,Miles",Miles Davis - So What,draft,"Was labelled Dm11/G but the lowest note is F, so there is no G bass. Re-capture over G or confirm the engine reading (F6/9)."
+A2 D3 G3 C4 E4 G4,,Drop 2 Dominant,"Up-tempo,Swing",Rhythm Changes comp,draft,"Was labelled Bb13(#11)/A, but A is the major 7th of Bb (BbMaj13(#11)/A rootless). Confirm the intended chord and re-capture."
+F3 A3 C4 E4,Dm9/F,Rootless A minor,"collection:Rootless ii-V-I",Common practice,ready,
+C4 E4 F4 A4,Dm9/C,Rootless B minor,"collection:Rootless ii-V-I",Common practice,ready,
+B3 E4 F4 A4,"G13/B; Db7(#9,b13)/B",Rootless A dominant,"collection:Rootless ii-V-I",Common practice,ready,
+F3 A3 B3 E4,G13/F,Rootless B dominant,"collection:Rootless ii-V-I",Common practice,ready,
+E3 G3 B3 D4,Cmaj9/E; Em7,Rootless A major,"collection:Rootless ii-V-I",Common practice,ready,
+B3 D4 E4 G4,Cmaj9/B,Rootless B major,"collection:Rootless ii-V-I",Common practice,ready,
+D3 Ab3 C4 F4,"Dm7b5; E7(b9,b13)/D",Half-diminished / altered,,Common practice,ready,
+Eb3 A3 C4 G4,Cm6/Eb,Minor sixth,,Common practice,ready,
+G2 B2 F3,G7,Root-3-7 shell,,Common practice,ready,
+E3 A3 D4 G4 B4,Em7(11),So What,,Miles Davis,ready,
+G3 C4 E4 B4,Cmaj7/G,Drop 2 major,,Common practice,ready,
+C3 E3 Bb3 D4 F#4 A4,C13(#11),Upper structure D,,Common practice,ready,
+C3 G3 D4 G4,Csus2,,,,ready,"Was labelled CMaj9, but there is no 3rd or 7th: root, 5th and 9th only."
+C2 G2 D3 G3 D4 G4,Csus2,,,,ready,"Was labelled CMaj9, but there is no 3rd or 7th: root, 5th and 9th only."

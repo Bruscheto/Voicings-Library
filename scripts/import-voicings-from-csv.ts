@@ -5,7 +5,7 @@ import path from 'node:path';
 import { parse } from 'csv-parse/sync';
 import chalk from 'chalk';
 import { PrismaClient } from '@prisma/client';
-import { toBase, canonicalizeChord, buildSymbol } from '../packages/data-model/src/canonicalize';
+import { toBase, canonicalizeChord, buildSymbol } from '../packages/harmony/src/canonicalize';
 
 type SeedRow = {
   voicing_id: string;

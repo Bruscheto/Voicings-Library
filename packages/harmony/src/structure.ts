@@ -83,7 +83,10 @@ function isUpperStructure(notes: number[], chord: ChordRef): boolean {
   const pcs = new Set(top.map(mod12));
   if (pcs.size !== 3) return false;
   const triadRoot = Array.from(pcs).find((r) =>
-    [[4, 7], [3, 7]].some(([third, fifth]) => pcs.has(mod12(r + third)) && pcs.has(mod12(r + fifth))),
+    [
+      [4, 7],
+      [3, 7],
+    ].some(([third, fifth]) => pcs.has(mod12(r + third)) && pcs.has(mod12(r + fifth))),
   );
   if (triadRoot === undefined || triadRoot === mod12(chord.rootPc)) return false;
   return degreesOf(top, chord).some((d) => d.role === 'tension');

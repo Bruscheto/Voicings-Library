@@ -8,11 +8,22 @@
  */
 
 export type BaseQuality =
-  | 'Maj' | 'Maj7' | '6'
-  | 'min' | 'min7' | 'm6' | 'mMaj7'
-  | '7' | '7sus4' | 'sus4' | 'sus2'
-  | 'dim' | 'dim7' | 'm7b5'
-  | 'aug' | 'aug7';
+  | 'Maj'
+  | 'Maj7'
+  | '6'
+  | 'min'
+  | 'min7'
+  | 'm6'
+  | 'mMaj7'
+  | '7'
+  | '7sus4'
+  | 'sus4'
+  | 'sus2'
+  | 'dim'
+  | 'dim7'
+  | 'm7b5'
+  | 'aug'
+  | 'aug7';
 
 export type Family = 'maj7' | '6' | 'm7' | 'm6' | '7' | '7alt' | 'm7b5' | 'dim7' | 'sus' | 'aug';
 
@@ -43,69 +54,133 @@ const six = { role: 'seventh', label: '6' } as const;
 
 const DEFS: QualityDef[] = [
   {
-    name: 'Maj', tones: { 0: R, 4: M3, 7: P5 }, essential: [4],
-    tensions: { 2: '9', 5: '11', 6: '#11', 9: '13' }, avoid: ['11'], family: '6',
+    name: 'Maj',
+    tones: { 0: R, 4: M3, 7: P5 },
+    essential: [4],
+    tensions: { 2: '9', 5: '11', 6: '#11', 9: '13' },
+    avoid: ['11'],
+    family: '6',
   },
   {
-    name: 'Maj7', tones: { 0: R, 4: M3, 7: P5, 11: M7 }, essential: [4, 11],
-    tensions: { 2: '9', 5: '11', 6: '#11', 9: '13' }, avoid: ['11'], family: 'maj7',
+    name: 'Maj7',
+    tones: { 0: R, 4: M3, 7: P5, 11: M7 },
+    essential: [4, 11],
+    tensions: { 2: '9', 5: '11', 6: '#11', 9: '13' },
+    avoid: ['11'],
+    family: 'maj7',
   },
   {
-    name: '6', tones: { 0: R, 4: M3, 7: P5, 9: six }, essential: [4, 9],
-    tensions: { 2: '9', 5: '11', 6: '#11' }, avoid: ['11'], family: '6',
+    name: '6',
+    tones: { 0: R, 4: M3, 7: P5, 9: six },
+    essential: [4, 9],
+    tensions: { 2: '9', 5: '11', 6: '#11' },
+    avoid: ['11'],
+    family: '6',
   },
   {
-    name: 'min', tones: { 0: R, 3: m3, 7: P5 }, essential: [3],
-    tensions: { 2: '9', 5: '11', 8: 'b13', 9: '13' }, avoid: [], family: 'm6',
+    name: 'min',
+    tones: { 0: R, 3: m3, 7: P5 },
+    essential: [3],
+    tensions: { 2: '9', 5: '11', 8: 'b13', 9: '13' },
+    avoid: [],
+    family: 'm6',
   },
   {
-    name: 'min7', tones: { 0: R, 3: m3, 7: P5, 10: b7 }, essential: [3, 10],
+    name: 'min7',
+    tones: { 0: R, 3: m3, 7: P5, 10: b7 },
+    essential: [3, 10],
     // b13 is aeolian colour, outside the dorian sound Woodshed's m7 family plays.
-    tensions: { 2: '9', 5: '11', 8: 'b13', 9: '13' }, avoid: ['b13'], family: 'm7',
+    tensions: { 2: '9', 5: '11', 8: 'b13', 9: '13' },
+    avoid: ['b13'],
+    family: 'm7',
   },
   {
-    name: 'm6', tones: { 0: R, 3: m3, 7: P5, 9: six }, essential: [3, 9],
-    tensions: { 2: '9', 5: '11' }, avoid: [], family: 'm6',
+    name: 'm6',
+    tones: { 0: R, 3: m3, 7: P5, 9: six },
+    essential: [3, 9],
+    tensions: { 2: '9', 5: '11' },
+    avoid: [],
+    family: 'm6',
   },
   {
-    name: 'mMaj7', tones: { 0: R, 3: m3, 7: P5, 11: M7 }, essential: [3, 11],
-    tensions: { 2: '9', 5: '11', 9: '13' }, avoid: [], family: 'm6',
+    name: 'mMaj7',
+    tones: { 0: R, 3: m3, 7: P5, 11: M7 },
+    essential: [3, 11],
+    tensions: { 2: '9', 5: '11', 9: '13' },
+    avoid: [],
+    family: 'm6',
   },
   {
-    name: '7', tones: { 0: R, 4: M3, 7: P5, 10: b7 }, essential: [4, 10],
-    tensions: { 1: 'b9', 2: '9', 3: '#9', 5: '11', 6: '#11', 8: 'b13', 9: '13' }, avoid: ['11'], family: '7',
+    name: '7',
+    tones: { 0: R, 4: M3, 7: P5, 10: b7 },
+    essential: [4, 10],
+    tensions: { 1: 'b9', 2: '9', 3: '#9', 5: '11', 6: '#11', 8: 'b13', 9: '13' },
+    avoid: ['11'],
+    family: '7',
   },
   {
-    name: '7sus4', tones: { 0: R, 5: { role: 'third', label: '4' }, 7: P5, 10: b7 }, essential: [5, 10],
-    tensions: { 1: 'b9', 2: '9', 9: '13' }, avoid: [], family: 'sus',
+    name: '7sus4',
+    tones: { 0: R, 5: { role: 'third', label: '4' }, 7: P5, 10: b7 },
+    essential: [5, 10],
+    tensions: { 1: 'b9', 2: '9', 9: '13' },
+    avoid: [],
+    family: 'sus',
   },
   {
-    name: 'sus4', tones: { 0: R, 5: { role: 'third', label: '4' }, 7: P5 }, essential: [5],
-    tensions: { 2: '9', 9: '13' }, avoid: [], family: 'sus',
+    name: 'sus4',
+    tones: { 0: R, 5: { role: 'third', label: '4' }, 7: P5 },
+    essential: [5],
+    tensions: { 2: '9', 9: '13' },
+    avoid: [],
+    family: 'sus',
   },
   {
-    name: 'sus2', tones: { 0: R, 2: { role: 'third', label: '2' }, 7: P5 }, essential: [2],
-    tensions: { 9: '13' }, avoid: [], family: 'sus',
+    name: 'sus2',
+    tones: { 0: R, 2: { role: 'third', label: '2' }, 7: P5 },
+    essential: [2],
+    tensions: { 9: '13' },
+    avoid: [],
+    family: 'sus',
   },
   {
-    name: 'dim', tones: { 0: R, 3: m3, 6: b5 }, essential: [3, 6],
-    tensions: { 2: '9', 5: '11', 8: 'b13' }, avoid: [], family: 'dim7',
+    name: 'dim',
+    tones: { 0: R, 3: m3, 6: b5 },
+    essential: [3, 6],
+    tensions: { 2: '9', 5: '11', 8: 'b13' },
+    avoid: [],
+    family: 'dim7',
   },
   {
-    name: 'dim7', tones: { 0: R, 3: m3, 6: b5, 9: { role: 'seventh', label: 'bb7' } }, essential: [3, 6, 9],
-    tensions: { 2: '9', 5: '11', 8: 'b13' }, avoid: [], family: 'dim7',
+    name: 'dim7',
+    tones: { 0: R, 3: m3, 6: b5, 9: { role: 'seventh', label: 'bb7' } },
+    essential: [3, 6, 9],
+    tensions: { 2: '9', 5: '11', 8: 'b13' },
+    avoid: [],
+    family: 'dim7',
   },
   {
-    name: 'm7b5', tones: { 0: R, 3: m3, 6: b5, 10: b7 }, essential: [3, 6, 10],
-    tensions: { 2: '9', 5: '11', 8: 'b13' }, avoid: [], family: 'm7b5',
+    name: 'm7b5',
+    tones: { 0: R, 3: m3, 6: b5, 10: b7 },
+    essential: [3, 6, 10],
+    tensions: { 2: '9', 5: '11', 8: 'b13' },
+    avoid: [],
+    family: 'm7b5',
   },
   {
-    name: 'aug', tones: { 0: R, 4: M3, 8: s5 }, essential: [4, 8],
-    tensions: { 2: '9', 6: '#11' }, avoid: [], family: 'aug',
+    name: 'aug',
+    tones: { 0: R, 4: M3, 8: s5 },
+    essential: [4, 8],
+    tensions: { 2: '9', 6: '#11' },
+    avoid: [],
+    family: 'aug',
   },
   {
-    name: 'aug7', tones: { 0: R, 4: M3, 8: s5, 10: b7 }, essential: [4, 8, 10],
-    tensions: { 1: 'b9', 2: '9', 3: '#9', 6: '#11' }, avoid: [], family: 'aug',
+    name: 'aug7',
+    tones: { 0: R, 4: M3, 8: s5, 10: b7 },
+    essential: [4, 8, 10],
+    tensions: { 1: 'b9', 2: '9', 3: '#9', 6: '#11' },
+    avoid: [],
+    family: 'aug',
   },
 ];
 

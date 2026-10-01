@@ -119,7 +119,8 @@ function scoreReading(
 
   const bassInterval = mod12(bassPc - rootPc);
   if (bassInterval === 0) score += SCORE.bassIsRoot;
-  else if (def.tones[bassInterval] && bassInterval !== MAJOR_SEVENTH) score += SCORE.bassIsChordTone;
+  else if (def.tones[bassInterval] && bassInterval !== MAJOR_SEVENTH)
+    score += SCORE.bassIsChordTone;
   else score += SCORE.bassIsTension;
 
   const base = toBase(quality, tensions);
@@ -194,7 +195,11 @@ const ANY_ROOTLESS = new Set<BaseQuality>(BASE_QUALITIES.filter(hasSeventh));
  * support it (an essential tone is missing or a note has no legal name).
  * Unlike detectChord this accepts any rootless seventh chord the author names.
  */
-export function readAs(midi: readonly number[], rootPc: PitchClass, quality: BaseQuality): Reading | null {
+export function readAs(
+  midi: readonly number[],
+  rootPc: PitchClass,
+  quality: BaseQuality,
+): Reading | null {
   const notes = normalizeNotes(midi);
   if (notes.length === 0) return null;
   const candidate = scoreReading(mod12(rootPc), quality, notes, ANY_ROOTLESS);

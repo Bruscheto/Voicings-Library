@@ -32,14 +32,19 @@ export function gradeAttempt(midi: readonly number[], target: ChordRef): Grade {
   const clashes = degreesOf(notes, target)
     .filter((d) => d.label === '?' || avoid.has(d.label))
     .map((d) => d.midi);
-  const outcome: Outcome = missingGuideTones.length ? 'incorrect' : clashes.length ? 'close' : 'correct';
+  const outcome: Outcome = missingGuideTones.length
+    ? 'incorrect'
+    : clashes.length
+      ? 'close'
+      : 'correct';
   return { outcome, missingGuideTones, clashes };
 }
 
 /** Memorisation mode: the attempt must sound exactly the target's pitch classes. */
 export function gradeExact(midi: readonly number[], target: readonly number[]): Grade {
   const notes = normalizeNotes(midi);
-  if (notes.length < MIN_NOTES) return { outcome: 'insufficient', missingGuideTones: [], clashes: [] };
+  if (notes.length < MIN_NOTES)
+    return { outcome: 'insufficient', missingGuideTones: [], clashes: [] };
   const want = new Set(target.map(mod12));
   const got = new Set(notes.map(mod12));
   const missing = Array.from(want).filter((pc) => !got.has(pc));

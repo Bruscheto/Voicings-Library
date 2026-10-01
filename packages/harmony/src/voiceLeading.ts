@@ -13,13 +13,16 @@ const VOICE_CHANGE_PENALTY = 3;
  * the ones left unmatched, each charged a fixed penalty.
  */
 export function voiceLeadingCost(from: readonly number[], to: readonly number[]): number {
-  const [small, large] = from.length <= to.length
-    ? [normalizeNotes(from), normalizeNotes(to)]
-    : [normalizeNotes(to), normalizeNotes(from)];
+  const [small, large] =
+    from.length <= to.length
+      ? [normalizeNotes(from), normalizeNotes(to)]
+      : [normalizeNotes(to), normalizeNotes(from)];
   const n = small.length;
   const m = large.length;
   // best[i][j]: cost of matching small[0..i) into large[0..j).
-  const best: number[][] = Array.from({ length: n + 1 }, () => new Array<number>(m + 1).fill(Infinity));
+  const best: number[][] = Array.from({ length: n + 1 }, () =>
+    new Array<number>(m + 1).fill(Infinity),
+  );
   for (let j = 0; j <= m; j++) best[0][j] = 0;
   for (let i = 1; i <= n; i++) {
     for (let j = i; j <= m; j++) {
@@ -36,7 +39,10 @@ export type Path<T> = { steps: T[]; cost: number };
  * Choose one option per step to minimise total voice movement (Viterbi).
  * Pin a step by passing a single option for it.
  */
-export function solvePath<T>(options: readonly (readonly T[])[], notesOf: (option: T) => readonly number[]): Path<T> | null {
+export function solvePath<T>(
+  options: readonly (readonly T[])[],
+  notesOf: (option: T) => readonly number[],
+): Path<T> | null {
   if (options.length === 0 || options.some((step) => step.length === 0)) return null;
   let costs = options[0].map(() => 0);
   const back: number[][] = [];

@@ -2,3 +2,15 @@ pitches,symbols,name,tags,source,status,notes
 E3 B3 D4 F#4 A4,Cmaj13(#11)/E,Rootless Guide Tone,"Ballad,Left-Hand",Bill Evans transcription,ready,"Was labelled Cmaj9(#11)/E; the A is the 13th."
 F3 C4 G4 D5 A5,,So What Stack,"Modal,Miles",Miles Davis - So What,draft,"Was labelled Dm11/G but the lowest note is F, so there is no G bass. Re-capture over G or confirm the engine reading (F6/9)."
 A2 D3 G3 C4 E4 G4,,Drop 2 Dominant,"Up-tempo,Swing",Rhythm Changes comp,draft,"Was labelled Bb13(#11)/A, but A is the major 7th of Bb (BbMaj13(#11)/A rootless). Confirm the intended chord and re-capture."
+F3 A3 C4 E4,Dm9/F,Rootless A minor,"collection:Rootless ii-V-I",Common practice,ready,
+C4 E4 F4 A4,Dm9/C,Rootless B minor,"collection:Rootless ii-V-I",Common practice,ready,
+B3 E4 F4 A4,"G13/B; Db7(#9,b13)/B",Rootless A dominant,"collection:Rootless ii-V-I",Common practice,ready,
+F3 A3 B3 E4,G13/F,Rootless B dominant,"collection:Rootless ii-V-I",Common practice,ready,
+E3 G3 B3 D4,Cmaj9/E; Em7,Rootless A major,"collection:Rootless ii-V-I",Common practice,ready,
+B3 D4 E4 G4,Cmaj9/B,Rootless B major,"collection:Rootless ii-V-I",Common practice,ready,
+D3 Ab3 C4 F4,"Dm7b5; E7(b9,b13)/D",Half-diminished / altered,,Common practice,ready,
+Eb3 A3 C4 G4,Cm6/Eb,Minor sixth,,Common practice,ready,
+G2 B2 F3,G7,Root-3-7 shell,,Common practice,ready,
+E3 A3 D4 G4 B4,Em7(11),So What,,Miles Davis,ready,
+G3 C4 E4 B4,Cmaj7/G,Drop 2 major,,Common practice,ready,
+C3 E3 Bb3 D4 F#4 A4,C13(#11),Upper structure D,,Common practice,ready,

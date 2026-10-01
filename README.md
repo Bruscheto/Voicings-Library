@@ -10,7 +10,7 @@
 
 Voicings is a jazz piano library with two web apps. The capture app records chords from a MIDI controller or virtual keyboard.
 
-The library app lets users search, inspect, and play saved voicings.
+The library app finds voicings for any chord in any key, typed or played, and chains them into voice-led ii–V–I progressions.
 
 <p align="center">
   <img src="./assets/readme/admin-capture.png" width="100%" alt="Capture app with a C Maj9 chord, grand staff, piano keys, and interval analysis">
@@ -20,13 +20,14 @@ The library app lets users search, inspect, and play saved voicings.
 
 ## Features
 
-- Play notes with an 88-key virtual piano or a MIDI controller.
-- Analyze chord quality, tensions, slash bass, and intervals.
-- Review each voicing on a grand staff.
-- Save voicings with names, tags, and collections.
-- Prevent duplicate voicings.
-- Search the library by chord, pitch, quality, tag, or tension.
-- Play voicings as a chord or an arpeggio.
+- Type a chord (`Dm9`, `G7alt`, `F6/9/A`) or play one, and see every matching voicing in that key.
+- Store each voicing once as a shape; it plays in all 12 keys.
+- Mark guide tones and label every note's degree (3, b7, 9, 13…).
+- Detect chords from played notes, including rootless voicings, and flag ambiguous ones.
+- Tag structure automatically: shell, rootless A/B, drop 2/3, quartal, upper structure.
+- Chain voicings through a major or minor ii–V–I with the least hand movement; swap any chord and the rest re-solve.
+- Capture with a MIDI controller or the virtual piano: pick readings with number keys, save with Enter.
+- Reject voicings whose chord symbol the notes do not spell, and warn when a shape is already saved in another key.
 
 ## Project design
 
@@ -101,21 +102,21 @@ For a hosted database, use its pooled URL as `DATABASE_URL`. Use its direct URL 
 
 ### Capture a voicing
 
-1. Open the capture app.
-2. Allow MIDI access or use the virtual keyboard.
-3. Select the root and chord family.
-4. Play the notes.
-5. Review the chord name, staff, and interval list.
-6. Add tags or collections.
-7. Save the voicing.
+1. Open the capture app and allow MIDI access, or use the virtual keyboard.
+2. Play a chord. It stays on screen after you let go; the next chord replaces it.
+3. Press `1`–`6` to keep readings; the first is primary. With none chosen, the top reading is saved. Type another symbol to add a reading the engine did not list.
+4. Optionally name it and add collections, then press `Enter`.
 
-Use `Space` to play the current voicing. Use `X` and `Z` to move it by one octave.
+`Space` plays the chord, `Z` and `X` move it by an octave, and `Esc` clears it. If the shape is already saved, in any key, saving adds only the new readings and collections.
 
-If a voicing already exists, the app can add new collection memberships. It does not create a duplicate row.
+### Use the library
 
-### Browse the library
-
-Filter voicings by chord, pitch, quality, tag, or tension. Open a voicing to see its notation, notes, metadata, and playback controls.
+| Page              | What it does                                                            |
+| ----------------- | ----------------------------------------------------------------------- |
+| `/`               | Find voicings for a typed or played chord, grouped by structure         |
+| `/voicings/[id]`  | One voicing in any of the 12 keys, with staff, degrees and playback     |
+| `/paths`          | A voice-led ii–V–I in any key, major or minor, with swappable chords    |
+| `/voicings`       | Browse and filter the whole library                                     |
 
 ## Seed data
 
@@ -158,10 +159,11 @@ It returns `422` with the chord the notes do spell when a symbol does not match 
 | -------------------------------------------------- | -------------------------------- |
 | [`apps/web`](./apps/web)                           | Library app and read API         |
 | [`apps/admin`](./apps/admin)                       | Capture app and write API        |
-| [`packages/harmony`](./packages/harmony)           | Chord engine: detection, symbols, voice leading |
+| [`packages/harmony`](./packages/harmony)           | Chord engine: detection, symbols, finder, voice-led paths |
 | [`packages/data-model`](./packages/data-model)     | Prisma schema and voicing records |
 | [`packages/music-engine`](./packages/music-engine) | VexFlow staff notation           |
 | [`packages/sampler`](./packages/sampler)           | Piano samples and audio playback |
+| [`packages/keyboard`](./packages/keyboard)         | MIDI input, virtual piano and playback hooks shared by both apps |
 | [`scripts`](./scripts)                             | CSV import and voicing re-analysis |
 | [`docs/data`](./docs/data)                         | Seed data documentation          |
 

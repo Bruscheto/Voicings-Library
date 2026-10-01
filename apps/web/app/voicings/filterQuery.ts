@@ -1,4 +1,5 @@
 import { Prisma } from 'data-model';
+import { parseSymbol } from 'harmony';
 
 export type VoicingFilterParams = {
   q?: string;
@@ -31,10 +32,15 @@ function normalizeList(value: string | string[] | undefined): string[] {
   );
 }
 
-function normalizePitchSearch(value: string): string | null {
-  const match = value.trim().match(/^([a-gA-G])([#b]?)(-?\d)$/);
-  if (!match) return null;
-  return `${match[1].toUpperCase()}${match[2]}${match[3]}`;
+// A typed chord symbol matches readings by quality and tensions in any key:
+// voicings are shapes, so "Gm9" finds every min7 + 9 voicing.
+function symbolReading(value: string): Prisma.VoicingReadingWhereInput | null {
+  try {
+    const parsed = parseSymbol(value);
+    return { quality: parsed.quality, tensions: { equals: parsed.tensions } };
+  } catch {
+    return null;
+  }
 }
 
 export function normalizeVoicingFilters(
@@ -54,37 +60,17 @@ export function buildVoicingWhere(params: VoicingFilterParams): Prisma.VoicingWh
   const where: Prisma.VoicingWhereInput[] = [];
 
   if (filters.q) {
-    const pitch = normalizePitchSearch(filters.q);
     const search: Prisma.VoicingWhereInput[] = [
       { name: { contains: filters.q, mode: 'insensitive' } },
-      {
-        chords: {
-          some: {
-            chord: {
-              OR: [
-                { symbol: { contains: filters.q, mode: 'insensitive' } },
-                { root: { equals: filters.q, mode: 'insensitive' } },
-                { quality: { equals: filters.q, mode: 'insensitive' } },
-              ],
-            },
-          },
-        },
-      },
+      { structure: { has: filters.q.toLowerCase() } },
     ];
-
-    if (pitch) {
-      search.push({ pitches: { has: pitch } });
-    }
-
+    const reading = symbolReading(filters.q);
+    if (reading) search.push({ readings: { some: reading } });
     where.push({ OR: search });
   }
 
   if (filters.quality) {
-    where.push({
-      chords: {
-        some: { chord: { quality: { equals: filters.quality, mode: 'insensitive' } } },
-      },
-    });
+    where.push({ readings: { some: { quality: filters.quality } } });
   }
 
   for (const name of filters.tags) {
@@ -92,17 +78,9 @@ export function buildVoicingWhere(params: VoicingFilterParams): Prisma.VoicingWh
   }
 
   if (filters.noTensions) {
-    where.push({
-      chords: {
-        some: { chord: { tensions: { isEmpty: true } } },
-      },
-    });
+    where.push({ readings: { some: { tensions: { isEmpty: true } } } });
   } else if (filters.tensions.length > 0) {
-    where.push({
-      chords: {
-        some: { chord: { tensions: { hasEvery: filters.tensions } } },
-      },
-    });
+    where.push({ readings: { some: { tensions: { hasEvery: filters.tensions } } } });
   }
 
   return where.length ? { AND: where } : {};

@@ -1,141 +1,137 @@
 import { NextResponse } from 'next/server';
-import { prisma, toBase, canonicalizeChord, buildSymbol } from 'data-model';
+import { prisma, buildSymbol, analyzeVoicing, VoicingAnalysisError } from 'data-model';
+import { pitchToMidi } from 'harmony';
 
+// `symbols` is the play-first form: readings to keep, first one primary, none
+// for the engine's reading. root/quality/tensions/slashBass is the current
+// capture page's form and becomes a single symbol.
 type SaveBody = {
-  root: string;
-  quality: string;
-  tensions: string[];
-  voicingName: string | null;
   pitches: string[];
-  slashBass: string | null;
-  contextTags: string[];
-  collections: string[];
+  symbols?: string[];
+  root?: string;
+  quality?: string;
+  tensions?: string[];
+  slashBass?: string | null;
+  voicingName?: string | null;
+  contextTags?: string[];
+  collections?: string[];
 };
 
 const COLLECTION_TAG_PREFIX = 'collection:';
 
-const cleanNames = (value: unknown) => (
+const cleanNames = (value: unknown) =>
   Array.isArray(value)
-    ? Array.from(new Set(value.map(String).map(name => name.trim()).filter(Boolean)))
-    : []
-);
+    ? Array.from(
+        new Set(
+          value
+            .map(String)
+            .map((name) => name.trim())
+            .filter(Boolean),
+        ),
+      )
+    : [];
+
+const isStringArray = (value: unknown): value is string[] =>
+  Array.isArray(value) && value.every((item) => typeof item === 'string');
+
+function authoredSymbols(body: Partial<SaveBody>): string[] {
+  if (body.symbols !== undefined) return cleanNames(body.symbols);
+  if (!body.root || !body.quality) return [];
+  const tensions = isStringArray(body.tensions) ? body.tensions : [];
+  return [buildSymbol(body.root, body.quality, tensions, body.slashBass ?? null)];
+}
+
+const resolveTagIds = (names: string[]) =>
+  Promise.all(
+    names.map(async (name) => {
+      const tag = await prisma.tag.upsert({ where: { name }, update: {}, create: { name } });
+      return tag.id;
+    }),
+  );
 
 export async function POST(request: Request) {
+  let body: Partial<SaveBody>;
   try {
-    const body = (await request.json()) as Partial<SaveBody>;
-    const {
-      root,
-      quality,
-      tensions,
-      voicingName,
-      pitches,
-      slashBass,
-      contextTags,
-      collections,
-    } = body;
+    body = (await request.json()) as Partial<SaveBody>;
+  } catch {
+    return NextResponse.json({ success: false, error: 'Invalid JSON' }, { status: 400 });
+  }
+  if (!isStringArray(body.pitches) || body.pitches.length === 0) {
+    return NextResponse.json({ success: false, error: 'Missing pitches' }, { status: 400 });
+  }
 
-    if (!root || !quality || !Array.isArray(pitches)) {
-      return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
-        { status: 400 },
-      );
-    }
+  let analysis;
+  try {
+    analysis = analyzeVoicing(body.pitches.map(pitchToMidi), authoredSymbols(body));
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Invalid voicing';
+    const status = error instanceof VoicingAnalysisError ? 422 : 400;
+    return NextResponse.json({ success: false, error: message }, { status });
+  }
 
-    const rawTensions = Array.isArray(tensions) ? tensions : [];
-    const base = toBase(quality, rawTensions);
-    const display = canonicalizeChord(quality, rawTensions);
-    const displaySymbol = buildSymbol(root, display.quality, display.tensions, slashBass ?? null);
+  try {
+    const { shape, structure, readings } = analysis;
+    const name = (body.voicingName ?? '').trim() || null;
+    const tagNames = [
+      ...cleanNames(body.contextTags),
+      ...cleanNames(body.collections).map((n) => `${COLLECTION_TAG_PREFIX}${n}`),
+    ];
 
-    // 1. Upsert Chord by display symbol; STORE base quality + full tensions.
-    const chord = await prisma.chord.upsert({
-      where: { symbol: displaySymbol },
-      update: {},
-      create: {
-        symbol: displaySymbol,
-        root,
-        quality: base.quality,
-        tensions: base.tensions,
-      },
-    });
-
-    const normalizedSlashBass = slashBass ?? null;
-    const normalizedName = (voicingName ?? '').trim() || null;
-    const collectionTagNames = cleanNames(collections).map(
-      (name) => `${COLLECTION_TAG_PREFIX}${name}`,
-    );
-    const contextTagNames = cleanNames(contextTags);
-
-    const resolveTagIds = (names: string[]) =>
-      Promise.all(
-        names.map(async (name) => {
-          const tag = await prisma.tag.upsert({
-            where: { name },
-            update: {},
-            create: { name },
-          });
-          return tag.id;
-        }),
-      );
-
-    // A voicing's identity is (chord, pitches, slashBass, name). Collections are
-    // memberships layered on top via `collection:` tags — NOT part of identity.
-    // So the same notes under a different name are different voicings, while the
-    // same voicing saved to a new collection just gains that membership instead
-    // of producing a duplicate row or being rejected outright.
-    const existing = await prisma.voicing.findFirst({
-      where: {
-        name: normalizedName,
-        pitches: { equals: pitches },
-        slashBass: normalizedSlashBass,
-        chords: { some: { chordId: chord.id } },
-      },
-      include: { tags: { include: { tag: true } } },
+    // A voicing's identity is its shape, in any key. Saving an existing shape
+    // adds whatever is new — readings, tags, collection memberships — and is
+    // only rejected when there is nothing new to add.
+    const existing = await prisma.voicing.findUnique({
+      where: { shapeKey: shape.shapeKey },
+      include: { readings: true, tags: { include: { tag: true } } },
     });
 
     if (existing) {
-      const existingTagNames = new Set(existing.tags.map((vt) => vt.tag.name));
-      const tagsToAdd = [...collectionTagNames, ...contextTagNames].filter(
-        (name) => !existingTagNames.has(name),
-      );
-
-      // Already a member of every selected collection (nothing new to add).
-      if (tagsToAdd.length === 0) {
+      const known = new Set(existing.readings.map((r) => `${r.rootOffset}:${r.quality}`));
+      const newReadings = readings.filter((r) => !known.has(`${r.rootOffset}:${r.quality}`));
+      const existingTags = new Set(existing.tags.map((vt) => vt.tag.name));
+      const newTags = tagNames.filter((n) => !existingTags.has(n));
+      if (newReadings.length === 0 && newTags.length === 0) {
         return NextResponse.json(
-          { success: false, error: 'This voicing already exists in the selected collection' },
+          {
+            success: false,
+            error: 'This voicing is already saved with these readings and collections',
+          },
           { status: 409 },
         );
       }
-
-      const tagIds = await resolveTagIds(tagsToAdd);
-      await prisma.voicingTag.createMany({
-        data: tagIds.map((tagId) => ({ voicingId: existing.id, tagId })),
-        skipDuplicates: true,
-      });
-
+      const tagIds = await resolveTagIds(newTags);
+      await prisma.$transaction([
+        prisma.voicingReading.createMany({
+          data: newReadings.map((r) => ({ ...r, voicingId: existing.id, isPrimary: false })),
+        }),
+        prisma.voicingTag.createMany({
+          data: tagIds.map((tagId) => ({ voicingId: existing.id, tagId })),
+          skipDuplicates: true,
+        }),
+        ...(existing.name === null && name
+          ? [prisma.voicing.update({ where: { id: existing.id }, data: { name } })]
+          : []),
+      ]);
       return NextResponse.json({
         success: true,
         voicing: { id: existing.id },
-        canonicalSymbol: displaySymbol,
+        added: { readings: newReadings.length, tags: newTags.length },
       });
     }
 
-    // New voicing — create with chord link + tag joins.
-    const tagIds = await resolveTagIds([...contextTagNames, ...collectionTagNames]);
+    const tagIds = await resolveTagIds(tagNames);
     const voicing = await prisma.voicing.create({
       data: {
-        name: normalizedName,
-        pitches,
-        slashBass: normalizedSlashBass,
-        chords: {
-          create: { chordId: chord.id },
-        },
-        tags: {
-          create: tagIds.map((tagId) => ({ tagId })),
-        },
+        name,
+        intervals: shape.intervals,
+        bassMidi: shape.bassMidi,
+        shapeKey: shape.shapeKey,
+        structure,
+        readings: { create: readings },
+        tags: { create: tagIds.map((tagId) => ({ tagId })) },
       },
     });
-
-    return NextResponse.json({ success: true, voicing, canonicalSymbol: displaySymbol });
+    return NextResponse.json({ success: true, voicing: { id: voicing.id } });
   } catch (error) {
     console.error('Failed to save voicing:', error);
     return NextResponse.json({ success: false, error: 'Failed to save' }, { status: 500 });

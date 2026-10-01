@@ -10,3 +10,4 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 export * from '@prisma/client';
 export { toBase, canonicalizeChord, chordSegments, buildSymbol } from 'harmony';
 export type { CanonicalChord } from 'harmony';
+export * from './voicing';

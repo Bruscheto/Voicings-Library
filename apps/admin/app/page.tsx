@@ -615,6 +615,9 @@ export default function AdminPage() {
         setTimeout(() => setSaveStatus(''), 2000);
       } else if (res.status === 409) {
         setSaveStatus('Already in collection');
+      } else if (res.status === 422) {
+        const { error } = (await res.json()) as { error?: string };
+        setSaveStatus(error ?? 'The notes do not match this chord');
       } else {
         setSaveStatus(`Save failed (${res.status}) — retry`);
       }

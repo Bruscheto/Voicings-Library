@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { prisma } from 'data-model';
+import { prisma, realizeVoicing } from 'data-model';
 import { ChordSymbol } from '../components/ChordSymbol';
 
 export default async function HomePage() {
-  const [voicingCount, chordCount, recent] = await Promise.all([
+  const [voicingCount, readingCount, recent] = await Promise.all([
     prisma.voicing.count(),
-    prisma.chord.count(),
+    prisma.voicingReading.count(),
     prisma.voicing.findMany({
       take: 3,
       orderBy: { createdAt: 'desc' },
-      include: { chords: { include: { chord: true } } },
+      include: { readings: true },
     }),
   ]);
 
@@ -37,7 +37,7 @@ export default async function HomePage() {
             </Link>
             <span className="text-sm text-gray-500">
               {voicingCount} voicing{voicingCount === 1 ? '' : 's'} ·{' '}
-              {chordCount} chord{chordCount === 1 ? '' : 's'}
+              {readingCount} chord reading{readingCount === 1 ? '' : 's'}
             </span>
           </div>
         </section>
@@ -57,8 +57,7 @@ export default async function HomePage() {
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {recent.map((v) => {
-                const pitches = v.pitches;
-                const chord = v.chords[0]?.chord;
+                const { pitches, primary: chord } = realizeVoicing(v);
                 return (
                   <Link
                     key={v.id}
@@ -71,7 +70,7 @@ export default async function HomePage() {
                           root={chord.root}
                           quality={chord.quality}
                           tensions={chord.tensions}
-                          slashBass={v.slashBass}
+                          slashBass={chord.slashBass}
                         />
                       ) : (
                         '—'

@@ -1,6 +1,6 @@
 'use client';
 
-import { buildSymbol, chordSegments } from 'data-model/src/canonicalize';
+import { buildSymbol, chordSegments } from 'harmony';
 import { StaffRenderer } from 'music-engine';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Sampler } from 'sampler';

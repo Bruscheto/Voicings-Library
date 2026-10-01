@@ -1,0 +1,12374 @@
+[
+ {
+  "midi": [
+   48,
+   52,
+   55
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   51,
+   55
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   58
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   59
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   51,
+   55,
+   58
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   48,
+   51,
+   54,
+   58
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   58,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   51,
+   54,
+   57
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   57
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   48,
+   51,
+   55,
+   57
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   53,
+   55
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   55,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58,
+   62,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   51,
+   55,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   62,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59,
+   62,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   62
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   62,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   57,
+   62
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   57,
+   62,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58,
+   61,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   58,
+   63
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58,
+   63,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   55,
+   58,
+   66
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58,
+   66,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   53,
+   55,
+   58
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   55,
+   58,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   51,
+   55,
+   59
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   59,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   51,
+   54
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   48,
+   52,
+   56
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   48,
+   50,
+   55
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   50,
+   55,
+   60
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   57,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "C",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 0,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "E",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   52,
+   56
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   59
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   60
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   52,
+   56,
+   59
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   49,
+   52,
+   55,
+   59
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   52,
+   55,
+   58
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   58
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   49,
+   52,
+   56,
+   58
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   54,
+   56
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   56,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59,
+   63,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   52,
+   56,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   63,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60,
+   63,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   63
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   63,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   58,
+   63
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   58,
+   63,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59,
+   62,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   59,
+   64
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59,
+   64,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   56,
+   59,
+   67
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59,
+   67,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   54,
+   56,
+   59
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   56,
+   59,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   52,
+   56,
+   60
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   60,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   52,
+   55
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   49,
+   53,
+   57
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   49,
+   51,
+   56
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   56,
+   61
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "E",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   58,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Db",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 1,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "F",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   53,
+   57
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   61
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   53,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   50,
+   53,
+   56,
+   60
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   53,
+   56,
+   59
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   59
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   50,
+   53,
+   57,
+   59
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   55,
+   57
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   57,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60,
+   64,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   53,
+   57,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   64,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61,
+   64,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   64
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   64,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   59,
+   64
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   59,
+   64,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60,
+   63,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   60,
+   65
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60,
+   65,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   57,
+   60,
+   68
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60,
+   68,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   55,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   57,
+   60,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   53,
+   57,
+   61
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   61,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   53,
+   56
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   50,
+   54,
+   58
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   50,
+   52,
+   57
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   57,
+   62
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "F",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   59,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "D",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 2,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   58
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   57,
+   61
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   60
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   58,
+   60
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "C",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   56,
+   58
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   58,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61,
+   65,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   58,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   65,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62,
+   65,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   65
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   65,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   60,
+   65
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   60,
+   65,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61,
+   64,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   61,
+   66
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61,
+   66,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   58,
+   61,
+   69
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61,
+   69,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   56,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   58,
+   61,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   62,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   54,
+   57
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   51,
+   55,
+   59
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   51,
+   53,
+   58
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   58,
+   63
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   60,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 3,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "G",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   61
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59,
+   61
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   57,
+   59
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   59,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62,
+   66,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   66,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63,
+   66,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   66
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   66,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   61,
+   66
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   61,
+   66,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62,
+   65,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   62,
+   67
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62,
+   67,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   59,
+   62,
+   70
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62,
+   70,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   57,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   59,
+   62,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   63,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   55,
+   58
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   52,
+   56,
+   60
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   52,
+   54,
+   59
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   59,
+   64
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "G",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   61,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "E",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 4,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   62
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60,
+   62
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "D",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   58,
+   60
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   60,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63,
+   67,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   67,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64,
+   67,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   67
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   67,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   62,
+   67
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   62,
+   67,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63,
+   66,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   63,
+   68
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63,
+   68,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   60,
+   63,
+   71
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63,
+   71,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   58,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   60,
+   63,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   64,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   56,
+   59
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   53,
+   57,
+   61
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   53,
+   55,
+   60
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   60,
+   65
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   62,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "F",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 5,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "A",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   63
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61,
+   63
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   59,
+   61
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   61,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   64,
+   68
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64,
+   68,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61,
+   64,
+   68
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   68,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65,
+   68,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   68
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   68,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   63,
+   68
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   63,
+   68,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64,
+   67,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   64,
+   69
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64,
+   69,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   61,
+   64,
+   72
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64,
+   72,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   59,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   61,
+   64,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   65,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   57,
+   60
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   54,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   54,
+   56,
+   61
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   61,
+   66
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   68
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "A",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   63,
+   64,
+   68
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 6,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   64
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62,
+   64
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "E",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   60,
+   62
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   60,
+   62,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   65,
+   69
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65,
+   69,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62,
+   65,
+   69
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   69,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66,
+   69,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   69
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   69,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   64,
+   69
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   64,
+   69,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65,
+   68,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   65,
+   70
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65,
+   70,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   62,
+   65,
+   73
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65,
+   73,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   60,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   62,
+   65,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   66,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   58,
+   61
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   55,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   55,
+   57,
+   62
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   62,
+   67
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   69
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   64,
+   65,
+   69
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "G",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 7,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "B",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   66,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   67,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   65
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63,
+   65
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "F",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   61,
+   63
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   61,
+   63,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   66,
+   70
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   66,
+   70,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63,
+   66,
+   70
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   70,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   67,
+   70
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   67,
+   70,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   70
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   70,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   65,
+   70
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   65,
+   70,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   66,
+   69,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   66,
+   71
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   66,
+   71,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   63,
+   66,
+   74
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   66,
+   74,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   61,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   63,
+   66,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   67,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   59,
+   62
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   56,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   60,
+   64,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   56,
+   58,
+   63
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   63,
+   68
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   70
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "B",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   65,
+   66,
+   70
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   67,
+   70
+  ],
+  "intended": {
+   "root_pc": 8,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "C",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   64,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   67,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   68
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   68,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   60,
+   64,
+   67,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   67,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "C",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   66
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64,
+   66
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   64,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   62,
+   64
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   62,
+   64,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   67,
+   71
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   67,
+   71,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64,
+   67,
+   71
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   64,
+   67,
+   71,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   68,
+   71
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   68,
+   71,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   71
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   71,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   66,
+   71
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   66,
+   71,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   67,
+   70
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   67,
+   70,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   67,
+   72
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   67,
+   72,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   64,
+   67,
+   75
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   67,
+   75,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   62,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   64,
+   67,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   64,
+   68
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   64,
+   68,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   60,
+   63
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   60,
+   63,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "A",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   57,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   61,
+   65,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   57,
+   59,
+   64
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "A",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   64,
+   69
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   60,
+   64,
+   67,
+   71
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "C",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   66,
+   67,
+   71
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "A",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   68,
+   71
+  ],
+  "intended": {
+   "root_pc": 9,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Db",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   65,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   68,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   69
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   69,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   61,
+   65,
+   68,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64,
+   68
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   68,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64,
+   67
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   67,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Db",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   67
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   67,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65,
+   67
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "G",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   65,
+   67,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "G",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   63,
+   65
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   63,
+   65,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   68,
+   72
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   68,
+   72,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65,
+   68,
+   72
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   65,
+   68,
+   72,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   69,
+   72
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   69,
+   72,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   72
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   72,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   67,
+   72
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   67,
+   72,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   68,
+   71
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   68,
+   71,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   68,
+   73
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   68,
+   73,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   65,
+   68,
+   76
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   68,
+   76,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   63,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   65,
+   68,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   65,
+   69
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   65,
+   69,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   61,
+   64
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   61,
+   64,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   58,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   62,
+   66,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   58,
+   60,
+   65
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   60,
+   65,
+   70
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "F",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   61,
+   65,
+   68,
+   72
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Db",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   67,
+   68,
+   72
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Bb",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   69,
+   72
+  ],
+  "intended": {
+   "root_pc": 10,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "D",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "maj",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "maj",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   66,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "min",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "min",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   69,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "7",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   70
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   70,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   62,
+   66,
+   69,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65,
+   69
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   69,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m7b5",
+   "family": "m7b5"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65,
+   68
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   68,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "dim7",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "D",
+   "quality": "dim7",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   68
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "6",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   68,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "6",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66,
+   68
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   66,
+   68,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m6",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Ab",
+   "quality": "m7b5",
+   "family": "m7b5",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   64,
+   66
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   64,
+   66,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "E",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   69,
+   73
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   69,
+   73,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "9",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66,
+   69,
+   73
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   66,
+   69,
+   73,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m9",
+   "family": "m7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "m9",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   70,
+   73
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   70,
+   73,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "maj9",
+   "family": "maj7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "maj9",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   73
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   73,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "add9",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "add9",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   68,
+   73
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   68,
+   73,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "69",
+   "family": "6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "69",
+   "family": "6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   69,
+   72
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   69,
+   72,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7b9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "7b9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   69,
+   74
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   69,
+   74,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7#9",
+   "family": "7alt"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "7#9",
+   "family": "7alt",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   66,
+   69,
+   77
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   69,
+   77,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7#11",
+   "family": "7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "7#11",
+   "family": "7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   64,
+   66,
+   69
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   64,
+   66,
+   69,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7sus4",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "7sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   66,
+   70
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   66,
+   70,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m(maj7)",
+   "family": "m6"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "m(maj7)",
+   "family": "m6",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   62,
+   65
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   62,
+   65,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "dim",
+   "family": "dim7"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "B",
+   "quality": "dim",
+   "family": "dim7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   59,
+   63,
+   67
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   63,
+   67,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "aug",
+   "family": "aug"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "aug",
+   "family": "aug",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   59,
+   61,
+   66
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "root",
+  "woodshed": {
+   "root": "B",
+   "quality": "sus2",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   61,
+   66,
+   71
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "sus2",
+   "family": "sus"
+  },
+  "position": "first-inversion",
+  "woodshed": {
+   "root": "Gb",
+   "quality": "sus4",
+   "family": "sus",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ },
+ {
+  "midi": [
+   62,
+   66,
+   69,
+   73
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "m7",
+   "family": "m7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "D",
+   "quality": "maj7",
+   "family": "maj7",
+   "root_inferred": false,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   68,
+   69,
+   73
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "7",
+   "family": "7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "B",
+   "quality": "9",
+   "family": "7",
+   "root_inferred": true,
+   "ambiguous": false
+  }
+ },
+ {
+  "midi": [
+   63,
+   66,
+   70,
+   73
+  ],
+  "intended": {
+   "root_pc": 11,
+   "quality": "maj7",
+   "family": "maj7"
+  },
+  "position": "rootless",
+  "woodshed": {
+   "root": "Eb",
+   "quality": "m7",
+   "family": "m7",
+   "root_inferred": false,
+   "ambiguous": true
+  }
+ }
+]

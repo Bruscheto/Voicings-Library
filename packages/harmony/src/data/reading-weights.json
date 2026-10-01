@@ -1,0 +1,20 @@
+{
+  "guideTones": 1.8,
+  "chordTones": 0.628,
+  "tensions": 0.072,
+  "avoidTensions": -1.617,
+  "rootPresent": 1.458,
+  "missingFifth": -1.297,
+  "thinVoicing": -1.961,
+  "completeRootless": 2.152,
+  "thinRootless": -3.247,
+  "rareRootless": -1.427,
+  "shellUnderneath": 0.124,
+  "bassRoot": 1.735,
+  "bassThird": 0.383,
+  "bassFifth": 0.137,
+  "bassSeventh": 0.472,
+  "bassTension": -1.727,
+  "logPQuality": 0.474,
+  "logPTensions": 0.148
+}

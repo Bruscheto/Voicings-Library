@@ -29,6 +29,8 @@ type Fixture = {
 const DIVERGENCES = new Set([
   'm7b5/first-inversion', // Cø/Eb = Ebm6
   'm6/root', // Cm6 = Aø/C
+  'm6/first-inversion', // Cm6/Eb = Aø/Eb ≈ rootless F9/Eb
+  'add9/first-inversion', // Cadd9/E ≈ Am11/E without its root
   'm9/first-inversion', // Cm9/Eb ≈ EbMaj7(13)
   '69/first-inversion', // C6/9/E = Am11/E
   'dim/first-inversion', // Cdim/Eb ≈ Ebm6 without its 5th

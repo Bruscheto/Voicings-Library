@@ -1,26 +1,18 @@
 /**
  * Voicing records: the one path from played notes (and optional authored
- * symbols) to what is stored, and from a stored row back to what is shown.
+ * symbols) to what is stored, and from a stored shape back to what is shown.
  * The capture API and the CSV importer both write through analyzeVoicing, so
- * nothing reaches the database that the engine cannot read.
+ * nothing reaches the database that the engine cannot read. Pure, so the
+ * apps can run the same checks in the browser.
  */
 
-import {
-  buildSymbol,
-  classifyStructure,
-  detectChord,
-  midiToPitch,
-  mod12,
-  normalizeNotes,
-  parseSymbol,
-  pcName,
-  readAs,
-  toShape,
-  type BaseQuality,
-  type Reading,
-  type Shape,
-  type Structure,
-} from 'harmony';
+import { buildSymbol } from './canonicalize';
+import { classifyStructure, type Structure } from './structure';
+import { detectChord, readAs, type Reading } from './detect';
+import { midiToPitch, mod12, normalizeNotes, pcName } from './pitch';
+import type { BaseQuality } from './qualities';
+import { toShape, type Shape } from './shape';
+import { parseSymbol } from './symbol';
 
 export type ReadingRecord = {
   rootOffset: number;

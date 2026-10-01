@@ -12,7 +12,7 @@
 
 import chalk from 'chalk';
 import { prisma } from '../packages/data-model/src';
-import { realizeVoicing } from '../packages/data-model/src/voicing';
+import { realizeVoicing } from '../packages/harmony/src/voicing';
 import {
   classifyStructure,
   detectChord,

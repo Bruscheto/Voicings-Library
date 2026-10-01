@@ -10,7 +10,7 @@ import {
   analyzeVoicing,
   realizeVoicing,
   type VoicingAnalysis,
-} from '../packages/data-model/src/voicing';
+} from '../packages/harmony/src/voicing';
 
 type SeedRow = {
   pitches: string;

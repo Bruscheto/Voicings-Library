@@ -5,11 +5,14 @@ import { Sampler } from 'sampler';
 const sampler = new Sampler();
 const ARPEGGIO_STEP_MS = 100;
 
-/** "Bb3" → "bb/3", the note key the sampler and VexFlow use. */
-export const toVexFlow = (midi: number) => {
-  const pitch = midiToPitch(midi);
-  return `${pitch.slice(0, -1).toLowerCase()}/${pitch.slice(-1)}`;
+/** "C#4" → "c#/4", the note key the sampler and VexFlow use. */
+export const vexKey = (pitch: string) => {
+  const [, name, octave] = /^([A-G][#b]*)(-?\d+)$/.exec(pitch) ?? [];
+  return `${name.toLowerCase()}/${octave}`;
 };
+
+/** Playback key for a MIDI note; spelling never reaches the sampler. */
+export const toVexFlow = (midi: number) => vexKey(midiToPitch(midi));
 
 export type PianoStatus = 'loading' | 'ready' | 'partial' | 'synth' | 'unavailable';
 

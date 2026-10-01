@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { midiToPitch, type Degree } from 'harmony';
+import { midiToPitch, spellMidi, type Degree, type SpellingChord } from 'harmony';
 import { MAX_MIDI, MIN_MIDI } from './useCapturedNotes';
 
 const WHITE_KEY_WIDTH = 44;
@@ -32,9 +32,11 @@ type Props = {
   notes: number[];
   degrees: Map<number, Degree>;
   onToggle: (midi: number) => void;
+  /** Name selected keys as members of this chord. */
+  chord?: SpellingChord | null;
 };
 
-export function PianoKeyboard({ notes, degrees, onToggle }: Props) {
+export function PianoKeyboard({ notes, degrees, onToggle, chord }: Props) {
   const scroller = useRef<HTMLDivElement>(null);
   const active = new Set(notes);
 
@@ -59,7 +61,8 @@ export function PianoKeyboard({ notes, degrees, onToggle }: Props) {
     const degree = degrees.get(key.midi);
     const pitch = midiToPitch(key.midi);
     // Selected keys show their name; idle keys show only the Cs, with octave.
-    const label = isActive ? pitch.replace(/\d+$/, '') : /^C\d$/.test(pitch) ? pitch : null;
+    const spelled = isActive && chord ? spellMidi(key.midi, chord) : pitch;
+    const label = isActive ? spelled.replace(/-?\d+$/, '') : /^C\d$/.test(pitch) ? pitch : null;
     const tone = degree?.isGuideTone
       ? key.isBlack
         ? 'border-amber-600 bg-amber-500 text-white'

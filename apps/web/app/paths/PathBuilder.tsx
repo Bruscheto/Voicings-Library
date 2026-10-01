@@ -8,6 +8,7 @@ import {
   isBaseQuality,
   midiToPitch,
   pcName,
+  spellVoicing,
   twoFiveOne,
   type LibraryVoicing,
   type Mode,
@@ -27,7 +28,14 @@ const parseKey = (value: string | null) => {
 };
 
 const chordOf = (option: PathOption, rootPc: number) =>
-  isBaseQuality(option.reading.quality) ? { rootPc, quality: option.reading.quality } : null;
+  isBaseQuality(option.reading.quality)
+    ? { rootPc, quality: option.reading.quality, tensions: option.reading.tensions }
+    : null;
+
+const spellNames = (option: PathOption, rootPc: number) => {
+  const chord = chordOf(option, rootPc);
+  return (chord ? spellVoicing(option.midi, chord) : option.midi.map(midiToPitch)).join(' ');
+};
 
 export function PathBuilder({ library }: { library: LibraryVoicing[] }) {
   const router = useRouter();
@@ -146,13 +154,17 @@ export function PathBuilder({ library }: { library: LibraryVoicing[] }) {
                 >
                   {step.chosen.symbol}
                 </Link>
-                <StaffPreview notes={step.chosen.midi} className="min-h-[200px]" />
+                <StaffPreview
+                  notes={step.chosen.midi}
+                  chord={chordOf(step.chosen, step.spec.rootPc)}
+                  className="min-h-[200px]"
+                />
                 <MiniKeyboard
                   notes={step.chosen.midi}
                   chord={chordOf(step.chosen, step.spec.rootPc)}
                 />
                 <p className="font-mono text-xs text-gray-500">
-                  {step.chosen.midi.map(midiToPitch).join(' ')}
+                  {spellNames(step.chosen, step.spec.rootPc)}
                 </p>
                 <div className="mt-auto flex gap-2">
                   <button

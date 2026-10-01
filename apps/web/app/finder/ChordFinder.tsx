@@ -256,6 +256,7 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
                       midi={r.midi}
                       rootPc={query.rootPc}
                       quality={r.reading.quality}
+                      tensions={r.reading.tensions}
                       structure={r.voicing.structure}
                       badge={r.match === 'extended' ? 'adds tensions' : undefined}
                       onPlay={(midi) => void piano.play(midi, false)}

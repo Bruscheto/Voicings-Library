@@ -18,7 +18,8 @@
     "seed:dry-run": "ts-node --project tsconfig.scripts.json scripts/import-voicings-from-csv.ts docs/data/voicings-seed.csv --dry-run",
     "voicings:reanalyze": "ts-node --project tsconfig.scripts.json scripts/reanalyze-voicings.ts",
     "typecheck": "turbo run typecheck && tsc --noEmit --project tsconfig.scripts.json",
-    "test:coverage": "turbo run test:coverage"
+    "test:coverage": "turbo run test:coverage",
+    "tags:delete": "ts-node --project tsconfig.scripts.json scripts/delete-tags.ts"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.7",

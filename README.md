@@ -146,7 +146,6 @@ type SaveVoicingRequest = {
   pitches: string[]; // e.g. ["B3", "E4", "F4", "A4"]; the lowest is the bass
   symbols?: string[]; // readings to keep, first one primary; omit for the engine's reading
   voicingName?: string | null;
-  contextTags?: string[];
   collections?: string[];
 };
 ```

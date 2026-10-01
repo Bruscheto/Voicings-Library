@@ -1,19 +1,13 @@
 import { NextResponse } from 'next/server';
-import { prisma, buildSymbol, analyzeVoicing, VoicingAnalysisError } from 'data-model';
+import { prisma, analyzeVoicing, VoicingAnalysisError } from 'data-model';
 import { pitchToMidi } from 'harmony';
 
-// `symbols` is the play-first form: readings to keep, first one primary, none
-// for the engine's reading. root/quality/tensions/slashBass is the current
-// capture page's form and becomes a single symbol.
+// `symbols` are the readings to keep, first one primary; none means the
+// engine's top reading. Structure tags come from the engine, not the request.
 type SaveBody = {
   pitches: string[];
   symbols?: string[];
-  root?: string;
-  quality?: string;
-  tensions?: string[];
-  slashBass?: string | null;
   voicingName?: string | null;
-  contextTags?: string[];
   collections?: string[];
 };
 
@@ -33,13 +27,6 @@ const cleanNames = (value: unknown) =>
 
 const isStringArray = (value: unknown): value is string[] =>
   Array.isArray(value) && value.every((item) => typeof item === 'string');
-
-function authoredSymbols(body: Partial<SaveBody>): string[] {
-  if (body.symbols !== undefined) return cleanNames(body.symbols);
-  if (!body.root || !body.quality) return [];
-  const tensions = isStringArray(body.tensions) ? body.tensions : [];
-  return [buildSymbol(body.root, body.quality, tensions, body.slashBass ?? null)];
-}
 
 const resolveTagIds = (names: string[]) =>
   Promise.all(
@@ -62,7 +49,7 @@ export async function POST(request: Request) {
 
   let analysis;
   try {
-    analysis = analyzeVoicing(body.pitches.map(pitchToMidi), authoredSymbols(body));
+    analysis = analyzeVoicing(body.pitches.map(pitchToMidi), cleanNames(body.symbols));
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Invalid voicing';
     const status = error instanceof VoicingAnalysisError ? 422 : 400;
@@ -72,13 +59,10 @@ export async function POST(request: Request) {
   try {
     const { shape, structure, readings } = analysis;
     const name = (body.voicingName ?? '').trim() || null;
-    const tagNames = [
-      ...cleanNames(body.contextTags),
-      ...cleanNames(body.collections).map((n) => `${COLLECTION_TAG_PREFIX}${n}`),
-    ];
+    const tagNames = cleanNames(body.collections).map((n) => `${COLLECTION_TAG_PREFIX}${n}`);
 
     // A voicing's identity is its shape, in any key. Saving an existing shape
-    // adds whatever is new — readings, tags, collection memberships — and is
+    // adds whatever is new — readings and collection memberships — and is
     // only rejected when there is nothing new to add.
     const existing = await prisma.voicing.findUnique({
       where: { shapeKey: shape.shapeKey },

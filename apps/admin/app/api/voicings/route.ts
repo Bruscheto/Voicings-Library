@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma, analyzeVoicing, VoicingAnalysisError } from 'data-model';
 import { pitchToMidi } from 'harmony';
+import { authorizeAdmin, rejectCrossOriginWrite } from '../../../lib/auth';
 
 // `symbols` are the readings to keep, first one primary; none means the
 // engine's top reading. Structure tags come from the engine, not the request.
@@ -37,6 +38,9 @@ const resolveTagIds = (names: string[]) =>
   );
 
 export async function POST(request: Request) {
+  const denied = (await authorizeAdmin(request)) ?? rejectCrossOriginWrite(request);
+  if (denied) return denied;
+
   let body: Partial<SaveBody>;
   try {
     body = (await request.json()) as Partial<SaveBody>;

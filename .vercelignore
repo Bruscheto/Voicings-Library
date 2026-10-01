@@ -1,0 +1,35 @@
+# Vercel CLI does not use all Git ignore rules. Never upload local credentials.
+.env*
+**/.env*
+**/*.local
+**/*.db
+**/*.db-journal
+**/*.sqlite
+**/*.sqlite-journal
+
+# Local tooling, caches and generated browser reports.
+.git
+.vercel
+.codex
+.claude
+.superpowers
+.playwright-cli
+.vscode
+.idea
+node_modules
+**/node_modules
+**/.next
+**/.turbo
+**/coverage
+**/playwright-report
+**/test-results
+**/*.tsbuildinfo
+**/.DS_Store
+**/*.log
+tmp
+temp
+.cache
+.kombai
+docs/superpowers
+docs/AGENTS.md
+openspec

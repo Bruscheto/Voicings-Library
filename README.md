@@ -12,6 +12,12 @@ Voicings is a jazz piano library with two web apps. The capture app records chor
 
 The library app finds voicings for any chord in any key, typed or played, and chains them into voice-led ii–V–I progressions.
 
+[Try the live library](https://voicings-library.vercel.app/) · [Explore ii–V–I paths](https://voicings-library.vercel.app/paths)
+
+![Live library showing a C Maj9 rootless voicing, staff notation, degrees, and key controls](./assets/readme/live-library.jpg)
+
+The public demo reads the existing Neon library. The capture app runs locally with password protection.
+
 <p align="center">
   <img src="./assets/readme/admin-capture.png" width="100%" alt="Capture app with a C Maj9 chord, grand staff, piano keys, and interval analysis">
   <br>
@@ -67,19 +73,23 @@ You need Node.js 22.13 or later, pnpm 11.18.0 (pinned in `package.json`), and Po
    export DIRECT_URL="$DATABASE_URL"
    ```
 
-4. Generate the Prisma client.
+4. Configure capture access.
+
+   Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` in `apps/admin/.env.local` or the current shell. Use [the admin environment example](./apps/admin/.env.example) as a template and choose your own password. Admin returns `503` until both values are configured.
+
+5. Generate the Prisma client.
 
    ```bash
    pnpm --filter data-model run db:generate
    ```
 
-5. Create the database tables.
+6. Create the database tables.
 
    ```bash
    pnpm --filter data-model run db:push
    ```
 
-6. Start both apps.
+7. Start both apps.
 
    ```bash
    pnpm run dev
@@ -184,6 +194,23 @@ It returns `422` with the chord the notes do spell when a symbol does not match 
 | `pnpm run test:e2e`                      | Build both apps and run browser tests against a throwaway database |
 | `pnpm --filter data-model run db:studio` | Open Prisma Studio                                                 |
 
+## Deploy the library
+
+The current demo is hosted at [voicings-library.vercel.app](https://voicings-library.vercel.app/).
+
+Create a Vercel project for this repository with root directory `apps/web`, Node.js `22.x`, and source files outside the root directory enabled. [The app configuration](./apps/web/vercel.json) installs the frozen pnpm lockfile, generates Prisma, and builds the public web app. It does not run migrations or import seed data.
+
+The Prisma generator includes Vercel's `rhel-openssl-3.0.x` engine, and both apps trace the generated client from the pnpm workspace. [The upload exclusions](./.vercelignore) keep local environment files, databases, and build/test output out of deployment source uploads.
+
+Set encrypted production environment variables `DATABASE_URL` (pooled Neon URL) and `DIRECT_URL` (direct Neon URL) in that project. Keep both server-only. The existing database must already have the current migrations and data.
+
+Deploy from the repository root after linking the web project:
+
+```bash
+pnpm dlx vercel link --yes --scope <your-vercel-team> --project voicings-library
+pnpm dlx vercel deploy --prod
+```
+
 ## Continuous integration
 
 [GitHub Actions](./.github/workflows/ci.yml) runs on pull requests, pushes to `main`, and manual dispatches. It uses Node.js 22.22.3, the pinned pnpm version, and a frozen lockfile to check dependencies, formatting, lint, types, unit tests, coverage, and E2E.
@@ -201,9 +228,9 @@ Coverage keeps the existing aggregate thresholds: 90% for harmony and 80% for sa
 
 ## Security and audio
 
-The capture app does not have authentication. Use it only in a trusted local environment.
+The capture app uses HTTP Basic Auth with server-only `ADMIN_USERNAME` and `ADMIN_PASSWORD`. Its pages and API routes reject unauthenticated requests, and each API checks authorization directly. Missing credentials deny access in development and production. Authenticated cross-origin writes are rejected.
 
-Add authentication and authorization before you expose the capture app on a network.
+The hosted demo publishes only the library app. Keep capture local unless you configure a separate protected deployment with HTTPS; Basic Auth sends credentials on each request. Rotate credentials through environment configuration when access changes.
 
 The audio package loads piano samples from the MusyngKite soundfont repository. It uses an oscillator if the samples do not load.
 

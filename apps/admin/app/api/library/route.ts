@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from 'data-model';
+import { authorizeAdmin } from '../../../lib/auth';
 
 const COLLECTION_TAG_PREFIX = 'collection:';
 
@@ -24,7 +25,10 @@ export type LibrarySnapshot = {
 
 // What the capture page needs to warn about duplicates in any key and to
 // offer existing collections. Small by design: shapes, not rendered voicings.
-export async function GET() {
+export async function GET(request: Request) {
+  const denied = await authorizeAdmin(request);
+  if (denied) return denied;
+
   try {
     const [voicings, tags] = await Promise.all([
       prisma.voicing.findMany({

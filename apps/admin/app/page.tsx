@@ -1,19 +1,22 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { classifyStructure, degreesOf, midiToPitch, toShape } from 'harmony';
-import { realizeVoicing } from 'data-model/src/voicing';
-import { PianoKeyboard } from './capture/PianoKeyboard';
+import { classifyStructure, degreesOf, midiToPitch, realizeVoicing, toShape } from 'harmony';
 import { ReadingsPanel } from './capture/ReadingsPanel';
 import { SavePanel } from './capture/SavePanel';
 import { SessionLog, type SessionEntry } from './capture/SessionLog';
-import { StaffPreview } from './capture/StaffPreview';
-import { useCapturedNotes } from './capture/useCapturedNotes';
 import { useLibrary } from './capture/useLibrary';
-import { usePiano, type PianoStatus } from './capture/usePiano';
+import {
+  PianoKeyboard,
+  StaffPreview,
+  useCapturedNotes,
+  usePiano,
+  useWebMidi,
+  type MidiStatus,
+  type PianoStatus,
+} from 'keyboard';
 import { readingKey, useReadings } from './capture/useReadings';
 import { useSaveVoicing } from './capture/useSaveVoicing';
-import { useWebMidi, type MidiStatus } from './capture/useWebMidi';
 
 const PIANO_LABEL: Record<PianoStatus, string> = {
   loading: 'Loading piano…',

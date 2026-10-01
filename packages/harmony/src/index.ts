@@ -8,3 +8,6 @@ export * from './symbol';
 export * from './shape';
 export * from './voiceLeading';
 export * from './grade';
+export * from './voicing';
+export * from './finder';
+export * from './progression';

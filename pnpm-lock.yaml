@@ -35,6 +35,9 @@ importers:
       harmony:
         specifier: workspace:*
         version: link:../../packages/harmony
+      keyboard:
+        specifier: workspace:*
+        version: link:../../packages/keyboard
       music-engine:
         specifier: workspace:*
         version: link:../../packages/music-engine
@@ -81,6 +84,9 @@ importers:
       harmony:
         specifier: workspace:*
         version: link:../../packages/harmony
+      keyboard:
+        specifier: workspace:*
+        version: link:../../packages/keyboard
       music-engine:
         specifier: workspace:*
         version: link:../../packages/music-engine
@@ -134,9 +140,6 @@ importers:
       typescript:
         specifier: ^5.0.0
         version: 5.9.3
-      vitest:
-        specifier: ^4.1.11
-        version: 4.1.11(@types/node@20.19.25)(@vitest/coverage-v8@4.1.11)(vite@8.3.1(@types/node@20.19.25)(jiti@1.21.7))
 
   packages/harmony:
     devDependencies:
@@ -149,6 +152,28 @@ importers:
       vitest:
         specifier: ^4.1.11
         version: 4.1.11(@types/node@20.19.25)(@vitest/coverage-v8@4.1.11)(vite@8.3.1(@types/node@20.19.25)(jiti@1.21.7))
+
+  packages/keyboard:
+    dependencies:
+      harmony:
+        specifier: workspace:*
+        version: link:../harmony
+      music-engine:
+        specifier: workspace:*
+        version: link:../music-engine
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
+      sampler:
+        specifier: workspace:*
+        version: link:../sampler
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.6
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
 
   packages/music-engine:
     dependencies:

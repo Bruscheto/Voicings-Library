@@ -85,5 +85,33 @@ export function usePiano() {
     [clearTimers, markUnavailable],
   );
 
-  return { status, sound, play };
+  /** Chords one after another, `stepMs` apart; a new play or stop cancels it. */
+  const playSequence = useCallback(
+    async (chords: readonly (readonly number[])[], stepMs: number) => {
+      const run = ++generation.current;
+      clearTimers();
+      const stale = () => !mounted.current || run !== generation.current;
+      try {
+        await sampler.activate();
+        if (stale()) return;
+        chords.forEach((chord, index) => {
+          const timer = setTimeout(() => {
+            if (stale()) return;
+            chord.forEach((midi) => void sampler.play(toVexFlow(midi)).catch(markUnavailable));
+          }, index * stepMs);
+          timers.current.push(timer);
+        });
+      } catch {
+        if (!stale()) markUnavailable();
+      }
+    },
+    [clearTimers, markUnavailable],
+  );
+
+  const stop = useCallback(() => {
+    generation.current += 1;
+    clearTimers();
+  }, [clearTimers]);
+
+  return { status, sound, play, playSequence, stop };
 }

@@ -36,15 +36,17 @@ export function voiceLeadingCost(from: readonly number[], to: readonly number[])
 export type Path<T> = { steps: T[]; cost: number };
 
 /**
- * Choose one option per step to minimise total voice movement (Viterbi).
+ * Choose one option per step to minimise total voice movement (Viterbi),
+ * plus an optional cost for each option on its own (e.g. register).
  * Pin a step by passing a single option for it.
  */
 export function solvePath<T>(
   options: readonly (readonly T[])[],
   notesOf: (option: T) => readonly number[],
+  optionCost: (option: T) => number = () => 0,
 ): Path<T> | null {
   if (options.length === 0 || options.some((step) => step.length === 0)) return null;
-  let costs = options[0].map(() => 0);
+  let costs = options[0].map(optionCost);
   const back: number[][] = [];
   for (let s = 1; s < options.length; s++) {
     const pointers: number[] = [];
@@ -60,7 +62,7 @@ export function solvePath<T>(
         }
       });
       pointers.push(bestIndex);
-      return bestCost;
+      return bestCost + optionCost(option);
     });
     back.push(pointers);
   }

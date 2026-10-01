@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { detectChord, parseSymbol, readAs, type Reading } from 'harmony';
-// The voicing module only depends on harmony, so it is safe in the browser;
-// the data-model package root would pull in Prisma.
-import { analyzeVoicing } from 'data-model/src/voicing';
+import { analyzeVoicing, detectChord, parseSymbol, readAs, type Reading } from 'harmony';
 
 const MAX_CANDIDATES = 6;
 

@@ -35,7 +35,11 @@ export function fromShape(intervals: readonly number[], bassMidi: number): numbe
  * Every placement of a shape whose bass has the given pitch class and whose
  * notes all fit inside the range, lowest first.
  */
-export function placeShape(intervals: readonly number[], bassPc: PitchClass, range: Range): number[][] {
+export function placeShape(
+  intervals: readonly number[],
+  bassPc: PitchClass,
+  range: Range,
+): number[][] {
   const span = intervals[intervals.length - 1] ?? 0;
   const placements: number[][] = [];
   const first = range.low + mod12(bassPc - range.low);

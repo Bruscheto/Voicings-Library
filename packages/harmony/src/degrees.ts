@@ -25,9 +25,19 @@ export function degreesOf(midi: readonly number[], chord: ChordRef): Degree[] {
     const interval = mod12(note - chord.rootPc);
     const tone = def.tones[interval];
     if (tone) {
-      return { midi: note, label: tone.label, role: tone.role, isGuideTone: tone.role === 'third' || tone.role === 'seventh' };
+      return {
+        midi: note,
+        label: tone.label,
+        role: tone.role,
+        isGuideTone: tone.role === 'third' || tone.role === 'seventh',
+      };
     }
-    return { midi: note, label: def.tensions[interval] ?? '?', role: 'tension', isGuideTone: false };
+    return {
+      midi: note,
+      label: def.tensions[interval] ?? '?',
+      role: 'tension',
+      isGuideTone: false,
+    };
   });
 }
 

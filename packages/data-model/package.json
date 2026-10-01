@@ -6,7 +6,8 @@
 	"scripts": {
 		"db:generate": "prisma generate",
 		"db:push": "prisma db push",
-		"db:studio": "prisma studio"
+		"db:studio": "prisma studio",
+		"test": "vitest run"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.0.0",
@@ -14,7 +15,8 @@
 	},
 	"devDependencies": {
 		"prisma": "^5.0.0",
-		"typescript": "^5.0.0"
+		"typescript": "^5.0.0",
+		"vitest": "^4.1.11"
 	},
 	"prisma": {
 		"seed": "ts-node --project tsconfig.json prisma/seed.ts"

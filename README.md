@@ -143,16 +143,15 @@ The write endpoint accepts this request:
 
 ```ts
 type SaveVoicingRequest = {
-  root: string;
-  quality: string;
-  tensions: string[];
-  voicingName: string | null;
-  pitches: string[];
-  slashBass: string | null;
-  contextTags: string[];
-  collections: string[];
+  pitches: string[]; // e.g. ["B3", "E4", "F4", "A4"]; the lowest is the bass
+  symbols?: string[]; // readings to keep, first one primary; omit for the engine's reading
+  voicingName?: string | null;
+  contextTags?: string[];
+  collections?: string[];
 };
 ```
+
+It returns `422` with the chord the notes do spell when a symbol does not match them. Saving a shape that already exists, in any key, adds new readings and collections instead of creating a duplicate.
 
 ## Repository guide
 
@@ -160,10 +159,11 @@ type SaveVoicingRequest = {
 | -------------------------------------------------- | -------------------------------- |
 | [`apps/web`](./apps/web)                           | Library app and read API         |
 | [`apps/admin`](./apps/admin)                       | Capture app and write API        |
-| [`packages/data-model`](./packages/data-model)     | Prisma schema and chord data     |
+| [`packages/harmony`](./packages/harmony)           | Chord engine: detection, symbols, voice leading |
+| [`packages/data-model`](./packages/data-model)     | Prisma schema and voicing records |
 | [`packages/music-engine`](./packages/music-engine) | VexFlow staff notation           |
 | [`packages/sampler`](./packages/sampler)           | Piano samples and audio playback |
-| [`scripts`](./scripts)                             | CSV validation and import        |
+| [`scripts`](./scripts)                             | CSV import and voicing re-analysis |
 | [`docs/data`](./docs/data)                         | Seed data documentation          |
 
 ### Commands
@@ -175,6 +175,8 @@ type SaveVoicingRequest = {
 | `pnpm run format:check`                    | Check file formatting       |
 | `pnpm run seed:dry-run`                    | Validate the seed CSV file  |
 | `pnpm run seed:import`                     | Import all `ready` rows     |
+| `pnpm run voicings:reanalyze`              | Re-check stored voicings against the engine |
+| `pnpm run test`                            | Run package tests           |
 | `pnpm --filter data-model run db:studio`  | Open Prisma Studio          |
 
 ## Security and audio

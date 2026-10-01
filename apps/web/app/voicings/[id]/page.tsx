@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { prisma } from 'data-model';
+import { prisma, realizeVoicing } from 'data-model';
 import VoicingDetailClient from './VoicingDetailClient';
 import { ChordSymbol } from '../../../components/ChordSymbol';
 
@@ -20,7 +20,7 @@ export default async function VoicingDetailPage({
   const voicing = await prisma.voicing.findUnique({
     where: { id },
     include: {
-      chords: { include: { chord: true } },
+      readings: true,
       tags: { include: { tag: true } },
     },
   });
@@ -29,10 +29,9 @@ export default async function VoicingDetailPage({
     notFound();
   }
 
-  const pitches = voicing.pitches;
+  const { pitches, primary } = realizeVoicing(voicing);
   const vfNotes = pitches.map(noteToVexFlow);
-  const primaryVc = voicing.chords[0];
-  const symbol = primaryVc?.chord.symbol ?? '—';
+  const symbol = primary?.symbol ?? '—';
   const tags = voicing.tags.map((vt) => vt.tag);
   const showAltName = voicing.name && voicing.name !== symbol;
 
@@ -51,12 +50,12 @@ export default async function VoicingDetailPage({
         <header className="mb-8 flex items-end justify-between">
           <div>
             <h1 className="text-4xl font-bold text-gray-900">
-              {primaryVc?.chord ? (
+              {primary ? (
                 <ChordSymbol
-                  root={primaryVc.chord.root}
-                  quality={primaryVc.chord.quality}
-                  tensions={primaryVc.chord.tensions}
-                  slashBass={voicing.slashBass}
+                  root={primary.root}
+                  quality={primary.quality}
+                  tensions={primary.tensions}
+                  slashBass={primary.slashBass}
                 />
               ) : (
                 '—'
@@ -82,17 +81,13 @@ export default async function VoicingDetailPage({
 
         <VoicingDetailClient vfNotes={vfNotes} pitches={pitches} />
 
-        {primaryVc?.chord && (
+        {primary && (
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <Field label="Root" value={primaryVc.chord.root} />
-            <Field label="Quality" value={primaryVc.chord.quality} />
+            <Field label="Root" value={primary.root} />
+            <Field label="Quality" value={primary.quality} />
             <Field
               label="Tensions"
-              value={
-                primaryVc.chord.tensions.length > 0
-                  ? primaryVc.chord.tensions.join(', ')
-                  : '—'
-              }
+              value={primary.tensions.length > 0 ? primary.tensions.join(', ') : '—'}
             />
           </div>
         )}

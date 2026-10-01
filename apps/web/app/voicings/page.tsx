@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { prisma, realizeVoicing } from 'data-model';
+import { KeyboardPreview } from '../../components/KeyboardPreview';
+import { isBaseQuality, mod12 } from 'harmony';
 import FilterBar from './FilterBar';
 import { buildVoicingWhere, hasActiveVoicingFilters } from './filterQuery';
 import { ChordSymbol } from '../../components/ChordSymbol';
@@ -39,12 +41,12 @@ export default async function VoicingsListPage({ searchParams }: { searchParams:
   const noResults = voicings.length === 0;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <header className="mb-8 flex items-end justify-between">
+    <div>
+      <div className="page-shell">
+        <header className="page-heading">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Voicings Library</h1>
-            <p className="mt-1 text-sm text-gray-500">
+            <h1>Voicings Library</h1>
+            <p className="page-meta">
               {isFiltered
                 ? `${voicings.length} of ${totalCount} voicings`
                 : `${totalCount} voicing${totalCount === 1 ? '' : 's'}`}
@@ -55,28 +57,30 @@ export default async function VoicingsListPage({ searchParams }: { searchParams:
         <FilterBar qualities={qualities} tags={allTags} />
 
         {noResults ? (
-          <div className="rounded-2xl border border-dashed border-gray-300 bg-white p-16 text-center">
+          <div className="empty-state">
             <p className="text-gray-500">
               {isFiltered
                 ? 'No voicings match these filters.'
                 : 'No voicings yet. Add some via the admin tool.'}
             </p>
+            {isFiltered && (
+              <Link href="/voicings" className="secondary-button mt-5">
+                Reset filters
+              </Link>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {voicings.map((v) => {
-              const { pitches, primary: chord } = realizeVoicing(v);
-              const symbol = chord?.symbol ?? '—';
+              const { pitches, midi, primary: chord } = realizeVoicing(v);
+              const reading = v.readings.find((r) => r.isPrimary) ?? v.readings[0];
+              const symbol = chord?.symbol ?? 'Unnamed chord';
               const tags = v.tags.map((vt) => vt.tag);
               const showAltName = v.name && v.name !== symbol;
 
               return (
-                <Link
-                  key={v.id}
-                  href={`/voicings/${v.id}`}
-                  className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:border-gray-300 hover:shadow-md"
-                >
-                  <h2 className="text-2xl font-semibold text-gray-900">
+                <Link key={v.id} href={`/voicings/${v.id}`} className="voicing-card group">
+                  <h2 className="voicing-card-title">
                     {chord ? (
                       <ChordSymbol
                         root={chord.root}
@@ -85,12 +89,26 @@ export default async function VoicingsListPage({ searchParams }: { searchParams:
                         slashBass={chord.slashBass}
                       />
                     ) : (
-                      '—'
+                      'Unnamed chord'
                     )}
                   </h2>
-                  {showAltName && <p className="mt-1 text-sm text-gray-500">{v.name}</p>}
+                  {showAltName && <p className="text-sm text-gray-500">{v.name}</p>}
 
-                  <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="keyboard-preview">
+                    <KeyboardPreview
+                      notes={midi}
+                      chord={
+                        chord && isBaseQuality(chord.quality)
+                          ? {
+                              rootPc: mod12(v.bassMidi + (reading?.rootOffset ?? 0)),
+                              quality: chord.quality,
+                            }
+                          : null
+                      }
+                      className="h-16 w-full max-w-[280px]"
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
                     {pitches.map((p, i) => (
                       <span
                         key={`${p}-${i}`}
@@ -102,13 +120,13 @@ export default async function VoicingsListPage({ searchParams }: { searchParams:
                   </div>
 
                   {tags.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-1.5 border-t border-gray-100 pt-3">
+                    <div className="flex flex-wrap gap-1.5">
                       {tags.map((t) => (
                         <span
                           key={t.id}
-                          className="rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700"
+                          className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700"
                         >
-                          {t.name}
+                          {t.name.replace(/^collection:/, '')}
                         </span>
                       ))}
                     </div>

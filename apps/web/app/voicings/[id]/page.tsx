@@ -44,7 +44,7 @@ export default async function VoicingDetailPage({
   const { tags, source, ...shape } = voicing;
   const tagNames = tags.map((t) => t.tag.name);
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
+    <div className="page-shell !max-w-5xl">
       <nav className="mb-6">
         <Link href="/voicings" className="text-sm text-gray-500 transition hover:text-gray-900">
           ← Library

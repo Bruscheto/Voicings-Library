@@ -101,39 +101,48 @@ export default function FilterBar({ qualities, tags }: Props) {
   );
 
   return (
-    <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-      <form onSubmit={submitSearch} className="flex flex-wrap items-center gap-3">
-        <input
-          type="search"
-          name="q"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search chord symbol…"
-          className="min-w-[220px] flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-gray-500 focus:outline-none"
-        />
-        <button
-          type="submit"
-          className="rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
-        >
+    <div className="panel mb-10 p-5 sm:p-6">
+      <form onSubmit={submitSearch} className="filter-form">
+        <div>
+          <label htmlFor="library-search" className="field-label">
+            Chord symbol
+          </label>
+          <input
+            id="library-search"
+            type="search"
+            name="q"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search chord symbol…"
+            className="filter-field"
+          />
+        </div>
+        <button type="submit" className="primary-button">
           Search
         </button>
-        <select
-          value={currentQuality}
-          onChange={(e) => updateUrl({ quality: e.target.value || null })}
-          className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-gray-500 focus:outline-none"
-        >
-          <option value="">All qualities</option>
-          {qualities.map((q) => (
-            <option key={q} value={q}>
-              {q}
-            </option>
-          ))}
-        </select>
+        <div>
+          <label htmlFor="library-quality" className="field-label">
+            Quality
+          </label>
+          <select
+            id="library-quality"
+            value={currentQuality}
+            onChange={(e) => updateUrl({ quality: e.target.value || null })}
+            className="filter-field"
+          >
+            <option value="">All qualities</option>
+            {qualities.map((q) => (
+              <option key={q} value={q}>
+                {q}
+              </option>
+            ))}
+          </select>
+        </div>
         {anyActive && (
           <button
             type="button"
             onClick={() => router.push('/voicings')}
-            className="rounded-md px-3 py-2 text-sm text-gray-500 transition hover:text-gray-900"
+            className="secondary-button"
           >
             Reset
           </button>
@@ -141,7 +150,7 @@ export default function FilterBar({ qualities, tags }: Props) {
       </form>
 
       {tags.length > 0 && (
-        <div className="mt-3 flex flex-wrap gap-1.5 border-t border-gray-100 pt-3">
+        <div className="filter-section flex flex-wrap gap-2" role="group" aria-label="Tags">
           {tags.map((tag) => {
             const selected = currentTagNames.includes(tag.name);
             return (
@@ -149,29 +158,27 @@ export default function FilterBar({ qualities, tags }: Props) {
                 key={tag.id}
                 type="button"
                 onClick={() => toggleTag(tag.name)}
-                className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                  selected
-                    ? 'bg-purple-600 text-white'
-                    : 'bg-purple-50 text-purple-700 hover:bg-purple-100'
-                }`}
+                aria-pressed={selected}
+                className="chip"
               >
-                {tag.name}
+                {tag.name.replace(/^collection:/, '')}
               </button>
             );
           })}
         </div>
       )}
 
-      <div className="mt-3 flex flex-wrap items-center gap-1.5 border-t border-gray-100 pt-3">
-        <span className="mr-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
-          Tensions
-        </span>
+      <div
+        className="filter-section flex flex-wrap items-center gap-2"
+        role="group"
+        aria-label="Tensions"
+      >
+        <span className="mr-2 text-sm font-medium text-gray-700">Tensions</span>
         <button
           type="button"
           onClick={toggleNoTensions}
-          className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-            noTensionMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-          }`}
+          aria-pressed={noTensionMode}
+          className="chip"
         >
           No tensions
         </button>
@@ -184,13 +191,8 @@ export default function FilterBar({ qualities, tags }: Props) {
               type="button"
               onClick={() => toggleTension(t)}
               disabled={disabled}
-              className={`rounded-full px-3 py-1 font-mono text-xs font-medium transition ${
-                disabled
-                  ? 'cursor-not-allowed bg-gray-50 text-gray-300'
-                  : selected
-                    ? 'bg-amber-600 text-white'
-                    : 'bg-amber-50 text-amber-700 hover:bg-amber-100'
-              }`}
+              aria-pressed={selected}
+              className="chip font-mono"
             >
               {t}
             </button>

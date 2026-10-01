@@ -17,6 +17,7 @@ import {
 import { PianoKeyboard, useCapturedNotes, usePiano, useWebMidi } from 'keyboard';
 import { STRUCTURE_LABEL, VoicingCard } from './VoicingCard';
 
+const STARTERS = ['Dm9', 'G13', 'Cmaj7'];
 const EXAMPLES = ['Dm9', 'G13', 'Cmaj7', 'G7alt', 'Bø', 'Cm6', 'F6/9', 'Ebmaj7#11'];
 const STRUCTURE_PRIORITY = [
   'rootless-a',
@@ -99,6 +100,15 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
   }, [mode, typed, heard, heardIndex]);
 
   const results = useMemo(() => (query ? findVoicings(library, query) : []), [library, query]);
+  const starters = useMemo(
+    () =>
+      STARTERS.flatMap((symbol) => {
+        const query = queryFromSymbol(symbol);
+        const result = findVoicings(library, query)[0];
+        return result ? [{ ...result, rootPc: query.rootPc }] : [];
+      }),
+    [library],
+  );
   const exactShape = mode === 'play' ? findShape(library, input.notes) : null;
   // Groups appear in the order of their best result, so exact matches lead.
   const groups = useMemo(() => {
@@ -113,105 +123,134 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
       : null;
 
   return (
-    <div className="flex flex-col gap-8">
-      <section className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-        <div
-          className="mb-4 flex gap-1 rounded-lg bg-gray-100 p-1 text-sm font-medium sm:w-fit"
-          role="tablist"
-        >
-          {(['type', 'play'] as const).map((m) => (
-            <button
-              key={m}
-              type="button"
-              role="tab"
-              aria-selected={mode === m}
-              onClick={() => setMode(m)}
-              className={`rounded-md px-4 py-1.5 transition ${mode === m ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}
-            >
-              {m === 'type' ? 'Type a chord' : 'Play a chord'}
-            </button>
-          ))}
-        </div>
+    <div className="flex flex-col gap-10">
+      <section className="panel finder-panel" aria-label="Find a voicing">
+        <div className="finder-panel-top">
+          <div className="segmented-control" aria-label="Chord input mode" role="tablist">
+            {(['type', 'play'] as const).map((m) => (
+              <button
+                key={m}
+                type="button"
+                role="tab"
+                aria-selected={mode === m}
+                id={`input-tab-${m}`}
+                aria-controls="chord-input-panel"
+                tabIndex={mode === m ? 0 : -1}
+                onKeyDown={(event) => {
+                  if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+                  event.preventDefault();
+                  const next =
+                    event.key === 'Home'
+                      ? 'type'
+                      : event.key === 'End'
+                        ? 'play'
+                        : mode === 'type'
+                          ? 'play'
+                          : 'type';
+                  setMode(next);
+                  document.getElementById(`input-tab-${next}`)?.focus();
+                }}
+                onClick={() => setMode(m)}
+              >
+                {m === 'type' ? 'Type a chord' : 'Play a chord'}
+              </button>
+            ))}
+          </div>
 
-        {mode === 'type' ? (
-          <div>
-            <input
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="Dm9, G7alt, Cmaj7#11, F6/9/A…"
-              aria-label="Chord symbol"
-              autoFocus
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 text-2xl font-semibold tracking-tight outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900"
-            />
-            {typed.error ? (
-              <p className="mt-2 text-sm text-red-700">{typed.error}</p>
-            ) : (
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {EXAMPLES.map((example) => (
-                  <button
-                    key={example}
-                    type="button"
-                    onClick={() => setText(example)}
-                    className="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:border-gray-400"
-                  >
-                    {example}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="flex flex-col gap-3">
-            <p className="text-sm text-gray-600">
-              Play on a MIDI keyboard ({midiStatus === 'ready' ? 'connected' : 'not connected'}) or
-              click the keys below. Voicings are matched by chord, in any key and register.
-            </p>
-            {heard.length > 0 && (
-              <div className="flex flex-wrap items-center gap-1.5">
-                <span className="text-sm text-gray-500">Heard as</span>
-                {heard.slice(0, 4).map((reading, i) => (
-                  <button
-                    key={reading.symbol}
-                    type="button"
-                    aria-pressed={i === heardIndex}
-                    onClick={() => setHeardIndex(i)}
-                    className={`rounded-full border px-3 py-1 text-sm font-semibold ${
-                      i === heardIndex
-                        ? 'border-gray-900 bg-gray-900 text-white'
-                        : 'border-gray-200 text-gray-700 hover:border-gray-400'
-                    }`}
-                  >
-                    {reading.symbol}
-                  </button>
-                ))}
-                <button
-                  type="button"
-                  onClick={input.clear}
-                  className="ml-auto text-sm text-gray-500 hover:text-gray-900"
-                >
-                  Clear
-                </button>
-              </div>
-            )}
-            {exactShape && (
-              <p className="rounded-md border border-sky-200 bg-sky-50 px-3 py-2 text-sm text-sky-800">
-                This exact voicing is in the library:{' '}
-                <Link
-                  href={`/voicings/${exactShape.id}?root=${playedRoot(exactShape, input.notes)}`}
-                  className="font-semibold underline"
-                >
-                  {exactShape.name ?? 'open it'}
-                </Link>
+          <span className="finder-panel-note">Any chord. All 12 keys.</span>
+        </div>
+        <div id="chord-input-panel" role="tabpanel" aria-labelledby={`input-tab-${mode}`}>
+          {mode === 'type' ? (
+            <div>
+              <label htmlFor="chord-symbol" className="field-label">
+                Chord symbol
+              </label>
+              <input
+                id="chord-symbol"
+                aria-invalid={Boolean(typed.error)}
+                aria-describedby={typed.error ? 'chord-error' : 'chord-help'}
+                autoComplete="off"
+                spellCheck={false}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Try Dm9"
+                aria-label="Chord symbol"
+                className="finder-input"
+              />
+              {typed.error ? (
+                <p id="chord-error" role="alert" className="mt-3 text-sm text-red-700">
+                  {typed.error}
+                </p>
+              ) : (
+                <div id="chord-help" className="finder-examples">
+                  <span>Try a chord</span>
+                  {EXAMPLES.map((example) => (
+                    <button
+                      key={example}
+                      type="button"
+                      onClick={() => setText(example)}
+                      className="chip"
+                      aria-pressed={text === example}
+                    >
+                      {example}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3">
+              <p className="text-sm text-gray-600">
+                Play on a MIDI keyboard ({midiStatus === 'ready' ? 'connected' : 'not connected'})
+                or click the keys below. Voicings are matched by chord, in any key and register.
               </p>
-            )}
-            <PianoKeyboard notes={input.notes} degrees={EMPTY_DEGREES} onToggle={input.toggle} />
-          </div>
-        )}
+              {heard.length > 0 && (
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-sm text-gray-500">Heard as</span>
+                  {heard.slice(0, 4).map((reading, i) => (
+                    <button
+                      key={reading.symbol}
+                      type="button"
+                      aria-pressed={i === heardIndex}
+                      onClick={() => setHeardIndex(i)}
+                      className={`rounded-full border px-3 py-1 text-sm font-semibold ${
+                        i === heardIndex
+                          ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                          : 'border-gray-200 text-gray-700 hover:border-gray-400'
+                      }`}
+                    >
+                      {reading.symbol}
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={input.clear}
+                    className="ml-auto text-sm text-gray-500 hover:text-gray-900"
+                  >
+                    Clear
+                  </button>
+                </div>
+              )}
+              {exactShape && (
+                <p className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+                  This exact voicing is in the library:{' '}
+                  <Link
+                    href={`/voicings/${exactShape.id}?root=${playedRoot(exactShape, input.notes)}`}
+                    className="font-semibold underline"
+                  >
+                    {exactShape.name ?? 'open it'}
+                  </Link>
+                </p>
+              )}
+              <PianoKeyboard notes={input.notes} degrees={EMPTY_DEGREES} onToggle={input.toggle} />
+            </div>
+          )}
+        </div>
       </section>
 
       {query && (
-        <section aria-live="polite">
-          <h2 className="mb-4 text-sm text-gray-500">
+        <section className="finder-results" aria-live="polite">
+          <h2 className="result-summary text-base text-gray-600">
             {results.length === 0 ? (
               <>
                 No voicings for <strong className="text-gray-900">{querySymbol(query)}</strong> yet.
@@ -240,11 +279,12 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
               </>
             )}
           </h2>
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-10">
             {groups.map(({ group, results: groupResults }) => (
               <div key={group}>
-                <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">
+                <h3 className="result-group-heading">
                   {STRUCTURE_LABEL[group] ?? 'Other voicings'}
+                  <span>{groupResults.length}</span>
                 </h3>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {groupResults.map((r) => (
@@ -268,6 +308,60 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
           </div>
         </section>
       )}
+      {!query &&
+        (mode === 'play' || !typed.error) &&
+        (mode === 'type' || input.notes.length === 0) && (
+          <section aria-labelledby="starter-heading">
+            <div className="result-summary">
+              <h2 id="starter-heading" className="section-heading">
+                A place to start
+              </h2>
+              <p className="text-sm text-gray-500">Listen to a voicing, then make it your own.</p>
+            </div>
+            {starters.length > 0 ? (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {starters.map((r) => (
+                  <VoicingCard
+                    key={r.voicing.id + r.symbol}
+                    id={r.voicing.id}
+                    name={r.voicing.name}
+                    symbol={r.symbol}
+                    midi={r.midi}
+                    rootPc={r.rootPc}
+                    quality={r.reading.quality}
+                    tensions={r.reading.tensions}
+                    structure={r.voicing.structure}
+                    onPlay={(midi) => void piano.play(midi, false)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p className="empty-state text-gray-600">
+                Your library is ready for its first voicing. Saved shapes will appear here.
+              </p>
+            )}
+          </section>
+        )}
+      {mode === 'play' && input.notes.length > 0 && !query && (
+        <p className="empty-state text-gray-600" role="status">
+          Add a few more notes to identify a chord, or clear the keys and try again.
+          <button type="button" className="secondary-button ml-3" onClick={input.clear}>
+            Clear
+          </button>
+        </p>
+      )}
+      <div className="practice-link">
+        <div>
+          <h2 className="section-heading">Put the chords in motion.</h2>
+          <p>Connect your voicings in a voice-led ii-V-I progression.</p>
+        </div>
+        <Link href="/paths" className="secondary-button">
+          Explore ii-V-I{' '}
+          <span aria-hidden="true" className="ml-3">
+            →
+          </span>
+        </Link>
+      </div>
     </div>
   );
 }

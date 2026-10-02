@@ -10,6 +10,7 @@ import {
 import { fixtureLibrary } from './libraryFixture';
 import { midiToPitch } from './pitch';
 import { notes } from './testNotes';
+import { analyzeVoicing } from './voicing';
 
 const library = fixtureLibrary();
 const find = (symbol: string) => findVoicings(library, queryFromSymbol(symbol));
@@ -34,6 +35,36 @@ describe('findVoicings', () => {
       ['dm9-b', 'extended'],
     ]);
   });
+
+  it('removes primary-reading tags when an alternate reading contains the root', () => {
+    const result = find('Em7')[0];
+    expect(result.voicing.structure).toContain('rootless-a');
+    expect(result.voicing.structure).toContain('ust');
+    expect(result.structure).toEqual(['close']);
+    expect(find('Cmaj9')[0].structure).toEqual(['rootless-a', 'ust', 'close']);
+  });
+
+  it.each(Array.from({ length: 12 }, (_, rootPc) => rootPc))(
+    'switches rootless A to B for an alternate dominant reading on root %i',
+    (rootPc) => {
+      const { shape, structure, readings } = analyzeVoicing(notes('B3 E4 F4 A4'), [
+        'G13/B',
+        'Db7(#9,b13)/B',
+      ]);
+      const voicing = { id: 'dominant', name: null, ...shape, structure, readings };
+      const [result] = findVoicings([voicing], {
+        ...queryFromSymbol('Db7(#9,b13)'),
+        rootPc,
+      });
+      expect(result.structure).toEqual(['rootless-b', 'close']);
+      expect(result.voicing).toBe(voicing);
+      expect(voicing.structure).toEqual(['rootless-a', 'close']);
+      expect(findVoicings([voicing], queryFromSymbol('G13'))[0].structure).toEqual([
+        'rootless-a',
+        'close',
+      ]);
+    },
+  );
 
   it('respects a slash bass', () => {
     expect(find('Dm9/F').map((r) => r.voicing.id)).toEqual(['dm9-a']);

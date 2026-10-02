@@ -10,6 +10,7 @@ import { mod12, normalizeNotes, type PitchClass } from './pitch';
 import type { BaseQuality } from './qualities';
 import { toShape } from './shape';
 import { parseSymbol } from './symbol';
+import { classifyStructure, type Structure } from './structure';
 import type { StoredReading, StoredVoicing } from './voicing';
 
 export type LibraryVoicing = StoredVoicing & {
@@ -35,6 +36,8 @@ export type FinderResult = {
   voicing: LibraryVoicing;
   reading: StoredReading;
   midi: number[];
+  /** Structure under the matched reading, rather than the stored primary reading. */
+  structure: Structure[];
   symbol: string;
   match: MatchKind;
 };
@@ -107,10 +110,12 @@ export function findVoicings(
     }
     if (!best) continue;
     const bass = nearestBass(voicing.bassMidi, query.rootPc - best.reading.rootOffset);
+    const midi = voicing.intervals.map((i) => bass + i);
     results.push({
       voicing,
       reading: best.reading,
-      midi: voicing.intervals.map((i) => bass + i),
+      midi,
+      structure: classifyStructure(midi, { rootPc: query.rootPc, quality: query.quality }),
       symbol: readingSymbol(best.reading, query.rootPc),
       match: best.match,
     });

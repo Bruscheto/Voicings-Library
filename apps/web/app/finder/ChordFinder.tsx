@@ -18,7 +18,7 @@ import {
 } from 'harmony';
 import { PianoKeyboard, useCapturedNotes, usePiano, useWebMidi } from 'keyboard';
 import { VoicingCard } from './VoicingCard';
-import { STRUCTURE_LABEL, STRUCTURE_ORDER, visibleStructures } from '../../lib/structure';
+import { STRUCTURE_LABEL, visibleStructures } from '../../lib/structure';
 import { StructureChips } from '../../components/StructureChips';
 
 const STARTERS = ['Dm9', 'G13', 'Cmaj7'];
@@ -26,7 +26,7 @@ const EXAMPLES = ['Dm9', 'G13', 'Cmaj7', 'G7alt', 'Bø', 'Cm6', 'F6/9', 'Ebmaj7#
 const EMPTY_DEGREES = new Map();
 
 function groupOf(result: FinderResult): string {
-  return STRUCTURE_ORDER.find((tag) => result.voicing.structure.includes(tag)) ?? 'other';
+  return visibleStructures(result.structure)[0] ?? 'other';
 }
 
 /** Root of a stored shape's primary reading when played on these notes. */
@@ -308,13 +308,13 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
                     <VoicingCard
                       key={r.voicing.id}
                       id={r.voicing.id}
-                      name={r.voicing.name}
+                      name={r.reading.isPrimary ? r.voicing.name : null}
                       symbol={r.symbol}
                       midi={r.midi}
                       rootPc={query.rootPc}
                       quality={r.reading.quality}
                       tensions={r.reading.tensions}
-                      structure={r.voicing.structure}
+                      structure={r.structure}
                       badge={r.match === 'extended' ? 'adds tensions' : undefined}
                       onPlay={(midi) => void piano.play(midi, false)}
                     />
@@ -341,13 +341,13 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
                   <VoicingCard
                     key={r.voicing.id + r.symbol}
                     id={r.voicing.id}
-                    name={r.voicing.name}
+                    name={r.reading.isPrimary ? r.voicing.name : null}
                     symbol={r.symbol}
                     midi={r.midi}
                     rootPc={r.rootPc}
                     quality={r.reading.quality}
                     tensions={r.reading.tensions}
-                    structure={r.voicing.structure}
+                    structure={r.structure}
                     onPlay={(midi) => void piano.play(midi, false)}
                   />
                 ))}

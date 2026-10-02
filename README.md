@@ -1,254 +1,239 @@
-<h1 align="center">
-  <img src="./assets/readme/hero-v10.webp" width="100%" alt="Voicings interface with a C Maj9 chord and piano keyboard">
-</h1>
+# Voicings
 
-<p align="center">
-  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-15-111827?logo=nextdotjs&logoColor=white" alt="Next.js 15"></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-047857" alt="MIT License"></a>
-</p>
+Find, hear, and practice jazz piano voicings in your browser.
 
-Voicings is a jazz piano library with two web apps. The capture app records chords from a MIDI controller or virtual keyboard.
+Start with a chord symbol or the notes under your fingers. Compare ways to play it, see how each voicing is built, and connect your choices into a ii–V–I.
 
-The library app finds voicings for any chord in any key, typed or played, and chains them into voice-led ii–V–I progressions.
+[Launch Voicings](https://voicingslibrary.vercel.app/) · [Explore ii–V–I](https://voicingslibrary.vercel.app/paths) · [Browse the library](https://voicingslibrary.vercel.app/voicings)
 
-[Try the live library](https://voicings-library.vercel.app/) · [Explore ii–V–I paths](https://voicings-library.vercel.app/paths)
+![Voicings: search for a chord and explore playable voicings on piano keyboards](./assets/readme/live-library.jpg)
 
-![Live library showing a C Maj9 rootless voicing, staff notation, degrees, and key controls](./assets/readme/live-library.jpg)
+## From a chord to something you can play
 
-The public demo reads the existing Neon library. The capture app runs locally with password protection.
+### Find your voicing
 
-<p align="center">
-  <img src="./assets/readme/admin-capture.png" width="100%" alt="Capture app with a C Maj9 chord, grand staff, piano keys, and interval analysis">
-  <br>
-  <sub>C Maj9: C3 · G3 · B3 · D4 · E4</sub>
-</p>
+Type a chord like `Dm9`, `G7alt`, or `F6/9/A`. Voicings brings up matching shapes from the library, grouped by structure so you can compare shells, rootless voicings, quartal shapes, and more.
 
-## Features
+You can also play notes on a MIDI keyboard or the on-screen piano. See the possible chord readings, choose the one you hear, and explore voicings for it.
 
-- Type a chord (`Dm9`, `G7alt`, `F6/9/A`) or play one, and see every matching voicing in that key.
-- Store each voicing once as a shape; it plays in all 12 keys.
-- Mark guide tones and label every note's degree (3, b7, 9, 13…).
-- Detect chords from played notes, including rootless voicings, and flag ambiguous ones.
-- Tag structure automatically: shell, rootless A/B, drop 2/3, quartal, upper structure.
-- Chain voicings through a major or minor ii–V–I with the least hand movement; swap any chord and the rest re-solve.
-- Capture with a MIDI controller or the virtual piano: pick readings with number keys, save with Enter.
-- Reject voicings whose chord symbol the notes do not spell, and warn when a shape is already saved in another key.
+### Hear the difference
 
-## Project design
+Play a voicing as a chord or an arpeggio. Open it to follow the notes on the staff and piano, with guide tones and degrees such as `3`, `b7`, `9`, and `13` marked along the way.
 
-```mermaid
-flowchart LR
-    input["MIDI controller<br/>or virtual keyboard"] --> admin["Capture app<br/>localhost:3001"]
-    admin --> model["Data model<br/>Prisma"]
-    model <--> db[(PostgreSQL)]
-    db --> web["Library app<br/>localhost:3000"]
-    admin --> shared["Notation and audio"]
-    web --> shared
-```
+Change the key to practice the same shape across all 12 keys. The keyboard and notation move with you.
 
-Both Next.js apps use the same PostgreSQL database. They also use shared packages for data, notation, and audio.
+### Put it in a progression
 
-## Quick start
+Build a major or minor ii–V–I in any key. Voicings chooses a path that balances voice movement with register, so you can hear how one chord leads into the next.
 
-You need Node.js 22.13 or later, pnpm 11.18.0 (pinned in `package.json`), and PostgreSQL. A MIDI controller is optional.
+Swap a voicing to try another color. The surrounding chords adjust, and the path shows how far the voices move in semitones.
 
-1. Clone the repository.
+## Try it at the piano
 
-   ```bash
-   git clone https://github.com/Bruscheto/Voicings-Library.git
-   cd Voicings-Library
-   ```
+1. [Open the finder](https://voicingslibrary.vercel.app/), type `Dm9`, and listen to a few results.
+2. Open a voicing, look at its notes, and try it in another key.
+3. [Open ii–V–I](https://voicingslibrary.vercel.app/paths), choose a key, and compare the chord changes.
 
-2. Install the dependencies.
+A MIDI controller is optional. Type a chord or use the virtual keyboard to get started. MIDI input needs a browser with Web MIDI support and permission to access your device.
 
-   ```bash
-   pnpm install --frozen-lockfile
-   ```
+## Learn the shape, explore the harmony
 
-3. Set the database URLs for the current shell.
+The same notes can tell more than one harmonic story. `C3 E3 G3 A3` can be heard as `C6` or `Am7/C`; move the shape up two semitones and you get `D6` or `Bm7/D`.
 
-   ```bash
-   export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/voicings"
-   export DIRECT_URL="$DATABASE_URL"
-   ```
+Voicings keeps those readings together and makes each saved shape available in every key. Search explores the curated library, so the results are limited to the shapes it contains.
 
-4. Configure capture access.
+## Behind the product
 
-   Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` in `apps/admin/.env.local` or the current shell. Use [the admin environment example](./apps/admin/.env.example) as a template and choose your own password. Admin returns `503` until both values are configured.
+The public app is for finding, listening, and practicing. A separate, password-protected capture app lets the library maintainer record voicings through MIDI or the virtual piano, select chord readings, and organize collections. Capture runs locally and is not part of the hosted public app.
 
-5. Generate the Prisma client.
+Both apps share a TypeScript harmony engine, piano playback, and staff notation. The project uses Next.js, PostgreSQL, and Prisma.
 
-   ```bash
-   pnpm --filter data-model run db:generate
-   ```
+<details>
+<summary>Run locally</summary>
 
-6. Create the database tables.
+You need **Node.js ≥22.13**, **pnpm 11.18.0** (the version pinned in `package.json`), and a running **PostgreSQL** instance. Start with an empty local database named `voicings`.
 
-   ```bash
-   pnpm --filter data-model run db:push
-   ```
-
-7. Start both apps.
-
-   ```bash
-   pnpm run dev
-   ```
-
-| App         | URL                                     | Purpose                            |
-| ----------- | --------------------------------------- | ---------------------------------- |
-| Library app | [localhost:3000](http://localhost:3000) | Search, inspect, and play voicings |
-| Capture app | [localhost:3001](http://localhost:3001) | Create, analyze, and save voicings |
-
-For persistent local settings, add the database URLs to these files:
-
-- `packages/data-model/.env`
-- `apps/web/.env.local`
-- `apps/admin/.env.local`
-
-For a hosted database, use its pooled URL as `DATABASE_URL`. Use its direct URL as `DIRECT_URL`.
-
-## Use the apps
-
-### Capture a voicing
-
-1. Open the capture app and allow MIDI access, or use the virtual keyboard.
-2. Play a chord. It stays on screen after you let go; the next chord replaces it.
-3. Press `1`–`6` to keep readings; the first is primary. With none chosen, the top reading is saved. Type another symbol to add a reading the engine did not list.
-4. Optionally name it and add collections, then press `Enter`.
-
-`Space` plays the chord, `Z` and `X` move it by an octave, and `Esc` clears it. If the shape is already saved, in any key, saving adds only the new readings and collections.
-
-### Use the library
-
-| Page             | What it does                                                         |
-| ---------------- | -------------------------------------------------------------------- |
-| `/`              | Find voicings for a typed or played chord, grouped by structure      |
-| `/voicings/[id]` | One voicing in any of the 12 keys, with staff, degrees and playback  |
-| `/paths`         | A voice-led ii–V–I in any key, major or minor, with swappable chords |
-| `/voicings`      | Browse and filter the whole library                                  |
-
-## Seed data
-
-The source CSV file is [`docs/data/voicings-seed.csv`](./docs/data/voicings-seed.csv). The import command only writes rows with a `ready` status.
-
-Read the [seed workflow](./docs/data/voicing-seed-workflow.md) and [column schema](./docs/data/voicing-seed-schema.md) before you change the data.
-
-Validate the file before you import it:
+### 1. Install
 
 ```bash
+git clone https://github.com/Bruscheto/Voicings-Library.git
+cd Voicings-Library
+pnpm install --frozen-lockfile
+```
+
+### 2. Configure the database and capture login
+
+Create the app environment files from the supplied examples:
+
+```bash
+cp apps/web/.env.example apps/web/.env.local
+cp apps/admin/.env.example apps/admin/.env.local
+```
+
+Set `DATABASE_URL` and `DIRECT_URL` in both files to the same local database. In `apps/admin/.env.local`, set `ADMIN_USERNAME` and choose an `ADMIN_PASSWORD`. Capture returns `503` until both credentials are configured.
+
+Also export the database URLs in the terminal used for Prisma and import commands. For the local database in the examples:
+
+```bash
+export DATABASE_URL="postgresql://postgres:postgres@localhost:5432/voicings"
+export DIRECT_URL="$DATABASE_URL"
+```
+
+Use your PostgreSQL username, password, and port if they differ. For a hosted database, use the pooled connection as `DATABASE_URL` and the direct connection as `DIRECT_URL`. Keep these values server-only.
+
+### 3. Initialize and populate the local database
+
+```bash
+pnpm --filter data-model run db:generate
+pnpm --filter data-model exec prisma migrate deploy
 pnpm run seed:dry-run
 pnpm run seed:import
 ```
 
-Both commands can run more than once. They update existing voicings and skip rows with a `draft` or `defer` status.
+Run these against the empty local database configured above. Migrations create the schema and its database constraints; the import adds the reviewed `ready` rows from the seed CSV. Importing again replaces those shapes' readings with the CSV readings and preserves existing collection memberships.
 
-## Chord reading model
-
-When you play notes, the engine scores each candidate chord name and turns the scores into percentages. Two data files drive this:
-
-- [`chord-prior.json`](./packages/harmony/src/data/chord-prior.json) records how often each chord quality and tension is written in jazz charts. It is built from the [iRealPro Corpus of Jazz Standards](https://doi.org/10.5281/zenodo.3546040) by Daniel Shanahan and Yuri Broze, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The corpus itself is not in this repository.
-- [`reading-weights.json`](./packages/harmony/src/data/reading-weights.json) holds the feature weights. They are fitted on synthetic voicings of chords sampled from that prior.
-
-Rebuild them in this order:
+### 4. Start both apps
 
 ```bash
-pnpm run harmony:prior <path to the unzipped iRb_v1-0 directory>
-pnpm run harmony:train --write
+pnpm run dev
 ```
 
-Training is deterministic. It reports held-out agreement with the authored seed readings and with the Woodshed fixtures.
+| App     | Address                                 | First action                                                   |
+| ------- | --------------------------------------- | -------------------------------------------------------------- |
+| Library | [localhost:3000](http://localhost:3000) | Search for `Dm9` and play a result                             |
+| Capture | [localhost:3001](http://localhost:3001) | Sign in, then play notes on the virtual piano or MIDI keyboard |
 
-## API
+The app environment files let Next.js load its settings when started through Turborepo. For persistent Prisma CLI settings, you can also put the database URLs in `packages/data-model/.env`; the root import scripts still need them in the shell.
 
-| Method | Endpoint                             | Purpose                     |
-| ------ | ------------------------------------ | --------------------------- |
-| `GET`  | `http://localhost:3000/api/voicings` | Return saved voicings       |
-| `POST` | `http://localhost:3001/api/voicings` | Validate and save a voicing |
+</details>
 
-The write endpoint accepts this request:
+<details>
+<summary>Capture workflow and shortcuts</summary>
 
-```ts
-type SaveVoicingRequest = {
-  pitches: string[]; // e.g. ["B3", "E4", "F4", "A4"]; the lowest is the bass
-  symbols?: string[]; // readings to keep, first one primary; omit for the engine's reading
-  voicingName?: string | null;
-  collections?: string[];
-};
-```
+To capture a voicing:
 
-It returns `422` with the chord the notes do spell when a symbol does not match them. Saving a shape that already exists, in any key, adds new readings and collections instead of creating a duplicate.
+1. Play a chord on a MIDI controller or the virtual keyboard. The notes stay on screen after release; the next chord replaces them.
+2. Select the readings you want to keep with `1`–`6`. The first selected reading is primary; with none selected, capture uses the top suggestion. You can also type another chord symbol.
+3. Optionally add a name and collections, then press `Enter` to save.
 
-## Repository guide
+| Shortcut  | Action                    |
+| --------- | ------------------------- |
+| `1`–`6`   | Toggle chord readings     |
+| `Enter`   | Save the voicing          |
+| `Space`   | Play the captured notes   |
+| `Z` / `X` | Shift down / up an octave |
+| `Esc`     | Clear the notes           |
 
-| Path                                               | Purpose                                                          |
-| -------------------------------------------------- | ---------------------------------------------------------------- |
-| [`apps/web`](./apps/web)                           | Library app and read API                                         |
-| [`apps/admin`](./apps/admin)                       | Capture app and write API                                        |
-| [`packages/harmony`](./packages/harmony)           | Chord engine: detection, symbols, finder, voice-led paths        |
-| [`packages/data-model`](./packages/data-model)     | Prisma schema and voicing records                                |
-| [`packages/music-engine`](./packages/music-engine) | VexFlow staff notation                                           |
-| [`packages/keyboard`](./packages/keyboard)         | MIDI input, virtual piano and piano playback shared by both apps |
-| [`scripts`](./scripts)                             | CSV import and voicing re-analysis                               |
-| [`docs/data`](./docs/data)                         | Seed data documentation                                          |
+Shortcuts apply when you are not typing into a field. Saving a shape with no new readings or collections returns an already-saved message.
 
-### Commands
+</details>
 
-| Command                                  | Purpose                                                            |
-| ---------------------------------------- | ------------------------------------------------------------------ |
-| `pnpm run dev`                           | Start both apps                                                    |
-| `pnpm run build`                         | Build all apps and packages                                        |
-| `pnpm run format:check`                  | Check file formatting                                              |
-| `pnpm run seed:dry-run`                  | Validate the seed CSV file                                         |
-| `pnpm run seed:import`                   | Import all `ready` rows                                            |
-| `pnpm run voicings:reanalyze`            | Re-check stored voicings against the engine                        |
-| `pnpm run lint`                          | Lint apps, packages and scripts                                    |
-| `pnpm run typecheck`                     | Typecheck all workspaces and import scripts                        |
-| `pnpm run test:coverage`                 | Check harmony and piano playback coverage thresholds               |
-| `pnpm run test`                          | Run package tests                                                  |
-| `pnpm run test:e2e`                      | Build both apps and run browser tests against a throwaway database |
-| `pnpm --filter data-model run db:studio` | Open Prisma Studio                                                 |
+<details>
+<summary>Codebase, tests, and library maintenance</summary>
 
-## Deploy the library
+| Workspace                                          | Responsibility                                                         |
+| -------------------------------------------------- | ---------------------------------------------------------------------- |
+| [`apps/web`](./apps/web)                           | Public library and read API                                            |
+| [`apps/admin`](./apps/admin)                       | Protected capture app and write API                                    |
+| [`packages/harmony`](./packages/harmony)           | Chord parsing and detection, shape analysis, search, and voice leading |
+| [`packages/data-model`](./packages/data-model)     | Prisma schema, persistence, and save validation                        |
+| [`packages/music-engine`](./packages/music-engine) | Staff notation                                                         |
+| [`packages/keyboard`](./packages/keyboard)         | MIDI input, virtual keyboards, and shared piano playback               |
+| [`scripts`](./scripts)                             | Seed import, re-analysis, model training, and sample fetching          |
+| [`e2e`](./e2e)                                     | Playwright tests with a disposable PostgreSQL database                 |
 
-The current demo is hosted at [voicings-library.vercel.app](https://voicings-library.vercel.app/).
+| Command                                  | Purpose                                   |
+| ---------------------------------------- | ----------------------------------------- |
+| `pnpm run dev`                           | Start both apps                           |
+| `pnpm run build`                         | Build the apps                            |
+| `pnpm run format:check`                  | Check formatting                          |
+| `pnpm run lint`                          | Run ESLint                                |
+| `pnpm run typecheck`                     | Check workspace and script types          |
+| `pnpm run test`                          | Run package tests                         |
+| `pnpm run test:coverage`                 | Check harmony and piano playback coverage |
+| `pnpm run test:e2e`                      | Build both apps and run browser tests     |
+| `pnpm --filter data-model run db:studio` | Inspect the database in Prisma Studio     |
 
-Create a Vercel project for this repository with root directory `apps/web`, Node.js `22.x`, and source files outside the root directory enabled. [The app configuration](./apps/web/vercel.json) installs the frozen pnpm lockfile, generates Prisma, and builds the public web app. It does not run migrations or import seed data.
+[GitHub Actions](./.github/workflows/ci.yml) checks the dependency audit, formatting, lint, types, unit tests, coverage, and E2E. Coverage thresholds are 90% for harmony and 80% for keyboard piano playback.
 
-The Prisma generator includes Vercel's `rhel-openssl-3.0.x` engine, and both apps trace the generated client from the pnpm workspace. [The upload exclusions](./.vercelignore) keep local environment files, databases, and build/test output out of deployment source uploads.
-
-Set encrypted production environment variables `DATABASE_URL` (pooled Neon URL) and `DIRECT_URL` (direct Neon URL) in that project. Keep both server-only. The existing database must already have the current migrations and data.
-
-Deploy from the repository root after linking the web project:
-
-```bash
-pnpm dlx vercel link --yes --scope <your-vercel-team> --project voicings-library
-pnpm dlx vercel deploy --prod
-```
-
-## Continuous integration
-
-[GitHub Actions](./.github/workflows/ci.yml) runs on pull requests, pushes to `main`, and manual dispatches. It uses Node.js 22.22.3, the pinned pnpm version, and a frozen lockfile to check dependencies, formatting, lint, types, unit tests, coverage, and E2E.
-
-The E2E suite builds both apps in production mode, applies migrations, and imports the seed CSV into an in-memory PGlite PostgreSQL database. It uses local ports 5433/5434 for the database and health check, and 3100/3101 for the apps. No Neon credentials or GitHub secrets are needed.
-
-To run browser tests locally, install Playwright's Chromium first:
+For local browser tests, install Chromium first:
 
 ```bash
 pnpm --filter e2e exec playwright install chromium
 pnpm run test:e2e
 ```
 
-Coverage keeps the existing aggregate thresholds: 90% for harmony and 80% for the keyboard package's piano playback, across statements, branches, functions, and lines. Failed E2E runs retain traces and screenshots in the Playwright report; CI uploads them for seven days.
+E2E applies migrations and imports the seed into an in-memory PGlite database. It uses ports `5433`/`5434` for the database and health check, and `3100`/`3101` for the apps, with disposable capture credentials. It needs no hosted database credentials. Failed runs retain traces and screenshots in the Playwright report.
 
-## Security and audio
+### Maintain the library
 
-The capture app uses HTTP Basic Auth with server-only `ADMIN_USERNAME` and `ADMIN_PASSWORD`. Its pages and API routes reject unauthenticated requests, and each API checks authorization directly. Missing credentials deny access in development and production. Authenticated cross-origin writes are rejected.
+The source data is [`docs/data/voicings-seed.csv`](./docs/data/voicings-seed.csv). Only rows marked `ready` are imported; `draft` and `defer` rows are skipped. The dry run checks the data without writing to the database.
 
-The hosted demo publishes only the library app. Keep capture local unless you configure a separate protected deployment with HTTPS; Basic Auth sends credentials on each request. Rotate credentials through environment configuration when access changes.
+Read the [seed workflow](./docs/data/voicing-seed-workflow.md) and [column schema](./docs/data/voicing-seed-schema.md) before editing or importing. Confirm the target database before running `seed:import`, which replaces readings for matching shapes.
 
-Playback uses [smplr](https://github.com/danigb/smplr) with the public-domain Splendid Grand Piano (Steinway) samples. It loads one velocity layer and about one sample per minor third across the 88 keys: 29 files. Other keys are pitch-shifted from the nearest sample. The library app serves the files from `apps/web/public/samples/piano`, which `pnpm run piano:samples` fills, and keeps them in Cache Storage, so repeat visits load nothing. The local capture app fetches the same files from smplr's host. One shared piano serves every page. It schedules notes on the audio clock and runs them through a compressor.
+After a harmony engine change, review stored voicings with `pnpm run voicings:reanalyze`. Add `--write` to refresh structure tags and tensions. Unsupported readings are reported for review and are never deleted automatically.
 
-## License
+</details>
 
-Voicings uses the [MIT License](./LICENSE).
+<details>
+<summary>Chord detection and model training</summary>
+
+The engine ranks candidate chord readings with a weighted feature model and converts their scores to relative percentages. Rootless and ambiguous chords can have several plausible readings; the percentages describe the model's ranking.
+
+- [`chord-prior.json`](./packages/harmony/src/data/chord-prior.json) contains chord-frequency statistics derived from the [iRealPro Corpus of Jazz Standards](https://doi.org/10.5281/zenodo.3546040) by Daniel Shanahan and Yuri Broze, under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The source corpus is not included.
+- [`reading-weights.json`](./packages/harmony/src/data/reading-weights.json) contains weights fitted on synthetic voicings sampled from that prior.
+
+To rebuild the files, obtain the corpus and run these commands in order:
+
+```bash
+pnpm run harmony:prior /path/to/iRb_v1-0
+pnpm run harmony:train --write
+```
+
+Training is deterministic and reports held-out agreement with the authored seed readings and Woodshed fixtures.
+
+</details>
+
+<details>
+<summary>Read and write APIs</summary>
+
+| Method | Endpoint                             | Purpose                                              |
+| ------ | ------------------------------------ | ---------------------------------------------------- |
+| `GET`  | `http://localhost:3000/api/voicings` | Return saved voicings                                |
+| `POST` | `http://localhost:3001/api/voicings` | Validate and save a shape, readings, and collections |
+
+The write endpoint requires the same Basic Auth credentials as the capture app and accepts:
+
+```ts
+type SaveVoicingRequest = {
+  pitches: string[]; // e.g. ["B3", "E4", "F4", "A4"]; the lowest note is the bass
+  symbols?: string[]; // first reading is primary; omit to use the top suggestion
+  voicingName?: string | null;
+  collections?: string[];
+};
+```
+
+Unsupported chord readings return `422`. An existing shape receives new readings and collections; if neither adds anything, the endpoint returns `409`.
+
+</details>
+
+<details>
+<summary>Deploy your own instance</summary>
+
+The [public demo](https://voicingslibrary.vercel.app/) hosts `apps/web`. To host your own library on Vercel:
+
+1. Set the project root to `apps/web`, use Node.js `22.x`, and enable source files outside the root directory.
+2. Configure server-only `DATABASE_URL` and `DIRECT_URL` for your PostgreSQL database.
+3. Apply the repository's migrations and import the desired seed data into that database before deployment.
+
+[`apps/web/vercel.json`](./apps/web/vercel.json) installs the frozen lockfile, generates the Prisma client, and builds the library. It does not migrate or seed the database. [`.vercelignore`](./.vercelignore) excludes local environment files and build/test output from source uploads.
+
+Capture uses HTTP Basic Auth through `ADMIN_USERNAME` and `ADMIN_PASSWORD`. Pages and API routes enforce authentication, missing credentials deny access, and cross-origin writes are rejected. Run capture locally, or use a separate protected HTTPS deployment if you need remote access.
+
+</details>
+
+## License and credits
+
+The project uses the [MIT License](./LICENSE). Chord-frequency statistics are derived from the iRealPro Corpus of Jazz Standards by Daniel Shanahan and Yuri Broze under CC BY 4.0; attribution and source links are in the model documentation above.
+
+Piano playback uses [smplr](https://github.com/danigb/smplr) and the public-domain Splendid Grand Piano samples. See the [sample credits](./apps/web/public/samples/piano/README.md). `pnpm run piano:samples` restores the library's sample files.

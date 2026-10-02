@@ -63,17 +63,18 @@ export function ChordFinder({ library }: { library: LibraryVoicing[] }) {
   });
 
   // Keep the typed chord in the URL so a search can be shared or revisited.
+  const urlQuery = params.get('q') ?? '';
   useEffect(() => {
     if (mode !== 'type') return;
+    const query = text.trim();
+    // Already there: a needless replace would cancel a result link clicked meanwhile.
+    if (query === urlQuery) return;
     const timer = setTimeout(
-      () =>
-        router.replace(text.trim() ? `/?q=${encodeURIComponent(text.trim())}` : '/', {
-          scroll: false,
-        }),
+      () => router.replace(query ? `/?q=${encodeURIComponent(query)}` : '/', { scroll: false }),
       300,
     );
     return () => clearTimeout(timer);
-  }, [text, mode, router]);
+  }, [text, mode, router, urlQuery]);
 
   useEffect(() => setHeardIndex(0), [input.notes]);
 

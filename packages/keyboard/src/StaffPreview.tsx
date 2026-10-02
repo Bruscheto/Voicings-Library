@@ -3,7 +3,12 @@
 import { useEffect, useId, useRef } from 'react';
 import { StaffRenderer } from 'music-engine';
 import { midiToPitch, spellVoicing, type SpellingChord } from 'harmony';
-import { vexKey } from './usePiano';
+
+/** "C#4" → "c#/4", the key VexFlow uses. */
+const vexKey = (pitch: string) => {
+  const [, name, octave] = /^([A-G][#b]*)(-?\d+)$/.exec(pitch) ?? [];
+  return `${name.toLowerCase()}/${octave}`;
+};
 
 type Props = {
   notes: number[];

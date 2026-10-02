@@ -1,120 +1,46 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { midiToPitch } from 'harmony';
-import { Sampler } from 'sampler';
+import { useCallback, useEffect, useState } from 'react';
+import { PianoEngine, browserDeps, type PianoStatus } from './pianoEngine';
 
-const sampler = new Sampler();
-const ARPEGGIO_STEP_MS = 100;
+export type { PianoStatus } from './pianoEngine';
 
-/** "C#4" → "c#/4", the note key the sampler and VexFlow use. */
-export const vexKey = (pitch: string) => {
-  const [, name, octave] = /^([A-G][#b]*)(-?\d+)$/.exec(pitch) ?? [];
-  return `${name.toLowerCase()}/${octave}`;
-};
+// One engine per page load: every component shares the context and samples.
+let engine: PianoEngine | null = null;
+const getEngine = () => (engine ??= new PianoEngine(browserDeps));
 
-/** Playback key for a MIDI note; spelling never reaches the sampler. */
-export const toVexFlow = (midi: number) => vexKey(midiToPitch(midi));
-
-export type PianoStatus = 'loading' | 'ready' | 'partial' | 'synth' | 'unavailable';
+const MS_PER_SECOND = 1000;
 
 /**
- * Sample loading and playback. Status reflects what actually loaded; audio
- * starts only after the sampler has activated from a user gesture.
+ * The shared piano. Samples start loading on first mount; playback waits for
+ * them, so the first sound is always the piano. Unmounting stops playback.
  */
 export function usePiano() {
   const [status, setStatus] = useState<PianoStatus>('loading');
-  const mounted = useRef(false);
-  const failed = useRef(false);
-  const generation = useRef(0);
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
-
-  const clearTimers = useCallback(() => {
-    timers.current.forEach(clearTimeout);
-    timers.current = [];
-  }, []);
-
-  const markUnavailable = useCallback(() => {
-    failed.current = true;
-    if (mounted.current) setStatus('unavailable');
-  }, []);
 
   useEffect(() => {
-    mounted.current = true;
-    sampler.init();
-    sampler
-      .loadPianoSamples()
-      .then(({ loaded, failed: missing }) => {
-        if (!mounted.current || failed.current) return;
-        setStatus(loaded === 0 ? 'synth' : missing > 0 ? 'partial' : 'ready');
-      })
-      .catch(markUnavailable);
+    const piano = getEngine();
+    piano.load();
+    const unsubscribe = piano.subscribe(setStatus);
     return () => {
-      mounted.current = false;
-      generation.current += 1;
-      clearTimers();
+      unsubscribe();
+      piano.stop();
     };
-  }, [clearTimers, markUnavailable]);
+  }, []);
 
-  const sound = useCallback(
-    (midi: number) => {
-      sampler.init();
-      void sampler.play(toVexFlow(midi)).catch(markUnavailable);
-    },
-    [markUnavailable],
-  );
+  const sound = useCallback((midi: number) => void getEngine().playKey(midi), []);
 
   const play = useCallback(
-    async (midi: readonly number[], arpeggio: boolean) => {
-      const run = ++generation.current;
-      clearTimers();
-      const stale = () => !mounted.current || run !== generation.current;
-      try {
-        await sampler.activate();
-        if (stale()) return;
-        const notes = midi.map(toVexFlow);
-        if (!arpeggio) {
-          await Promise.all(notes.map((note) => sampler.play(note)));
-          return;
-        }
-        notes.forEach((note, index) => {
-          const timer = setTimeout(() => {
-            if (!stale()) void sampler.play(note).catch(markUnavailable);
-          }, index * ARPEGGIO_STEP_MS);
-          timers.current.push(timer);
-        });
-      } catch {
-        if (!stale()) markUnavailable();
-      }
-    },
-    [clearTimers, markUnavailable],
+    (midi: readonly number[], arpeggio: boolean) => getEngine().playChord(midi, arpeggio),
+    [],
   );
 
   /** Chords one after another, `stepMs` apart; a new play or stop cancels it. */
   const playSequence = useCallback(
-    async (chords: readonly (readonly number[])[], stepMs: number) => {
-      const run = ++generation.current;
-      clearTimers();
-      const stale = () => !mounted.current || run !== generation.current;
-      try {
-        await sampler.activate();
-        if (stale()) return;
-        chords.forEach((chord, index) => {
-          const timer = setTimeout(() => {
-            if (stale()) return;
-            chord.forEach((midi) => void sampler.play(toVexFlow(midi)).catch(markUnavailable));
-          }, index * stepMs);
-          timers.current.push(timer);
-        });
-      } catch {
-        if (!stale()) markUnavailable();
-      }
-    },
-    [clearTimers, markUnavailable],
+    (chords: readonly (readonly number[])[], stepMs: number) =>
+      getEngine().playSequence(chords, stepMs / MS_PER_SECOND),
+    [],
   );
 
-  const stop = useCallback(() => {
-    generation.current += 1;
-    clearTimers();
-  }, [clearTimers]);
+  const stop = useCallback(() => getEngine().stop(), []);
 
   return { status, sound, play, playSequence, stop };
 }

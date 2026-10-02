@@ -6,7 +6,7 @@ const nextConfig = {
   outputFileTracingIncludes: {
     '/*': ['../../node_modules/.pnpm/@prisma+client*/node_modules/.prisma/client/**'],
   },
-  transpilePackages: ['music-engine', 'sampler', 'data-model', 'harmony', 'keyboard'],
+  transpilePackages: ['music-engine', 'data-model', 'harmony', 'keyboard'],
 };
 
 export default nextConfig;

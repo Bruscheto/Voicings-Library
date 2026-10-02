@@ -19,7 +19,6 @@ const PIANO_LABEL: Record<PianoStatus, string> = {
   loading: 'Loading piano…',
   ready: 'Piano ready',
   partial: 'Piano partial',
-  synth: 'Synth fallback',
   unavailable: 'Audio unavailable',
 };
 

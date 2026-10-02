@@ -65,9 +65,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
-      sampler:
-        specifier: workspace:*
-        version: link:../../packages/sampler
     devDependencies:
       '@types/node':
         specifier: ^20.0.0
@@ -114,9 +111,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
-      sampler:
-        specifier: workspace:*
-        version: link:../../packages/sampler
     devDependencies:
       '@types/node':
         specifier: ^20.0.0
@@ -194,23 +188,16 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.3.1
-      sampler:
-        specifier: workspace:*
-        version: link:../sampler
+      smplr:
+        specifier: ^1.1.0
+        version: 1.1.0
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.6
-      typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
-
-  packages/music-engine:
-    dependencies:
-      vexflow:
-        specifier: ^4.2.0
-        version: 4.2.5
-    devDependencies:
+      '@vitest/coverage-v8':
+        specifier: ^4.1.11
+        version: 4.1.11(vitest@4.1.11)
       typescript:
         specifier: ^5.0.0
         version: 5.9.3
@@ -218,11 +205,12 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(@types/node@20.19.25)(@vitest/coverage-v8@4.1.11)(vite@8.3.1(@types/node@20.19.25)(jiti@1.21.7))
 
-  packages/sampler:
+  packages/music-engine:
+    dependencies:
+      vexflow:
+        specifier: ^4.2.0
+        version: 4.2.5
     devDependencies:
-      '@vitest/coverage-v8':
-        specifier: ^4.1.11
-        version: 4.1.11(vitest@4.1.11)
       typescript:
         specifier: ^5.0.0
         version: 5.9.3
@@ -2366,6 +2354,10 @@ packages:
   siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
 
+  smplr@1.1.0:
+    resolution: {integrity: sha512-VW2FeDdSgBU3cg9pofUYvXB1Nb0iMXurbAnUlpgWfOklw/3JGP5vEjKdq7qGaEwL8rzQTMjdDu64AqpR2ul1bQ==}
+    engines: {node: '>=14.0.0'}
+
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
@@ -2458,10 +2450,6 @@ packages:
   tinyexec@1.3.1:
     resolution: {integrity: sha512-GCvB3aoys96IuDFBMcTB46JOR6mdMtAToqwiW8JlWhsoh1mhHi/xn9ss/Dg7N555GiJyEt2qzoG/NHCwM6h1EA==}
     engines: {node: '>=18'}
-
-  tinyglobby@0.2.15:
-    resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
-    engines: {node: '>=12.0.0'}
 
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
@@ -4861,6 +4849,8 @@ snapshots:
 
   siginfo@2.0.0: {}
 
+  smplr@1.1.0: {}
+
   source-map-js@1.2.1: {}
 
   stable-hash@0.0.5: {}
@@ -4941,7 +4931,7 @@ snapshots:
       lines-and-columns: 1.2.4
       mz: 2.7.0
       pirates: 4.0.7
-      tinyglobby: 0.2.15
+      tinyglobby: 0.2.17
       ts-interface-checker: 0.1.13
 
   supports-color@7.2.0:
@@ -4989,11 +4979,6 @@ snapshots:
   tinybench@2.9.0: {}
 
   tinyexec@1.3.1: {}
-
-  tinyglobby@0.2.15:
-    dependencies:
-      fdir: 6.5.0(picomatch@4.0.7)
-      picomatch: 4.0.7
 
   tinyglobby@0.2.17:
     dependencies:

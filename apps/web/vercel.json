@@ -2,5 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
-  "buildCommand": "cd ../.. && pnpm --filter data-model run db:generate && pnpm --filter web run build"
+  "buildCommand": "cd ../.. && pnpm --filter data-model run db:generate && pnpm --filter web run build",
+  "headers": [
+    {
+      "source": "/samples/piano/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
 }

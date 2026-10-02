@@ -1,4 +1,5 @@
 import React from 'react';
+import { Analytics } from '@vercel/analytics/next';
 import { AppHeader } from '../components/AppHeader';
 import './globals.css';
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <span>Voicings</span>
           <span>Find. Listen. Make it yours.</span>
         </footer>
+        <Analytics />
       </body>
     </html>
   );

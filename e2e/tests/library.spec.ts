@@ -21,6 +21,8 @@ test('an unknown symbol explains itself and an absent chord suggests a looser on
   await expect(page.getByText('is not a chord symbol this library can read')).toBeVisible();
   await input.fill('Dm13');
   await expect(page.getByText('No voicings for')).toBeVisible();
+  // Typing still keeps the search in the URL.
+  await expect(page).toHaveURL(/\?q=Dm13$/);
   await page.getByRole('button', { name: 'Dmin7' }).click();
   await expect(input).toHaveValue('Dmin7');
   await expect(page.getByRole('article').first()).toBeVisible();

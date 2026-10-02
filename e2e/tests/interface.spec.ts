@@ -100,3 +100,14 @@ test('played notes show the structure they form under the chosen reading', async
   await page.getByRole('button', { name: /^Dmin6\/9\/B / }).click();
   await expect(played).toContainText('Rootless B');
 });
+
+test('opening a result right after landing on a search does not bounce back', async ({ page }) => {
+  // A slow detail response leaves room for a stray URL sync to cancel the navigation.
+  await page.route('**/voicings/**', async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    await route.continue();
+  });
+  await page.goto(`${WEB}/?q=G13`);
+  await page.getByRole('link', { name: 'G13/B' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('G13/B', { timeout: 10_000 });
+});
